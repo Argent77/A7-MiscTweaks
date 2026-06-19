@@ -1,0 +1,69 @@
+// Adjusts character generation values.
+DEFINE_ACTION_FUNCTION UPDATE_CHARGEN
+INT_VAR
+  score_min = 9 // minimum/initial ability score
+  extra = 21    // number of additional ability points to distribute
+RET
+  result
+BEGIN
+  OUTER_SET result = 0
+
+  ACTION_IF (score_min > 0 && score_min <= 18 && extra >= 0 && score_min * 6 + extra <= 112) BEGIN
+    // updating ability score description strings for below average values (fix %d placeholders)
+    LAF UPDATE_STRREF_TOKENS INT_VAR strref = 33954 STR_VAR token = ~STAT_STRVAL~ END
+    LAF UPDATE_STRREF_TOKENS INT_VAR strref = 33955 STR_VAR token = ~STAT_STRVAL~ END
+    LAF UPDATE_STRREF_TOKENS INT_VAR strref = 33956 STR_VAR token = ~STAT_STRVAL~ END
+    LAF UPDATE_STRREF_TOKENS INT_VAR strref = 34250 STR_VAR token = ~STAT_DEXVAL~ END
+    LAF UPDATE_STRREF_TOKENS INT_VAR strref = 34251 STR_VAR token = ~STAT_DEXVAL~ END
+    LAF UPDATE_STRREF_TOKENS INT_VAR strref = 34252 STR_VAR token = ~STAT_DEXVAL~ END
+    LAF UPDATE_STRREF_TOKENS INT_VAR strref = 34253 STR_VAR token = ~STAT_CONVAL~ END
+    LAF UPDATE_STRREF_TOKENS INT_VAR strref = 34254 STR_VAR token = ~STAT_CONVAL~ END
+
+    // updating UI.MENU ability scores and extra points
+    COPY_EXISTING ~ui.menu~ ~override~
+      // min. ability score
+      REPLACE_TEXTUALLY ~\({desc[ %TAB%]*=[ %TAB%]*-?[0-9]+,[ %TAB%]*roll[ %TAB%]*=[ %TAB%]*\)[0-9]+~ ~\1%score_min%~
+      REPLACE_TEXTUALLY ~\(chargen\.ability\[i\]\.roll[ %TAB%]*=[ %TAB%]*\)[0-9]+~ ~\1%score_min%~
+      // extra points
+      REPLACE_TEXTUALLY ~\(chargen\.extraAbilityPoints[ %TAB%]*=[ %TAB%]*\)[0-9]+~ ~\1%extra%~
+    BUT_ONLY
+
+    // updating CHARBASE.CRE ability scores
+    COPY_EXISTING ~charbase.cre~ ~override~
+      PATCH_FOR_EACH ofs IN 0x238 0x23a 0x23b 0x23c 0x23d 0x23e BEGIN
+        WRITE_BYTE ofs score_min
+      END
+    BUT_ONLY
+
+    OUTER_SET result = 1
+  END
+END
+
+// Replaces old "%d" placeholders by valid game tokens.
+DEFINE_DIMORPHIC_FUNCTION UPDATE_STRREF_TOKENS
+INT_VAR
+  strref = "-1" // strref of the string to update
+STR_VAR
+  token = ~~    // token base name
+RET
+  count         // number of replaced instances
+BEGIN
+  OUTER_SET count = 0
+  ACTION_IF (strref >= 0 && strref < NEXT_STRREF && NOT ~%token%~ STR_EQ ~~) BEGIN
+    ACTION_GET_STRREF strref input
+
+    OUTER_PATCH_SAVE percent ~ ~ BEGIN WRITE_BYTE 0 37 END  // percent sign
+    OUTER_PATCH_SAVE output ~%input%~ BEGIN
+      SET index = 1
+      REPLACE_EVALUATE ~%percent%d~ BEGIN
+        SPRINT updated ~<%token%%index%>~
+        SET index += 1
+      END ~%updated%~
+    END
+    OUTER_SET count = index - 1
+
+    ACTION_IF (count > 0) BEGIN
+      STRING_SET_EVALUATE strref ~%output%~
+    END
+  END
+END

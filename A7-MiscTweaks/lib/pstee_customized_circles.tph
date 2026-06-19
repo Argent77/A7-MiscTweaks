@@ -1,0 +1,18 @@
+// Installs the character selection circle BAM in the subfolder specified by "type".
+DEFINE_ACTION_FUNCTION INSTALL_SELECTION_CIRCLE
+STR_VAR
+  game = ~~
+  type = ~~
+RET result
+BEGIN
+  OUTER_SET result = 0
+  ACTION_IF (NOT ~%game%~ STR_EQ ~~ && NOT ~%type%~ STR_EQ ~~) BEGIN
+    OUTER_SPRINT bam_path ~%MOD_FOLDER%/bam/circle_%game%/%type%~
+    ACTION_FOR_EACH resref IN ~wmpickl~ ~wmpickr~ BEGIN
+      ACTION_IF (FILE_EXISTS ~%bam_path%/%resref%.bam~) BEGIN
+        COPY ~%bam_path%~ ~override~
+        OUTER_SET result += 1
+      END
+    END
+  END
+END

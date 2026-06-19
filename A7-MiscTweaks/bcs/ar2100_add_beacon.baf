@@ -1,0 +1,13 @@
+IF
+  !Global("Severed_Hand_Reveal","GLOBAL",0)
+  Global("a7#beacon_added","MYAREA",0)
+THEN
+  RESPONSE #100
+    SetGlobal("a7#beacon_added","MYAREA",1)
+    StartCutSceneMode()
+    ClearAllActions()
+    DisplayStringHead(Player1,@2210)  // The Great Oak grants you the blessing of nature.
+    ActionOverride(Player1,AddSpecialAbility("a7#beac1"))
+    EndCutSceneMode()
+    Continue()
+END

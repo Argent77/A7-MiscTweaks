@@ -1,0 +1,130 @@
+// Applies critical hit protection to specific equipment
+
+// Items to exclude from the patch operation
+ACTION_DEFINE_ASSOCIATIVE_ARRAY blacklist BEGIN
+  // game, item resref => 1
+  ~sod~,    ~bdmisc10~  => 1  // Reed of Echoes
+  ~iwdee~,  ~lyre~      => 1  // Lyre of Progression
+END
+
+
+// Enables critical hit protection for items of the specified category
+DEFINE_ACTION_FUNCTION apply_protection
+INT_VAR
+  category = "-1"
+BEGIN
+  ACTION_IF (category >= 0) BEGIN
+    // special: for helmets the flag must be turned off
+    OUTER_SET enable = (category != 7)
+    COPY_EXISTING_REGEXP ~^.+\.itm$~ ~override~
+      READ_SHORT 0x1c cat
+      PATCH_IF (cat == category) BEGIN
+        // evaluating item blacklist
+        SET skip = 0
+        PHP_EACH blacklist AS key => value BEGIN
+          PATCH_IF (value && ~%SOURCE_RES%~ STR_EQ $key(~1~)) BEGIN
+            LPF check_game STR_VAR game = EVAL $key(~0~) RET result END
+            SET skip |= result
+          END
+        END
+
+        PATCH_IF (NOT skip) BEGIN
+          READ_LONG 0x18 flags
+          SET new_flags = enable ? flags BOR BIT25 : flags BAND BNOT BIT25
+          WRITE_LONG 0x18 new_flags
+
+          // update item description only if the flag was successfully updated
+          PATCH_IF (flags != new_flags) BEGIN
+            READ_LONG UNIDENTIFIED_DESC strref1
+            PATCH_IF (strref1 >= 0) BEGIN
+              GET_STRREF strref1 original
+              LPF update_desc STR_VAR original RET updated END
+              SAY UNIDENTIFIED_DESC ~%updated%~
+            END
+
+            READ_LONG IDENTIFIED_DESC strref2
+            PATCH_IF (strref2 >= 0) BEGIN
+              GET_STRREF strref2 original
+              LPF update_desc STR_VAR original RET updated END
+              SAY IDENTIFIED_DESC ~%updated%~
+            END
+          END
+        END
+      END
+    BUT_ONLY
+  END
+END
+
+// Adds critical hit protection to the item description string
+DEFINE_DIMORPHIC_FUNCTION update_desc
+STR_VAR
+  original = ~~
+RET
+  updated
+BEGIN
+  OUTER_SPRINT property @2020   // Protects against critical hits
+  OUTER_SET property_len = STRING_LENGTH ~%property%~
+
+  ACTION_IF (property_len > 0) BEGIN
+    OUTER_SPRINT statistics @2000 // STATISTICS:
+    OUTER_SET statistics_len = STRING_LENGTH ~%statistics%~
+    OUTER_SPRINT abilities @2001  // Equipped abilities:
+    OUTER_SET abilities_len = STRING_LENGTH ~%abilities%~
+
+    OUTER_PATCH_SAVE updated ~%original%~ BEGIN
+      SET pos1 = (abilities_len > 0) ? INDEX_BUFFER(CASE_SENSITIVE ~%abilities%~) : "-1"
+      PATCH_IF (pos1 >= 0) BEGIN
+        // "Equipped abilities" section exists
+        SET pos1 = INDEX_BUFFER(~[%WNL%]~ pos1)
+      END ELSE BEGIN
+        // "Equipped abilities" section does NOT exist yet
+        SET pos1 = (statistics_len > 0) ? INDEX_BUFFER(CASE_SENSITIVE ~%statistics%~) : "-1"
+        PATCH_IF (pos1 >= 0) BEGIN
+          // create new section
+          SET pos1 = INDEX_BUFFER(~[%WNL%]~ pos1)
+          PATCH_IF (pos1 >= 0) BEGIN
+            SPRINT abilities_out @2011  // replacement string: Equipped abilities
+            SET abilities_out_len = STRING_LENGTH ~%abilities_out%~
+            PATCH_IF (abilities_out_len > 0) BEGIN
+              SPRINT line ~%WNL%%WNL%%abilities_out%~
+            END ELSE BEGIN
+              SPRINT line ~%WNL%~
+            END
+            SET line_len = STRING_LENGTH ~%line%~
+            INSERT_BYTES pos1 line_len
+            WRITE_ASCIIE pos1 ~%line%~ (line_len)
+            SET pos1 += line_len
+          END
+        END ELSE BEGIN
+          // "STATISTICS" section does NOT exist yet
+          SET pos1 = (statistics_len > 0) ? BUFFER_LENGTH : "-1"
+          PATCH_IF (pos1 >= 0) BEGIN
+            // create new sections
+            SPRINT statistics_out @2010  // replacement string: STATISTICS
+            SET statistics_out_len = STRING_LENGTH ~%statistics_out%~
+            SPRINT abilities_out @2011  // replacement string: Equipped abilities
+            SET abilities_out_len = STRING_LENGTH ~%abilities_out%~
+            SPRINT line ~%WNL%%WNL%%statistics_out%~
+            PATCH_IF (abilities_out_len > 0) BEGIN
+              SPRINT line ~%line%%WNL%%WNL%%abilities_out%~
+            END ELSE BEGIN
+              SPRINT line ~%line%%WNL%~
+            END
+            SET line_len = STRING_LENGTH ~%line%~
+            INSERT_BYTES pos1 line_len
+            WRITE_ASCIIE pos1 ~%line%~ (line_len)
+            SET pos1 += line_len
+          END
+        END
+      END
+
+      // adding item property string
+      PATCH_IF (pos1 >= 0) BEGIN
+        SPRINT line ~%WNL%%property%~
+        SET line_len = STRING_LENGTH ~%line%~
+        INSERT_BYTES pos1 line_len
+        WRITE_ASCIIE pos1 ~%line%~ (line_len)
+      END
+    END
+  END
+END

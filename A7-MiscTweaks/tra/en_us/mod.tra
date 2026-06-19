@@ -1,0 +1,28 @@
+// use tra indices 2000 or higher
+
+// Item description strings for "Equipment with critical hit protection"
+// Specify empty strings to skip item description update
+// Search strings as regular expressions
+@2000 = ~STATISTICS:~
+@2001 = ~Equipped abilities:~
+// replacement strings
+@2010 = ~STATISTICS:~
+@2011 = ~Equipped abilities:~
+// new string
+@2020 = ~– Protects against critical hits~
+
+// Lines for automatic TotLM transition
+@2100 = ~Several days later...~
+
+// Lines for "Great Oak's Beacon" ability
+@2200 = ~Great Oak's Beacon~
+@2201 = ~Great Oak's Beacon
+Kuldahar's Great Oak lends you the power to return to Kuldahar for 8 hours from any place in Icewind Dale. When 8 hours have passed the party is automatically brought back to where the journey began.~
+@2202 = ~Return Home~
+@2203 = ~Return Home
+With this ability you can instantly return to the place where the journey began without having to wait for the enchantment of the beacon to bring you back.~
+
+@2210 = ~The Great Oak grants you the blessing of nature.~
+@2211 = ~The evil of this place suppresses the powers of the Great Oak.~
+@2212 = ~The spell doesn't appear to work in this place.~
+@2213 = ~Beacon~

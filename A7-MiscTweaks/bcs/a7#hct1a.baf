@@ -1,0 +1,57 @@
+// IWDEE: TotLM transition
+IF
+  True()
+THEN
+  RESPONSE #100
+    CutSceneId(Player1Fill)
+    ApplySpellRES("bdrejuve",Myself)
+    Wait(1)
+    ActionOverride(Player2Fill,LeaveAreaLUA("AR9101","",[904.392],SW))
+    ActionOverride(Player3Fill,LeaveAreaLUA("AR9101","",[936.407],SWW))
+    ActionOverride(Player4Fill,LeaveAreaLUA("AR9101","",[881.360],SW))
+    ActionOverride(Player5Fill,LeaveAreaLUA("AR9101","",[930.356],SW))
+    ActionOverride(Player6Fill,LeaveAreaLUA("AR9101","",[963.380],SWW))
+    LeaveAreaLUAPanic("AR9101","",[859.406],SW)
+    LeaveAreaLUA("AR9101","",[859.406],SW)
+    StartCutScene("a7#hct1b")
+END
+
+IF
+  True()
+THEN
+  RESPONSE #100
+    CutSceneId(Player2Fill)
+    ApplySpellRES("bdrejuve",Myself)
+END
+
+IF
+  True()
+THEN
+  RESPONSE #100
+    CutSceneId(Player3Fill)
+    ApplySpellRES("bdrejuve",Myself)
+END
+
+IF
+  True()
+THEN
+  RESPONSE #100
+    CutSceneId(Player4Fill)
+    ApplySpellRES("bdrejuve",Myself)
+END
+
+IF
+  True()
+THEN
+  RESPONSE #100
+    CutSceneId(Player5Fill)
+    ApplySpellRES("bdrejuve",Myself)
+END
+
+IF
+  True()
+THEN
+  RESPONSE #100
+    CutSceneId(Player6Fill)
+    ApplySpellRES("bdrejuve",Myself)
+END

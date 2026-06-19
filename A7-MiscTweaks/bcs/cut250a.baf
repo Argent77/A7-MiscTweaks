@@ -1,0 +1,8 @@
+// Hardcoded cutscene script called by opcode 298 (Pocket Plane)
+IF
+  True()
+THEN
+  RESPONSE #100
+    CutSceneId(Player1)
+    StartCutSceneEx("a7#ctb1a",TRUE)
+END

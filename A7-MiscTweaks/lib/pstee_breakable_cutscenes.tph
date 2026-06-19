@@ -1,0 +1,423 @@
+// Resref of the script that finalizes broken cutscenes
+OUTER_SPRINT cutskip_script ~cutskip2~
+
+// Name of the global variable that tracks the broken cutscene
+OUTER_SPRINT CUTSCENE_BREAKABLE ~BD_CUTSCENE_BREAKABLE~
+
+/**
+ * Makes the current cutscene script breakable.
+ *
+ * INT_VAR id               A unique numeric identifier that references the breakable cutscene portion in CUTSKIP2.BCS.
+ * INT_VAR warn_on_failure  Specifies whether a warning should be printed if the cutscene could not be patched.
+ * STR_VAR search_break     Search string as regular expression that can be used to add the necessary code for making
+ *                          the cutscene breakable. Does nothing if parameter is empty. (Default: empty string)
+ * STR_VAR search_unbreak   Search string as regular expression that can be used to add code for removing the breakable
+ *                          state. Does nothing if parameter is empty. (Default: empty string)
+ * STR_VAR insert_break     Indicates where to insert the new code for making cutscenes breakable.
+ *                          Supported keywords: before, after (Default: after)
+ * STR_VAR insert_unbreak   Indicates where to insert the new code for removing the breakable state.
+ *                          Supported keywords: before, after (Default: before)
+ * RET result               1 if the cutscene was successfully made breakable, 0 otherwise.
+ */
+DEFINE_PATCH_FUNCTION SET_CUTSCENE_BREAKABLE
+INT_VAR
+  id = 0
+  warn_on_failure = 1
+STR_VAR
+  search_break = ~~
+  search_unbreak = ~~
+  insert_break = ~after~
+  insert_unbreak = ~before~
+RET
+  result
+BEGIN
+  SET result = 0
+
+  PATCH_IF (id > 0 && NOT ~%search_break%~ STR_EQ ~~) BEGIN
+    PATCH_IF (NOT ~%insert_break%~ STR_EQ ~before~) BEGIN SPRINT insert_break ~after~ END
+    SPRINT search_break ~^.*%search_break%.*[%WNL%]+~
+    COUNT_REGEXP_INSTANCES ~%search_break%~ count
+    PATCH_IF (count > 0) BEGIN
+      PATCH_IF (~%insert_break%~ STR_EQ ~before~) BEGIN
+        REPLACE_TEXTUALLY ~%search_break%~ ~SetAreaScript("%cutskip_script%",OVERRIDE) SetGlobal("%CUTSCENE_BREAKABLE%","GLOBAL",%id%) SetCutSceneBreakable(TRUE) \0~
+      END ELSE BEGIN
+        REPLACE_TEXTUALLY ~%search_break%~ ~\0 SetAreaScript("%cutskip_script%",OVERRIDE) SetGlobal("%CUTSCENE_BREAKABLE%","GLOBAL",%id%) SetCutSceneBreakable(TRUE)~
+      END
+      SET result = 1
+    END
+  END
+
+  PATCH_IF (NOT ~%search_unbreak%~ STR_EQ ~~) BEGIN
+    PATCH_IF (NOT ~%insert_unbreak%~ STR_EQ ~after~) BEGIN SPRINT insert_unbreak ~before~ END
+    SPRINT search_unbreak ~^.*%search_unbreak%.*[%WNL%]+~
+    COUNT_REGEXP_INSTANCES ~%search_unbreak%~ count
+    PATCH_IF (count > 0) BEGIN
+      PATCH_IF (~%insert_unbreak%~ STR_EQ ~after~) BEGIN
+        REPLACE_TEXTUALLY ~%search_unbreak%~ ~\0 SetCutSceneBreakable(FALSE)~
+      END ELSE BEGIN
+        REPLACE_TEXTUALLY ~%search_unbreak%~ ~SetCutSceneBreakable(FALSE) \0~
+      END
+      SET result = 1
+    END
+  END
+
+  PATCH_IF (warn_on_failure && NOT result) BEGIN
+    PATCH_WARN ~WARNING: Could not patch cutscene: %SOURCE_FILE%~
+  END
+END
+
+
+// Contains collection of broken cutscene finalizations
+COMPILE EVAL ~%MOD_FOLDER%/bcs/cutskip2.baf~
+ACTION_IF (NOT ~%cutskip_script%~ STR_EQ ~cutskip2~) BEGIN
+  MOVE ~override/cutskip2.bcs~ ~override/%cutskip_script%.bcs~
+END
+
+COPY_EXISTING ~0202intr.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    LPF SET_CUTSCENE_BREAKABLE
+      INT_VAR id = 1
+      STR_VAR
+        search_break = ~CutSceneId("Morte")~
+        search_unbreak = ~Dialog\(ue\)?(~
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~0100cut1.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    LPF SET_CUTSCENE_BREAKABLE
+      INT_VAR id = 2
+      STR_VAR search_break = ~CutSceneId("Mar")~
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~0101cut1.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    LPF SET_CUTSCENE_BREAKABLE
+      INT_VAR id = 3
+      STR_VAR search_break = ~CutSceneId(Player1)~
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~0110cut1.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    LPF SET_CUTSCENE_BREAKABLE
+      INT_VAR id = 4
+      STR_VAR search_break = ~CreateCreature("Annah"~
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~0405cut1.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    LPF SET_CUTSCENE_BREAKABLE
+      INT_VAR id = 5
+      STR_VAR search_break = ~CutSceneId("Annah")~
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~0405cut2.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    LPF SET_CUTSCENE_BREAKABLE
+      INT_VAR id = 6
+      STR_VAR search_break = ~CutSceneId(Player1)~
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~0502cut1.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    LPF SET_CUTSCENE_BREAKABLE
+      INT_VAR id = 7
+      STR_VAR search_break = ~CutSceneId("Godsman8")~
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~0610cut1.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    LPF SET_CUTSCENE_BREAKABLE
+      INT_VAR id = 8
+      STR_VAR search_break = ~SetPortalCursor("SWExit"~
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~0610cut2.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    LPF SET_CUTSCENE_BREAKABLE
+      INT_VAR id = 9
+      STR_VAR search_break = ~FadeToColor(\[20\.0\],0)~
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~0610ct3b.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    LPF SET_CUTSCENE_BREAKABLE
+      INT_VAR id = 10
+      STR_VAR search_break = ~CutSceneId("TransCut")~
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~0610ct3l.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    LPF SET_CUTSCENE_BREAKABLE
+      STR_VAR search_unbreak = ~Kill("RavelCut")~
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~1001ct4b.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    LPF SET_CUTSCENE_BREAKABLE
+      INT_VAR id = 11
+      STR_VAR search_break = ~CutSceneId("Pillar")~
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~1201ci11.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    LPF SET_CUTSCENE_BREAKABLE
+      INT_VAR id = 12
+      STR_VAR search_break = ~CutSceneId("Trans")~
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~1201ci21.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    LPF SET_CUTSCENE_BREAKABLE
+      INT_VAR id = 13
+      STR_VAR search_break = ~CutSceneId("IgnusF")~
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~1201ci31.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    LPF SET_CUTSCENE_BREAKABLE
+      INT_VAR id = 14
+      STR_VAR search_break = ~CutSceneId("IgnusF")~
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~1201cv11.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    LPF SET_CUTSCENE_BREAKABLE
+      INT_VAR id = 15
+      STR_VAR search_break = ~CutSceneId("Trans")~
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~1201cv21.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    LPF SET_CUTSCENE_BREAKABLE
+      INT_VAR id = 16
+      STR_VAR search_break = ~CutSceneId("Trans")~
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~1201cv31.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    LPF SET_CUTSCENE_BREAKABLE
+      INT_VAR id = 17
+      STR_VAR search_break = ~CutSceneId("VhailF")~
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~1201csa0.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    LPF SET_CUTSCENE_BREAKABLE
+      INT_VAR id = 18
+      STR_VAR search_break = ~CutSceneId(Player1)~
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~1201csd0.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    LPF SET_CUTSCENE_BREAKABLE
+      INT_VAR id = 19
+      STR_VAR search_break = ~CutSceneId(Player1)~
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~1201csg0.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    LPF SET_CUTSCENE_BREAKABLE
+      INT_VAR id = 20
+      STR_VAR search_break = ~CutSceneId(Player1)~
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~1201csn0.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    LPF SET_CUTSCENE_BREAKABLE
+      INT_VAR id = 21
+      STR_VAR search_break = ~CutSceneId(Player1)~
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~1203cd11.bcs~ ~override~
+              ~1203cd21.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    LPF SET_CUTSCENE_BREAKABLE
+      INT_VAR id = 22
+      STR_VAR search_break = ~CutSceneId(Player1)~
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~1204cut1.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    LPF SET_CUTSCENE_BREAKABLE
+      INT_VAR id = 23
+      STR_VAR search_break = ~CutSceneId("Trans")~
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~1204tb1.bcs~ ~override~
+              ~1204tb2.bcs~ ~override~
+              ~1204tb3.bcs~ ~override~
+              ~1204trb1.bcs~ ~override~
+              ~1204trb2.bcs~ ~override~
+              ~1204trb3.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    LPF SET_CUTSCENE_BREAKABLE
+      INT_VAR id = 24
+      STR_VAR search_break = ~CutSceneId("Trans")~
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~1500cs1.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    LPF SET_CUTSCENE_BREAKABLE
+      INT_VAR id = 25
+      STR_VAR search_break = ~CutSceneId(Player1)~
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~1500cs2.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    LPF SET_CUTSCENE_BREAKABLE
+      INT_VAR id = 26
+      STR_VAR search_break = ~CutSceneId(Player1)~
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~1500cs14.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    LPF SET_CUTSCENE_BREAKABLE
+      INT_VAR id = 27
+      STR_VAR search_break = ~MoveViewPoint(~
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~1501cs1.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    LPF SET_CUTSCENE_BREAKABLE
+      INT_VAR id = 28
+      STR_VAR search_break = ~CutSceneId(Player1)~
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~1501cut3.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    LPF SET_CUTSCENE_BREAKABLE
+      INT_VAR id = 29
+      STR_VAR search_break = ~CutSceneId("Hargrim")~
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~zap.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    LPF SET_CUTSCENE_BREAKABLE
+      INT_VAR id = 30
+      STR_VAR search_break = ~CutSceneId("Mantuok")~
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~1601cut2.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    LPF SET_CUTSCENE_BREAKABLE
+      INT_VAR id = 31
+      STR_VAR search_break = ~CutSceneId(Protagonist)~
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~3006cut1.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    LPF SET_CUTSCENE_BREAKABLE
+      INT_VAR id = 32
+      STR_VAR search_break = ~CutSceneId("Vlask")~
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~3012cut1.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    LPF SET_CUTSCENE_BREAKABLE
+      INT_VAR id = 33
+      STR_VAR search_break = ~CutSceneId("Rauk")~
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~3012cut5.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    LPF SET_CUTSCENE_BREAKABLE
+      STR_VAR search_unbreak = ~CreateCreature("Green"~
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~bedai1.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    LPF SET_CUTSCENE_BREAKABLE
+      INT_VAR id = 34
+      STR_VAR search_break = ~CutSceneId("Bedai")~
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~stealmrt.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    LPF SET_CUTSCENE_BREAKABLE
+      INT_VAR id = 35
+      STR_VAR search_break = ~CutSceneId(Player1)~
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~yiminn.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    LPF SET_CUTSCENE_BREAKABLE
+      INT_VAR id = 36
+      STR_VAR search_break = ~CutSceneId("GithAng")~
+    END
+  END
+BUT_ONLY
+

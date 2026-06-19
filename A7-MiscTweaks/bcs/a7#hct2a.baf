@@ -1,0 +1,32 @@
+// IWDEE: TotLM transition
+// Main campaign
+IF
+  Global("AR1006_VISITED","GLOBAL",1)
+  !Global("BELHIEFET_DEAD","GLOBAL",1)
+THEN
+  RESPONSE #100
+    CutSceneId(Player1Fill)
+    FadeToColor([30.0],0)
+    Wait(2)
+    SetWorldmap("worldmap")
+    SetMasterArea("ar2100")
+    RevealAreaOnMap("ar2100")
+    StartCutScene("LUA2109")
+END
+
+// HoW expansion
+IF
+  OR(2)
+    !Global("AR1006_VISITED","GLOBAL",1)
+    Global("BELHIEFET_DEAD","GLOBAL",1)
+THEN
+  RESPONSE #100
+    CutSceneId(Player1Fill)
+    FadeToColor([30.0],0)
+    Wait(2)
+    StartMovie("ECREDIT")
+    SmallWait(5)
+    FadeFromColor([0.0],0)
+    EndCutSceneMode()
+    GoToStartScreen()
+END

@@ -1,0 +1,71 @@
+COPY ~%MOD_FOLDER%/bam/a7#beaca.bam~ ~override~
+     ~%MOD_FOLDER%/bam/a7#beacb.bam~ ~override~
+     ~%MOD_FOLDER%/bam/a7#beacc.bam~ ~override~
+     ~%MOD_FOLDER%/bam/a7#beacd.bam~ ~override~
+     ~%MOD_FOLDER%/bam/a7#beada.bam~ ~override~
+     ~%MOD_FOLDER%/bam/a7#beadb.bam~ ~override~
+     ~%MOD_FOLDER%/bam/a7#beadc.bam~ ~override~
+     ~%MOD_FOLDER%/cre/a7#beac.cre~  ~override~
+     ~%MOD_FOLDER%/eff/a7#beac.eff~  ~override~
+     ~%MOD_FOLDER%/eff/a7#beacu.eff~ ~override~
+
+// installing custom portrait icon
+OUTER_SET icon_index = "-1"
+COPY_EXISTING ~statdesc.2da~ ~override~
+  READ_2DA_ENTRIES_NOW statdesc_table 1
+  SET idx = icon_index
+  FOR (row = 3; row < statdesc_table; ++row) BEGIN
+    PATCH_IF (IS_AN_INT $statdesc_table(~%row%~ ~0~)) BEGIN
+      SET idx = ($statdesc_table(~%row%~ ~0~) > idx) ? $statdesc_table(~%row%~ ~0~) : idx
+    END
+  END
+  PATCH_IF (idx >= 0) BEGIN
+    SET icon_index = idx + 1
+  END
+BUT_ONLY
+
+ACTION_IF (icon_index >= 0) BEGIN
+  OUTER_SET strref = RESOLVE_STR_REF(@2213) // Beacon
+  APPEND ~statdesc.2da~ ~%icon_index%         %strref%       A7#BEACD~
+END
+
+COPY ~%MOD_FOLDER%/spl/a7#beac1.spl~ ~override~
+  SAY NAME1 @2200 // Great Oak's Beacon
+  SAY UNIDENTIFIED_DESC @2201 // Great Oak's Beacon...
+
+COPY ~%MOD_FOLDER%/spl/a7#beac2.spl~ ~override~
+  SAY NAME1 @2202 // Return Home
+  SAY UNIDENTIFIED_DESC @2203 // Return Home...
+
+COPY ~%MOD_FOLDER%/spl/a7#beac3.spl~ ~override~
+  SAY NAME1 @2200 // Great Oak's Beacon
+  SAY UNIDENTIFIED_DESC @2201 // Great Oak's Beacon...
+  LPF ALTER_SPELL_EFFECT
+    INT_VAR
+      match_opcode = 330  // Float text
+      parameter1 = RESOLVE_STR_REF(@2211) // The evil of this place suppresses the powers of the Great Oak.
+  END
+
+COPY ~%MOD_FOLDER%/spl/a7#beacx.spl~ ~override~
+  LPF ALTER_SPELL_EFFECT
+    INT_VAR
+      match_opcode = 142  // Display portrait icon
+      parameter2 = icon_index
+  END
+
+COPY ~%MOD_FOLDER%/spl/a7#beacr.spl~ ~override~
+     ~%MOD_FOLDER%/spl/a7#beacs.spl~ ~override~
+     ~%MOD_FOLDER%/spl/a7#beacy.spl~ ~override~
+     ~%MOD_FOLDER%/spl/a7#beacz.spl~ ~override~
+     ~%MOD_FOLDER%/spl/bddispel.spl~ ~override~
+     ~%MOD_FOLDER%/spl/bdresurr.spl~ ~override~
+
+COMPILE ~%MOD_FOLDER%/bcs/a7#beac.baf~
+        ~%MOD_FOLDER%/bcs/a7#ctb1a.baf~
+        ~%MOD_FOLDER%/bcs/a7#ctb1b.baf~
+        ~%MOD_FOLDER%/bcs/a7#ctb2.baf~
+        ~%MOD_FOLDER%/bcs/cut250a.baf~
+
+EXTEND_TOP ~ar1100.bcs~ ~%MOD_FOLDER%/bcs/ar1100_remove_beacon.baf~
+EXTEND_TOP ~ar2100.bcs~ ~%MOD_FOLDER%/bcs/ar2100_add_beacon.baf~
+EXTEND_TOP ~ar9100.bcs~ ~%MOD_FOLDER%/bcs/ar9100_remove_beacon.baf~

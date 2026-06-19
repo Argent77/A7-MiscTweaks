@@ -1,0 +1,9 @@
+IF
+  Global("Join_Posse","GLOBAL",0)
+  Global("a7#beacon_removed","MYAREA",0)
+THEN
+  RESPONSE #100
+    SetGlobal("a7#beacon_removed","MYAREA",1)
+    ApplySpellRES("a7#beacr",Player1)
+    Continue()
+END

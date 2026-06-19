@@ -1,0 +1,62 @@
+// use tra indices 0 to 1999
+
+// Components
+@1 = ~Enable critical hit protection: Bracers~
+@2 = ~Enable critical hit protection: Shields~
+@3 = ~Enable critical hit protection: Cloaks~
+@4 = ~Enable critical hit protection: Belts~
+
+@10 = ~Disable creature tooltips~
+
+@20 = ~Update saved games (unlogged)~
+@21 = ~Disable tooltips of creatures~
+@22 = ~Disable tooltips of party members and NPCs~
+@23 = ~Disable tooltips of creatures, party members, and NPCs~
+@24 = ~Enable tooltips of creatures~
+@25 = ~Enable tooltips of party members and NPCs~
+@26 = ~Enable tooltips of creatures, party members, and NPCs~
+
+@30 = ~Visual feedback for wild surge "Gold Vanishes!"~
+
+@40 = ~Customized Selection Circles~
+@41 = ~Solid Thick~
+@42 = ~Solid Thin~
+@43 = ~Dashed~
+@44 = ~Dotted~
+@45 = ~Filled~
+@46 = ~Translucent~
+
+@50 = ~Breakable cutscenes~
+
+@60 = ~Upscaled character portraits~
+
+@70 = ~Character Generation Cheats~
+@71 = ~Min. ability score: 9, total roll: 54 (0 extra)~
+@72 = ~Min. ability score: 9, total roll: 61 (7 extra)~
+@73 = ~Min. ability score: 9, total roll: 68 (14 extra)~
+@74 = ~Min. ability score: 9, total roll: 82 (28 extra)~
+@75 = ~Min. ability score: 9, total roll: 89 (35 extra)~
+@76 = ~Min. ability score: 9, total roll: 96 (42 extra)~
+@77 = ~Min. ability score: 6, total roll: 36 (0 extra)~
+@78 = ~Min. ability score: 6, total roll: 69 (13 extra)~
+@79 = ~Min. ability score: 6, total roll: 62 (26 extra)~
+@80 = ~Min. ability score: 6, total roll: 75 (39 extra)~
+@81 = ~Min. ability score: 6, total roll: 82 (46 extra)~
+@82 = ~Min. ability score: 6, total roll: 89 (53 extra)~
+@83 = ~Min. ability score: 6, total roll: 96 (60 extra)~
+
+@90 = ~Start "Trials of the Luremaster" automatically after the "Heart of Winter" campaign~
+
+@100 = ~Add "Great Oak's Beacon" ability~
+
+@110 = ~Reactivate "Back" button in the Dual-Class menu~
+
+// Messages
+@1000 = ~DLC Merger is required before mods can be installed on this game. Check the readme for more information and a link to download DLC Merger.~
+@1001 = ~This component is not available for your game.~
+@1002 = ~Selected mod component has not been implemented.~
+@1003 = ~This component is not compatible with the current state of the game.~
+
+// Groups
+@1100 = ~Convenience Tweaks/Cheats~
+@1101 = ~Visual Tweaks~

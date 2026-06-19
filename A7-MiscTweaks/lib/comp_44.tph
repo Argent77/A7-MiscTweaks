@@ -1,0 +1,28 @@
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
+///// Customized Selection Circles in PST              \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+/////                                                  \\\\\
+///// Dotted                                           \\\\\
+/////                                                  \\\\\
+
+INCLUDE ~%MOD_FOLDER%/lib/pstee_customized_circles.tph~
+
+ACTION_IF (GAME_IS ~pst~) BEGIN
+  OUTER_SPRINT game ~pst~
+END ELSE BEGIN
+  OUTER_SPRINT game ~pstee~
+END
+
+LAF INSTALL_SELECTION_CIRCLE
+  STR_VAR game type = ~dotted~
+  RET result
+END
+
+ACTION_IF (NOT result) BEGIN
+  FAIL ~BAM resource not found.~
+END

@@ -1,0 +1,52 @@
+OUTER_SET success = 0
+COPY_EXISTING ~ui.menu~ ~override~
+  // reactivating "Back" button in dual class menu
+  SET pos1 = INDEX_BUFFER(~name[ %TAB%]+'CHARGEN_DUALCLASS'~)
+  PATCH_IF (pos1 >= 0) BEGIN
+    SET pos2 = INDEX_BUFFER(~\bmenu\b\|`~ pos1)
+    PATCH_IF (pos2 > pos1) BEGIN
+      SET pos1 = INDEX_BUFFER(~clickable[ %TAB%]+\(lua[ %TAB%]+\)?['"]?false['"]?~ pos1)
+      PATCH_IF (pos1 >= 0 && pos1 < pos2) BEGIN
+        SET pos2 = INDEX_BUFFER(~[%WNL%]~ pos1)
+        PATCH_IF (pos2 > pos1) BEGIN
+          DELETE_BYTES pos1 (pos2 - pos1)
+          SPRINT line ~clickable lua "createCharScreen:GetCurrentStep() == const.STEP_DUALCLASS_CLASS"~
+          SET len = STRING_LENGTH ~%line%~
+          INSERT_BYTES pos1 len
+          WRITE_ASCIIE pos1 ~%line%~ (len)
+          SET success += 1
+        END
+      END
+    END
+  END
+
+  // reactivating "Back" button in class menu for dual classing
+  PATCH_IF (success) BEGIN
+    SET pos1 = INDEX_BUFFER(~name[ %TAB%]+'CHARGEN_CLASS'~)
+    PATCH_IF (pos1 >= 0) BEGIN
+      SET pos2 = INDEX_BUFFER(~\bmenu\b\|`~ pos1)
+      PATCH_IF (pos2 > pos1) BEGIN
+        SET pos1 = INDEX_BUFFER(~text[ %TAB%]+"BACK_BUTTON"~ pos1)
+        PATCH_IF (pos1 >= 0 && pos1 < pos2) BEGIN
+          SET pos2 = INDEX_BUFFER(~}~ pos1)
+          PATCH_IF (pos2 > pos1) BEGIN
+            SET pos1 = INDEX_BUFFER(~clickable[ %TAB%]+lua~ pos1)
+            PATCH_IF (pos1 >= 0 && pos1 < pos2) BEGIN
+              SPRINT line ~-- ~
+              SET len = STRING_LENGTH ~%line%~
+              INSERT_BYTES pos1 len
+              WRITE_ASCIIE pos1 ~%line%~ (len)
+              SET success += 1
+            END
+          END
+        END
+      END
+    END
+  END
+BUT_ONLY
+
+ACTION_IF (success == 0) BEGIN
+  ABORT ~"Back" button in dual-class menu is already activated. Mod component will be skipped.~
+END ELSE ACTION_IF (success == 1) BEGIN
+  WARN ~WARNING: Could not reactivate "Back" button in class selection screen.~
+END

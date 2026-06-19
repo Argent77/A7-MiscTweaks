@@ -1,0 +1,44 @@
+IF
+  !Global("Join_Posse","GLOBAL",0)
+  OR(2)
+    GlobalLT("Master_Quest","GLOBAL",1)
+    GlobalGT("Master_Quest","GLOBAL",6)
+THEN
+  RESPONSE #100
+    CutSceneId(Player1)
+    ClearAllActions()
+    ApplySpellRES("a7#beacx",Myself)
+    FadeToColor([30.0],0)
+    Wait(2)
+    LeaveAreaLUAPanic("AR2100","",[1314.2265],NE)
+    LeaveAreaLUA("AR2100","",[1314.2265],NE)
+    ActionOverride(Player2,LeaveAreaLUA("AR2100","",[1338.2307],NE))
+    ActionOverride(Player3,LeaveAreaLUA("AR2100","",[1255.2271],NE))
+    ActionOverride(Player4,LeaveAreaLUA("AR2100","",[1272.2320],NE))
+    ActionOverride(Player5,LeaveAreaLUA("AR2100","",[1303.2360],NE))
+    ActionOverride(Player6,LeaveAreaLUA("AR2100","",[1213.2325],NE))
+    MultiPlayerSync()
+    StartCutScene("a7#ctb1b")
+END
+
+IF
+  Global("Join_Posse","GLOBAL",0)
+THEN
+  RESPONSE #100
+    CutSceneId(Player1)
+    ApplySpellRES("a7#beacy",Myself)
+    DisplayStringHead(Myself,@2212) // The spell doesn't appear to work in this place.
+    EndCutSceneMode()
+END
+
+IF
+  !Global("Join_Posse","GLOBAL",0)
+  !GlobalLT("Master_Quest","GLOBAL",1)
+  !GlobalGT("Master_Quest","GLOBAL",6)
+THEN
+  RESPONSE #100
+    CutSceneId(Player1)
+    ApplySpellRES("a7#beacy",Myself)
+    DisplayStringHead(Myself,@2212) // The spell doesn't appear to work in this place.
+    EndCutSceneMode()
+END

@@ -1,0 +1,28 @@
+// use tra indices 2000 or higher
+
+// Item description strings for "Equipment with critical hit protection"
+// Specify empty strings to skip item description update
+// Search strings as regular expressions
+@2000 = ~\(EIGENSCHAFTEN\|STATISTIK\|STATISTIKEN\):~
+@2001 = ~Ausgerüstete Fähigkeit\(en\)?:?~
+// replacement strings
+@2010 = ~EIGENSCHAFTEN:~
+@2011 = ~Ausgerüstete Fähigkeiten:~
+// new string
+@2020 = ~– Schützt vor kritischen Treffern~
+
+// Lines for automatic TotLM transition
+@2100 = ~Einige Tage später...~
+
+// Lines for "Great Oak's Beacon" ability
+@2200 = ~Leuchtfeuer der Großen Eiche~
+@2201 = ~Leuchtfeuer der Großen Eiche
+Kuldahars Große Eiche gewährt Euch die Fähigkeit, von jedem Ort im Eiswindtal aus für 8 Stunden nach Kuldahar zurückzukehren. Wenn die Zeit abgelaufen ist, dann kehrt die Gruppe automatisch zu ihrem Ursprungsort zurück.~
+@2202 = ~Nach Hause zurückkehren~
+@2203 = ~Nach Hause zurückkehren
+Mit dieser Fähigkeit kann die Gruppe sofort zu ihrem Ursprungsort zurückzukehren, ohne darauf warten zu müssen, dass sie die Verzauberung des Leuchtfeuers zurückbringt.~
+
+@2210 = ~Die Große Eiche gewährt Euch ihren Segen der Natur.~
+@2211 = ~Das Böse an diesem Ort unterdrückt die Macht der Großen Eiche.~
+@2212 = ~Der Zauber scheint an diesem Ort nicht zu funktionieren.~
+@2213 = ~Leuchtfeuer~

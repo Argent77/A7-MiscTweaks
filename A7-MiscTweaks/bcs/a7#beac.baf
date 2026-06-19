@@ -1,0 +1,27 @@
+IF
+  Global("teleport","LOCALS",0)
+  StateCheck(Player1,STATE_REALLY_DEAD)
+THEN
+  RESPONSE #100
+    ApplySpellRES("bdresurr",Player1)
+    Continue()
+END
+
+IF
+  Global("teleport","LOCALS",0)
+THEN
+  RESPONSE #100
+    SetGlobal("teleport","LOCALS",1)
+    StartCutSceneMode()
+    ClearAllActions()
+    ApplySpellRES("a7#beacs",Myself)
+    ApplySpellRES("bddispel",Player1)
+    StartCutScene("a7#ctb2")
+END
+
+IF
+  True()
+THEN
+  RESPONSE #100
+    DestroySelf()
+END

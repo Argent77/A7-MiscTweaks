@@ -1,0 +1,513 @@
+BACKUP ~weidu_external/backup/A7-MiscTweaks~
+AUTHOR ~Argent77~
+VERSION ~0.2-wip~
+// ASK_EVERY_COMPONENT
+
+ALWAYS
+  // root folder for mutable data
+  OUTER_TEXT_SPRINT WORK_FOLDER ~weidu_external~
+
+  ACTION_IF ((FILE_EXISTS ~dlc/sod-dlc.zip~) OR (FILE_EXISTS ~sod-dlc.zip~)) THEN BEGIN
+    FAIL @1000  // DLC Merger is required before mods can be installed on this game. Check the readme for more information and a link to download DLC Merger.
+  END
+
+  WITH_SCOPE BEGIN
+    OUTER_SPRINT include_file ~%MOD_FOLDER%/lib/comp_%COMPONENT_NUMBER%.tph~
+    ACTION_IF (FILE_EXISTS ~%include_file%~) BEGIN
+      INCLUDE ~%MOD_FOLDER%/lib/always.tph~
+      INCLUDE ~%include_file%~
+    END ELSE BEGIN
+      ABORT @1002 // Selected mod component has not been implemented.
+    END
+  END
+END
+
+README ~A7-MiscTweaks/doc/readme-%LANGUAGE%.txt~ ~A7-MiscTweaks/doc/readme.txt~
+
+LANGUAGE ~English~
+         ~en_us~
+         ~A7-MiscTweaks/tra/en_us/setup.tra~
+         ~A7-MiscTweaks/tra/en_us/mod.tra~
+LANGUAGE ~Deutsch~
+         ~de_de~
+         ~A7-MiscTweaks/tra/en_us/setup.tra~
+         ~A7-MiscTweaks/tra/en_us/mod.tra~
+         ~A7-MiscTweaks/tra/de_de/setup.tra~
+         ~A7-MiscTweaks/tra/de_de/mod.tra~
+
+
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
+///// Enable critical hit protection: Bracers          \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+BEGIN @1  // Enable critical hit protection: Bracers
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee~) @1001  // This component is not available for your game.
+GROUP @1100 // Convenience Tweaks/Cheats
+DESIGNATED 1
+LABEL ~A7_MISCTWEAKS_CRITPROTECT_BRACERS~
+
+
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
+///// Enable critical hit protection: Shields          \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+BEGIN @2  // Enable critical hit protection: Shields
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee~) @1001  // This component is not available for your game.
+GROUP @1100 // Convenience Tweaks/Cheats
+DESIGNATED 2
+LABEL ~A7_MISCTWEAKS_CRITPROTECT_SHIELDS~
+
+
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
+///// Enable critical hit protection: Cloaks           \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+BEGIN @3  // Enable critical hit protection: Cloaks
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee~) @1001  // This component is not available for your game.
+GROUP @1100 // Convenience Tweaks/Cheats
+DESIGNATED 3
+LABEL ~A7_MISCTWEAKS_CRITPROTECT_CLOAKS~
+
+
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
+///// Enable critical hit protection: Belts            \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+BEGIN @4  // Enable critical hit protection: Belts
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee~) @1001  // This component is not available for your game.
+GROUP @1100 // Convenience Tweaks/Cheats
+DESIGNATED 4
+LABEL ~A7_MISCTWEAKS_CRITPROTECT_BELTS~
+
+
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
+///// Disable creature tooltips                        \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+BEGIN @10 // Disable creature tooltips
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee pstee~) @1001  // This component is not available for your game.
+GROUP @1101 // Visual Tweaks
+DESIGNATED 10
+LABEL ~A7_MISCTWEAKS_TOOLTIPS_DISABLE_CRE~
+
+
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
+///// Update saved games (unlogged)                    \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+/////                                                  \\\\\
+///// Disable tooltips of creatures                    \\\\\
+/////                                                  \\\\\
+
+BEGIN @21 // Disable tooltips of creatures
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee pstee~) @1001  // This component is not available for your game.
+GROUP @1101 // Visual Tweaks
+SUBCOMPONENT @20  // Update saved games (unlogged)
+DESIGNATED 21
+LABEL ~A7_MISCTWEAKS_TOOLTIPS_SAVE_DISABLE_CRE~
+NO_LOG_RECORD
+
+/////                                                  \\\\\
+///// Disable tooltips of party members and NPCs       \\\\\
+/////                                                  \\\\\
+
+BEGIN @22 // Disable tooltips of party members and NPCs
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee pstee~) @1001  // This component is not available for your game.
+GROUP @1101 // Visual Tweaks
+SUBCOMPONENT @20  // Update saved games (unlogged)
+DESIGNATED 22
+LABEL ~A7_MISCTWEAKS_TOOLTIPS_SAVE_DISABLE_NPC~
+NO_LOG_RECORD
+
+/////                                                  \\\\\
+///// Disable tooltips of creatures, party members,    \\\\\
+///// and NPCs                                         \\\\\
+/////                                                  \\\\\
+
+BEGIN @23 // Disable tooltips of creatures, party members, and NPCs
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee pstee~) @1001  // This component is not available for your game.
+GROUP @1101 // Visual Tweaks
+SUBCOMPONENT @20  // Update saved games (unlogged)
+DESIGNATED 23
+LABEL ~A7_MISCTWEAKS_TOOLTIPS_SAVE_DISABLE_ALL~
+NO_LOG_RECORD
+
+/////                                                  \\\\\
+///// Enable tooltips of creatures                     \\\\\
+/////                                                  \\\\\
+
+BEGIN @24 // Enable tooltips of creatures
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee pstee~) @1001  // This component is not available for your game.
+GROUP @1101 // Visual Tweaks
+SUBCOMPONENT @20  // Update saved games (unlogged)
+DESIGNATED 24
+LABEL ~A7_MISCTWEAKS_TOOLTIPS_SAVE_ENABLE_CRE~
+NO_LOG_RECORD
+
+/////                                                  \\\\\
+///// Enable tooltips of party members and NPCs        \\\\\
+/////                                                  \\\\\
+
+BEGIN @25 // Enable tooltips of party members and NPCs
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee pstee~) @1001  // This component is not available for your game.
+GROUP @1101 // Visual Tweaks
+SUBCOMPONENT @20  // Update saved games (unlogged)
+DESIGNATED 25
+LABEL ~A7_MISCTWEAKS_TOOLTIPS_SAVE_ENABLE_NPC~
+NO_LOG_RECORD
+
+/////                                                  \\\\\
+///// Enable tooltips of creatures, party members,     \\\\\
+///// and NPCs                                         \\\\\
+/////                                                  \\\\\
+
+BEGIN @26 // Enable tooltips of creatures, party members, and NPCs
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee pstee~) @1001  // This component is not available for your game.
+GROUP @1101 // Visual Tweaks
+SUBCOMPONENT @20  // Update saved games (unlogged)
+DESIGNATED 26
+LABEL ~A7_MISCTWEAKS_TOOLTIPS_SAVE_ENABLE_ALL~
+NO_LOG_RECORD
+
+
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
+///// Visual feedback for wild surge "Gold Vanishes!"  \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+BEGIN @30  // Visual feedback for wild surge "Gold Vanishes!"
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee soa tob tutu tutu_totsc bgt~) @1001  // This component is not available for your game.
+GROUP @1101 // Visual Tweaks
+DESIGNATED 30
+LABEL ~A7_MISCTWEAKS_GOLD_VANISHES_FEEDBACK~
+
+
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
+///// Customized Selection Circles in PST              \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+/////                                                  \\\\\
+///// Solid Thick                                      \\\\\
+/////                                                  \\\\\
+
+BEGIN @41 // Solid Thick
+REQUIRE_PREDICATE (GAME_IS ~pstee pst~) @1001  // This component is not available for your game.
+GROUP @1101 // Visual Tweaks
+SUBCOMPONENT @40  // Customized Selection Circles in PST:EE
+DESIGNATED 41
+LABEL ~A7_MISCTWEAKS_CUSTOMIZED_CIRCLE_PSTEE_THICK~
+
+/////                                                  \\\\\
+///// Solid Thin                                       \\\\\
+/////                                                  \\\\\
+
+BEGIN @42 // Solid Thin
+REQUIRE_PREDICATE (GAME_IS ~pstee pst~) @1001  // This component is not available for your game.
+GROUP @1101 // Visual Tweaks
+SUBCOMPONENT @40  // Customized Selection Circles in PST:EE
+DESIGNATED 42
+LABEL ~A7_MISCTWEAKS_CUSTOMIZED_CIRCLE_PSTEE_THIN~
+
+/////                                                  \\\\\
+///// Dashed                                           \\\\\
+/////                                                  \\\\\
+
+BEGIN @43 // Dashed
+REQUIRE_PREDICATE (GAME_IS ~pstee pst~) @1001  // This component is not available for your game.
+GROUP @1101 // Visual Tweaks
+SUBCOMPONENT @40  // Customized Selection Circles in PST:EE
+DESIGNATED 43
+LABEL ~A7_MISCTWEAKS_CUSTOMIZED_CIRCLE_PSTEE_DASHED~
+
+/////                                                  \\\\\
+///// Dotted                                           \\\\\
+/////                                                  \\\\\
+
+BEGIN @44 // Dotted
+REQUIRE_PREDICATE (GAME_IS ~pstee pst~) @1001  // This component is not available for your game.
+GROUP @1101 // Visual Tweaks
+SUBCOMPONENT @40  // Customized Selection Circles in PST:EE
+DESIGNATED 44
+LABEL ~A7_MISCTWEAKS_CUSTOMIZED_CIRCLE_PSTEE_DOTTED~
+
+/////                                                  \\\\\
+///// Filled                                           \\\\\
+/////                                                  \\\\\
+
+BEGIN @45 // Filled
+REQUIRE_PREDICATE (GAME_IS ~pstee pst~) @1001  // This component is not available for your game.
+GROUP @1101 // Visual Tweaks
+SUBCOMPONENT @40  // Customized Selection Circles in PST:EE
+DESIGNATED 45
+LABEL ~A7_MISCTWEAKS_CUSTOMIZED_CIRCLE_PSTEE_FILLED~
+
+/////                                                  \\\\\
+///// Translucent                                      \\\\\
+/////                                                  \\\\\
+
+BEGIN @46 // Translucent
+REQUIRE_PREDICATE (GAME_IS ~pstee~) @1001  // This component is not available for your game.
+GROUP @1101 // Visual Tweaks
+SUBCOMPONENT @40  // Customized Selection Circles in PST:EE
+DESIGNATED 46
+LABEL ~A7_MISCTWEAKS_CUSTOMIZED_CIRCLE_PSTEE_TRANSLUCENT~
+
+
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
+///// Breakable cutscenes in PST:EE                    \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+BEGIN @50 // Breakable cutscenes in PST:EE
+REQUIRE_PREDICATE (GAME_IS ~pstee~) @1001  // This component is not available for your game.
+GROUP @1100 // Convenience Tweaks/Cheats
+DESIGNATED 50
+LABEL ~A7_MISCTWEAKS_BREAKABLE_CUTSCENES_PSTEE~
+
+
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
+///// Upscaled character portraits in PST:EE           \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+BEGIN @60 // Upscaled character portraits in PST:EE
+REQUIRE_PREDICATE (GAME_IS ~pstee~) @1001  // This component is not available for your game.
+GROUP @1101 // Visual Tweaks
+DESIGNATED 60
+LABEL ~A7_MISCTWEAKS_UPSCALED_PORTRAITS_PSTEE~
+
+
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
+///// Character Generation Cheats in PST:EE            \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+/////                                                  \\\\\
+///// Min. ability score: 9, total roll: 54 (0 extra)  \\\\\
+/////                                                  \\\\\
+
+BEGIN @71 // Min. ability score: 9, total roll: 54 (0 extra)
+REQUIRE_PREDICATE (GAME_IS ~pstee~) @1001  // This component is not available for your game.
+GROUP @1100 // Convenience Tweaks/Cheats
+SUBCOMPONENT @70  // Character Generation Cheats in PST:EE
+DESIGNATED 71
+LABEL ~A7_MISCTWEAKS_CHARGEN_CHEATS_SCORE_9_ROLL_54~
+
+/////                                                  \\\\\
+///// Min. ability score: 9, total roll: 61 (7 extra)  \\\\\
+/////                                                  \\\\\
+
+BEGIN @72 // Min. ability score: 9, total roll: 61 (7 extra)
+REQUIRE_PREDICATE (GAME_IS ~pstee~) @1001  // This component is not available for your game.
+GROUP @1100 // Convenience Tweaks/Cheats
+SUBCOMPONENT @70  // Character Generation Cheats in PST:EE
+DESIGNATED 72
+LABEL ~A7_MISCTWEAKS_CHARGEN_CHEATS_SCORE_9_ROLL_61~
+
+/////                                                  \\\\\
+///// Min. ability score: 9, total roll: 68 (14 extra) \\\\\
+/////                                                  \\\\\
+
+BEGIN @73 // Min. ability score: 9, total roll: 68 (14 extra)
+REQUIRE_PREDICATE (GAME_IS ~pstee~) @1001  // This component is not available for your game.
+GROUP @1100 // Convenience Tweaks/Cheats
+SUBCOMPONENT @70  // Character Generation Cheats in PST:EE
+DESIGNATED 73
+LABEL ~A7_MISCTWEAKS_CHARGEN_CHEATS_SCORE_9_ROLL_68~
+
+/////                                                  \\\\\
+///// Min. ability score: 9, total roll: 82 (28 extra) \\\\\
+/////                                                  \\\\\
+
+BEGIN @74 // Min. ability score: 9, total roll: 82 (28 extra)
+REQUIRE_PREDICATE (GAME_IS ~pstee~) @1001  // This component is not available for your game.
+GROUP @1100 // Convenience Tweaks/Cheats
+SUBCOMPONENT @70  // Character Generation Cheats in PST:EE
+DESIGNATED 74
+LABEL ~A7_MISCTWEAKS_CHARGEN_CHEATS_SCORE_9_ROLL_82~
+
+/////                                                  \\\\\
+///// Min. ability score: 9, total roll: 89 (35 extra) \\\\\
+/////                                                  \\\\\
+
+BEGIN @75 // Min. ability score: 9, total roll: 89 (35 extra)
+REQUIRE_PREDICATE (GAME_IS ~pstee~) @1001  // This component is not available for your game.
+GROUP @1100 // Convenience Tweaks/Cheats
+SUBCOMPONENT @70  // Character Generation Cheats in PST:EE
+DESIGNATED 75
+LABEL ~A7_MISCTWEAKS_CHARGEN_CHEATS_SCORE_9_ROLL_89~
+
+/////                                                  \\\\\
+///// Min. ability score: 9, total roll: 96 (42 extra) \\\\\
+/////                                                  \\\\\
+
+BEGIN @76 // Min. ability score: 9, total roll: 96 (42 extra)
+REQUIRE_PREDICATE (GAME_IS ~pstee~) @1001  // This component is not available for your game.
+GROUP @1100 // Convenience Tweaks/Cheats
+SUBCOMPONENT @70  // Character Generation Cheats in PST:EE
+DESIGNATED 76
+LABEL ~A7_MISCTWEAKS_CHARGEN_CHEATS_SCORE_9_ROLL_96~
+
+/////                                                  \\\\\
+///// Min. ability score: 6, total roll: 36 (0 extra)  \\\\\
+/////                                                  \\\\\
+
+BEGIN @77 // Min. ability score: 6, total roll: 36 (0 extra)
+REQUIRE_PREDICATE (GAME_IS ~pstee~) @1001  // This component is not available for your game.
+GROUP @1100 // Convenience Tweaks/Cheats
+SUBCOMPONENT @70  // Character Generation Cheats in PST:EE
+DESIGNATED 77
+LABEL ~A7_MISCTWEAKS_CHARGEN_CHEATS_SCORE_6_ROLL_36~
+
+/////                                                  \\\\\
+///// Min. ability score: 6, total roll: 49 (13 extra) \\\\\
+/////                                                  \\\\\
+
+BEGIN @78 // Min. ability score: 6, total roll: 69 (13 extra)
+REQUIRE_PREDICATE (GAME_IS ~pstee~) @1001  // This component is not available for your game.
+GROUP @1100 // Convenience Tweaks/Cheats
+SUBCOMPONENT @70  // Character Generation Cheats in PST:EE
+DESIGNATED 78
+LABEL ~A7_MISCTWEAKS_CHARGEN_CHEATS_SCORE_6_ROLL_49~
+
+/////                                                  \\\\\
+///// Min. ability score: 6, total roll: 62 (26 extra) \\\\\
+/////                                                  \\\\\
+
+BEGIN @79 // Min. ability score: 6, total roll: 62 (26 extra)
+REQUIRE_PREDICATE (GAME_IS ~pstee~) @1001  // This component is not available for your game.
+GROUP @1100 // Convenience Tweaks/Cheats
+SUBCOMPONENT @70  // Character Generation Cheats in PST:EE
+DESIGNATED 79
+LABEL ~A7_MISCTWEAKS_CHARGEN_CHEATS_SCORE_6_ROLL_62~
+
+/////                                                  \\\\\
+///// Min. ability score: 6, total roll: 75 (39 extra) \\\\\
+/////                                                  \\\\\
+
+BEGIN @80 // Min. ability score: 6, total roll: 75 (39 extra)
+REQUIRE_PREDICATE (GAME_IS ~pstee~) @1001  // This component is not available for your game.
+GROUP @1100 // Convenience Tweaks/Cheats
+SUBCOMPONENT @70  // Character Generation Cheats in PST:EE
+DESIGNATED 80
+LABEL ~A7_MISCTWEAKS_CHARGEN_CHEATS_SCORE_6_ROLL_75~
+
+/////                                                  \\\\\
+///// Min. ability score: 6, total roll: 82 (46 extra) \\\\\
+/////                                                  \\\\\
+
+BEGIN @81 // Min. ability score: 6, total roll: 82 (46 extra)
+REQUIRE_PREDICATE (GAME_IS ~pstee~) @1001  // This component is not available for your game.
+GROUP @1100 // Convenience Tweaks/Cheats
+SUBCOMPONENT @70  // Character Generation Cheats in PST:EE
+DESIGNATED 81
+LABEL ~A7_MISCTWEAKS_CHARGEN_CHEATS_SCORE_6_ROLL_82~
+
+/////                                                  \\\\\
+///// Min. ability score: 6, total roll: 89 (53 extra) \\\\\
+/////                                                  \\\\\
+
+BEGIN @82 // Min. ability score: 6, total roll: 89 (53 extra)
+REQUIRE_PREDICATE (GAME_IS ~pstee~) @1001  // This component is not available for your game.
+GROUP @1100 // Convenience Tweaks/Cheats
+SUBCOMPONENT @70  // Character Generation Cheats in PST:EE
+DESIGNATED 82
+LABEL ~A7_MISCTWEAKS_CHARGEN_CHEATS_SCORE_6_ROLL_89~
+
+/////                                                  \\\\\
+///// Min. ability score: 6, total roll: 96 (60 extra) \\\\\
+/////                                                  \\\\\
+
+BEGIN @83 // Min. ability score: 6, total roll: 96 (60 extra)
+REQUIRE_PREDICATE (GAME_IS ~pstee~) @1001  // This component is not available for your game.
+GROUP @1100 // Convenience Tweaks/Cheats
+SUBCOMPONENT @70  // Character Generation Cheats in PST:EE
+DESIGNATED 83
+LABEL ~A7_MISCTWEAKS_CHARGEN_CHEATS_SCORE_6_ROLL_96~
+
+
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
+///// Start "Trials of the Luremaster" automatically   \\\\\
+///// after the "Heart of Winter" campaign             \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+BEGIN @90  // Start "Trials of the Luremaster" automatically after the "Heart of Winter" campaign
+REQUIRE_PREDICATE (GAME_IS ~iwdee~) @1001  // This component is not available for your game.
+GROUP @1100 // Convenience Tweaks/Cheats
+DESIGNATED 90
+LABEL ~A7_MISCTWEAKS_TOTLM_AUTO_TRANSITION_IWDEE~
+
+
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
+///// Add "Great Oak's Beacon" ability                 \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+BEGIN @100  // Add "Great Oak's Beacon" ability
+REQUIRE_PREDICATE (GAME_IS ~iwdee~) @1001  // This component is not available for your game.
+REQUIRE_PREDICATE (NOT FILE_EXISTS_IN_GAME ~cut250a.bcs~) @1003 // This component is not compatible with the current state of the game.
+GROUP @1100 // Convenience Tweaks/Cheats
+DESIGNATED 100
+LABEL ~A7_MISCTWEAKS_GREAT_OAKS_BEACON_IWDEE~
+
+
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
+///// Reactivate "Back" button in the Dual-Class menu  \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+BEGIN @110  // Reactivate "Back" button in the Dual-Class menu
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee~ && FILE_EXISTS_IN_GAME ~ui.menu~) @1001  // This component is not available for your game.
+GROUP @1100 // Convenience Tweaks/Cheats
+DESIGNATED 110
+LABEL ~A7_MISCTWEAKS_DUALCLASS_BACK_BUTTON~

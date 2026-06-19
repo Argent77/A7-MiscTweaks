@@ -1,0 +1,33 @@
+// available games and expansion
+OUTER_SET is_bgee = GAME_IS ~bgee~
+OUTER_SET is_bg2ee = GAME_IS ~bg2ee~
+OUTER_SET is_iwdee = GAME_IS ~iwdee~
+OUTER_SET is_pstee = GAME_IS ~pstee~
+OUTER_SET is_eet = GAME_IS ~eet~
+OUTER_SET includes_sod = GAME_INCLUDES ~sod~
+
+// Setting $bg2_chapter(~1~), $bg2_chapter(~2~), ... to actual BG2 chapter value
+OUTER_SET chapter_start = is_eet ? 12 : 0
+OUTER_FOR (i = 1; i < 11; ++i) BEGIN
+  OUTER_SET chapter = chapter_start + i
+  OUTER_SET $bg2_chapter(~%i%~) = chapter
+END
+
+
+// Checks whether the current game matches the specified game type
+// Supported game types: bgee, bg2ee, iwdee, pstee, eet, sod
+DEFINE_DIMORPHIC_FUNCTION check_game
+STR_VAR
+  game = ~~
+RET
+  result
+BEGIN
+  ACTION_TO_LOWER ~game~
+  ACTION_IF (~%game%~ STR_EQ ~sod~) BEGIN
+    OUTER_SPRINT game_var ~includes_%game%~
+  END ELSE BEGIN
+    OUTER_SPRINT game_var ~is_%game%~
+  END
+
+  OUTER_SET result = IS_AN_INT EVAL ~%game_var%~ && EVAL ~%game_var%~ != 0
+END

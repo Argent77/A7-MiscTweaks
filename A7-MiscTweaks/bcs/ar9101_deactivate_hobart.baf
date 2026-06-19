@@ -1,0 +1,8 @@
+IF
+  Global("a7#hobart_deactivated","MYAREA",0)
+THEN
+  RESPONSE #100
+    SetGlobal("a7#hobart_deactivated","MYAREA",1)
+    Deactivate("Hobart")
+    Continue()
+END

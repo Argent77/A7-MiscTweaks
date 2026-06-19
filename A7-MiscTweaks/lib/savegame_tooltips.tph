@@ -1,0 +1,116 @@
+// Removes tooltips from party members and creatures in tooltips
+
+// Set or reset tooltip flag for all global and/or local creatures in all saved games.
+DEFINE_ACTION_FUNCTION SET_TOOLTIP_FLAGS
+INT_VAR
+  set_flag = 0  // whether to set or clear the "hide tooltip" flag
+  global   = 1  // whether to update global creatures (party members, NPCs, ...)
+  local    = 1  // whether to update local creatures (area actors)
+BEGIN
+  // collecting save folders
+  ACTION_FOR_EACH dir IN ~save~ ~mpsave~ ~bpsave~ ~mpbpsave~ BEGIN
+    OUTER_SET $savedir(~%dir%~) = 1
+  END
+
+  COPY_EXISTING ~campaign.2da~ ~override~
+    COUNT_2DA_COLS num_cols
+    READ_2DA_ENTRIES_NOW campaign_table 1
+    FOR (row = 3; row < campaign_table; ++row) BEGIN
+      PATCH_IF (VARIABLE_IS_SET $campaign_table(~%row%~ ~1~)) BEGIN
+        SPRINT value $campaign_table(~%row%~ ~1~)
+        TO_LOWER ~value~
+        SET $savedir(~%value%~) = 1
+        SET $savedir(~mp%value%~) = 1
+      END
+    END
+  BUT_ONLY IF_EXISTS
+
+  // patching savegames
+  ACTION_PHP_EACH savedir AS dir => _ BEGIN
+    ACTION_IF (DIRECTORY_EXISTS ~%USER_DIRECTORY%/%dir%~) BEGIN
+      PRINT ~Processing saved games in "%dir%"...~
+      GET_DIRECTORY_ARRAY folders ~%USER_DIRECTORY%/%dir%~ ~[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9].*~
+      ACTION_PHP_EACH folders AS _ => folder BEGIN
+        ACTION_IF (global) BEGIN
+          SILENT
+          COPY ~%folder%/baldur.gam~ ~%folder%/baldur.gam~
+            LPF SET_GAM_TOOLTIP_FLAG INT_VAR set_flag END
+          BUT_ONLY IF_EXISTS
+          VERBOSE
+        END
+
+        ACTION_IF (local) BEGIN
+          SILENT
+          COPY ~%folder%/baldur.sav~ ~%folder%/baldur.sav~
+            EDIT_SAV_FILE 6 BEGIN
+              LPF EXT_OF_FILESPEC STR_VAR filespec = EVAL ~%SAV_FILE%~ RET ext END
+              PATCH_IF (~%ext%~ STR_EQ ~are~) BEGIN
+                LPF SET_ARE_TOOLTIP_FLAG INT_VAR set_flag END
+              END
+            END
+          BUT_ONLY IF_EXISTS
+          VERBOSE
+        END
+      END
+    END
+  END
+END
+
+// Update global creatures.
+DEFINE_PATCH_FUNCTION SET_GAM_TOOLTIP_FLAG
+INT_VAR
+  set_flag = 0
+BEGIN
+  READ_ASCII 0 sig (4)
+  PATCH_IF (~%sig%~ STR_EQ ~GAME~) BEGIN
+    PATCH_FOR_EACH base_ofs IN 0x20 0x30 BEGIN
+      READ_LONG base_ofs ofs_npc
+      READ_LONG (base_ofs + 4) num_npc
+      FOR (i = 0; i < num_npc; ++i) BEGIN
+        SET ofs = ofs_npc + i * 0x160
+        READ_LONG (ofs + 4) ofs_cre
+        READ_LONG (ofs + 8) size_cre
+        PATCH_IF (size_cre > 0x14) BEGIN
+          READ_ASCII ofs_cre sig (8)
+          PATCH_IF (~%sig%~ STR_EQ ~CRE V1.0~) BEGIN
+            PATCH_IF (set_flag) BEGIN
+              WRITE_LONG (ofs_cre + 0x10) (THIS BOR BIT23)  // Set flag: No tooltip
+            END ELSE BEGIN
+              WRITE_LONG (ofs_cre + 0x10) (THIS BAND BNOT BIT23)  // Remove flag: No tooltip
+            END
+          END
+        END
+      END
+    END
+  END
+END
+
+// Update local creatures.
+DEFINE_PATCH_FUNCTION SET_ARE_TOOLTIP_FLAG
+INT_VAR
+  set_flag = 0
+BEGIN
+  READ_ASCII 0 sig (4)
+  PATCH_IF (~%sig%~ STR_EQ ~AREA~) BEGIN
+    READ_LONG 0x54 ofs_actors
+    READ_SHORT 0x58 num_actors
+    FOR (i = 0; i < num_actors; ++i) BEGIN
+      SET ofs = ofs_actors + i * 0x110
+      READ_LONG (ofs + 0x28) flags
+      PATCH_IF ((flags & BIT0) == 0) BEGIN // only for attached actors
+        READ_LONG (ofs + 0x88) ofs_cre
+        READ_LONG (ofs + 0x8c) size_cre
+        PATCH_IF (size_cre > 0x14) BEGIN
+          READ_ASCII ofs_cre sig (8)
+          PATCH_IF (~%sig%~ STR_EQ ~CRE V1.0~) BEGIN
+            PATCH_IF (set_flag) BEGIN
+              WRITE_LONG (ofs_cre + 0x10) (THIS BOR BIT23)  // Set flag: No tooltip
+            END ELSE BEGIN
+              WRITE_LONG (ofs_cre + 0x10) (THIS BAND BNOT BIT23)  // Remove flag: No tooltip
+            END
+          END
+        END
+      END
+    END
+  END
+END

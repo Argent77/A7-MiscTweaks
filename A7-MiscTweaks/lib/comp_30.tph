@@ -1,0 +1,48 @@
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
+///// Visual feedback for wild surge "Gold Vanishes!"  \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+// fetching surge spells
+OUTER_SET $surges(~spwm117~) = 1  // predefined surge
+COPY_EXISTING ~wildmag.2da~ ~override~
+  SET surges = 0
+  READ_2DA_ENTRIES_NOW wildmag_table 1
+  FOR (row = 3; row < wildmag_table && surges < 2; ++row) BEGIN
+    SPRINT index $wildmag_table(~%row%~ ~0~)
+    PATCH_IF (IS_AN_INT ~index~ && (index == 17 || index == 95)) BEGIN
+      SPRINT resref $wildmag_table(~%row%~ ~1~)
+      PATCH_IF (FILE_EXISTS_IN_GAME ~%resref%.spl~) BEGIN
+        TO_LOWER ~resref~
+        SET $surges(~%resref%~) = 1
+        SET surges += 1
+      END
+    END
+  END
+BUT_ONLY IF_EXISTS
+
+// updating source spells
+ACTION_PHP_EACH surges AS resref => _ BEGIN
+  COPY_EXISTING ~%resref%.spl~ ~override~
+    LPF CLONE_EFFECT
+      INT_VAR
+        check_globals = 0
+        match_opcode = 139
+        opcode = 215
+        parameter1 = 0
+        parameter2 = 1
+        timing = 0
+        duration = 4
+      STR_VAR
+        resource = ~SPRMGLD~
+        insert = ~below~
+    END
+  BUT_ONLY IF_EXISTS
+END
+
+// installing resources
+COPY ~%MOD_FOLDER%/bmp/sprmgld.bmp~ ~override~
+     ~%MOD_FOLDER%/vvc/sprmgld.vvc~ ~override~
