@@ -212,7 +212,7 @@ LABEL ~A7_MISCTWEAKS_GOLD_VANISHES_FEEDBACK~
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
 /////                                                  \\\\\
-///// Customized Selection Circles in PST              \\\\\
+///// Customized selection circles in PST              \\\\\
 /////                                                  \\\\\
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
@@ -224,7 +224,7 @@ LABEL ~A7_MISCTWEAKS_GOLD_VANISHES_FEEDBACK~
 BEGIN @41 // Solid Thick
 REQUIRE_PREDICATE (GAME_IS ~pstee pst~) @1001  // This component is not available for your game.
 GROUP @1101 // Visual Tweaks
-SUBCOMPONENT @40  // Customized Selection Circles in PST:EE
+SUBCOMPONENT @40  // Customized selection circles in PST:EE
 DESIGNATED 41
 LABEL ~A7_MISCTWEAKS_CUSTOMIZED_CIRCLE_PSTEE_THICK~
 
@@ -235,7 +235,7 @@ LABEL ~A7_MISCTWEAKS_CUSTOMIZED_CIRCLE_PSTEE_THICK~
 BEGIN @42 // Solid Thin
 REQUIRE_PREDICATE (GAME_IS ~pstee pst~) @1001  // This component is not available for your game.
 GROUP @1101 // Visual Tweaks
-SUBCOMPONENT @40  // Customized Selection Circles in PST:EE
+SUBCOMPONENT @40  // Customized selection circles in PST:EE
 DESIGNATED 42
 LABEL ~A7_MISCTWEAKS_CUSTOMIZED_CIRCLE_PSTEE_THIN~
 
@@ -246,7 +246,7 @@ LABEL ~A7_MISCTWEAKS_CUSTOMIZED_CIRCLE_PSTEE_THIN~
 BEGIN @43 // Dashed
 REQUIRE_PREDICATE (GAME_IS ~pstee pst~) @1001  // This component is not available for your game.
 GROUP @1101 // Visual Tweaks
-SUBCOMPONENT @40  // Customized Selection Circles in PST:EE
+SUBCOMPONENT @40  // Customized selection circles in PST:EE
 DESIGNATED 43
 LABEL ~A7_MISCTWEAKS_CUSTOMIZED_CIRCLE_PSTEE_DASHED~
 
@@ -257,7 +257,7 @@ LABEL ~A7_MISCTWEAKS_CUSTOMIZED_CIRCLE_PSTEE_DASHED~
 BEGIN @44 // Dotted
 REQUIRE_PREDICATE (GAME_IS ~pstee pst~) @1001  // This component is not available for your game.
 GROUP @1101 // Visual Tweaks
-SUBCOMPONENT @40  // Customized Selection Circles in PST:EE
+SUBCOMPONENT @40  // Customized selection circles in PST:EE
 DESIGNATED 44
 LABEL ~A7_MISCTWEAKS_CUSTOMIZED_CIRCLE_PSTEE_DOTTED~
 
@@ -268,7 +268,7 @@ LABEL ~A7_MISCTWEAKS_CUSTOMIZED_CIRCLE_PSTEE_DOTTED~
 BEGIN @45 // Filled
 REQUIRE_PREDICATE (GAME_IS ~pstee pst~) @1001  // This component is not available for your game.
 GROUP @1101 // Visual Tweaks
-SUBCOMPONENT @40  // Customized Selection Circles in PST:EE
+SUBCOMPONENT @40  // Customized selection circles in PST:EE
 DESIGNATED 45
 LABEL ~A7_MISCTWEAKS_CUSTOMIZED_CIRCLE_PSTEE_FILLED~
 
@@ -279,7 +279,7 @@ LABEL ~A7_MISCTWEAKS_CUSTOMIZED_CIRCLE_PSTEE_FILLED~
 BEGIN @46 // Translucent
 REQUIRE_PREDICATE (GAME_IS ~pstee~) @1001  // This component is not available for your game.
 GROUP @1101 // Visual Tweaks
-SUBCOMPONENT @40  // Customized Selection Circles in PST:EE
+SUBCOMPONENT @40  // Customized selection circles in PST:EE
 DESIGNATED 46
 LABEL ~A7_MISCTWEAKS_CUSTOMIZED_CIRCLE_PSTEE_TRANSLUCENT~
 
@@ -302,12 +302,12 @@ LABEL ~A7_MISCTWEAKS_BREAKABLE_CUTSCENES_PSTEE~
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
 /////                                                  \\\\\
-///// Upscaled character portraits in PST:EE           \\\\\
+///// High-resolution character portraits in PST:EE    \\\\\
 /////                                                  \\\\\
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
 
-BEGIN @60 // Upscaled character portraits in PST:EE
+BEGIN @60 // High-resolution character portraits in PST:EE
 REQUIRE_PREDICATE (GAME_IS ~pstee~) @1001  // This component is not available for your game.
 GROUP @1101 // Visual Tweaks
 DESIGNATED 60
@@ -317,7 +317,7 @@ LABEL ~A7_MISCTWEAKS_UPSCALED_PORTRAITS_PSTEE~
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
 /////                                                  \\\\\
-///// Character Generation Cheats in PST:EE            \\\\\
+///// Character generation cheats in PST:EE            \\\\\
 /////                                                  \\\\\
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
@@ -329,7 +329,7 @@ LABEL ~A7_MISCTWEAKS_UPSCALED_PORTRAITS_PSTEE~
 BEGIN @71 // Min. ability score: 9, total roll: 54 (0 extra)
 REQUIRE_PREDICATE (GAME_IS ~pstee~) @1001  // This component is not available for your game.
 GROUP @1100 // Convenience Tweaks/Cheats
-SUBCOMPONENT @70  // Character Generation Cheats in PST:EE
+SUBCOMPONENT @70  // Character generation cheats in PST:EE
 DESIGNATED 71
 LABEL ~A7_MISCTWEAKS_CHARGEN_CHEATS_SCORE_9_ROLL_54~
 
@@ -340,7 +340,7 @@ LABEL ~A7_MISCTWEAKS_CHARGEN_CHEATS_SCORE_9_ROLL_54~
 BEGIN @72 // Min. ability score: 9, total roll: 61 (7 extra)
 REQUIRE_PREDICATE (GAME_IS ~pstee~) @1001  // This component is not available for your game.
 GROUP @1100 // Convenience Tweaks/Cheats
-SUBCOMPONENT @70  // Character Generation Cheats in PST:EE
+SUBCOMPONENT @70  // Character generation cheats in PST:EE
 DESIGNATED 72
 LABEL ~A7_MISCTWEAKS_CHARGEN_CHEATS_SCORE_9_ROLL_61~
 
@@ -351,7 +351,7 @@ LABEL ~A7_MISCTWEAKS_CHARGEN_CHEATS_SCORE_9_ROLL_61~
 BEGIN @73 // Min. ability score: 9, total roll: 68 (14 extra)
 REQUIRE_PREDICATE (GAME_IS ~pstee~) @1001  // This component is not available for your game.
 GROUP @1100 // Convenience Tweaks/Cheats
-SUBCOMPONENT @70  // Character Generation Cheats in PST:EE
+SUBCOMPONENT @70  // Character generation cheats in PST:EE
 DESIGNATED 73
 LABEL ~A7_MISCTWEAKS_CHARGEN_CHEATS_SCORE_9_ROLL_68~
 
@@ -362,7 +362,7 @@ LABEL ~A7_MISCTWEAKS_CHARGEN_CHEATS_SCORE_9_ROLL_68~
 BEGIN @74 // Min. ability score: 9, total roll: 82 (28 extra)
 REQUIRE_PREDICATE (GAME_IS ~pstee~) @1001  // This component is not available for your game.
 GROUP @1100 // Convenience Tweaks/Cheats
-SUBCOMPONENT @70  // Character Generation Cheats in PST:EE
+SUBCOMPONENT @70  // Character generation cheats in PST:EE
 DESIGNATED 74
 LABEL ~A7_MISCTWEAKS_CHARGEN_CHEATS_SCORE_9_ROLL_82~
 
@@ -373,7 +373,7 @@ LABEL ~A7_MISCTWEAKS_CHARGEN_CHEATS_SCORE_9_ROLL_82~
 BEGIN @75 // Min. ability score: 9, total roll: 89 (35 extra)
 REQUIRE_PREDICATE (GAME_IS ~pstee~) @1001  // This component is not available for your game.
 GROUP @1100 // Convenience Tweaks/Cheats
-SUBCOMPONENT @70  // Character Generation Cheats in PST:EE
+SUBCOMPONENT @70  // Character generation cheats in PST:EE
 DESIGNATED 75
 LABEL ~A7_MISCTWEAKS_CHARGEN_CHEATS_SCORE_9_ROLL_89~
 
@@ -384,7 +384,7 @@ LABEL ~A7_MISCTWEAKS_CHARGEN_CHEATS_SCORE_9_ROLL_89~
 BEGIN @76 // Min. ability score: 9, total roll: 96 (42 extra)
 REQUIRE_PREDICATE (GAME_IS ~pstee~) @1001  // This component is not available for your game.
 GROUP @1100 // Convenience Tweaks/Cheats
-SUBCOMPONENT @70  // Character Generation Cheats in PST:EE
+SUBCOMPONENT @70  // Character generation cheats in PST:EE
 DESIGNATED 76
 LABEL ~A7_MISCTWEAKS_CHARGEN_CHEATS_SCORE_9_ROLL_96~
 
@@ -395,7 +395,7 @@ LABEL ~A7_MISCTWEAKS_CHARGEN_CHEATS_SCORE_9_ROLL_96~
 BEGIN @77 // Min. ability score: 6, total roll: 36 (0 extra)
 REQUIRE_PREDICATE (GAME_IS ~pstee~) @1001  // This component is not available for your game.
 GROUP @1100 // Convenience Tweaks/Cheats
-SUBCOMPONENT @70  // Character Generation Cheats in PST:EE
+SUBCOMPONENT @70  // Character generation cheats in PST:EE
 DESIGNATED 77
 LABEL ~A7_MISCTWEAKS_CHARGEN_CHEATS_SCORE_6_ROLL_36~
 
@@ -406,7 +406,7 @@ LABEL ~A7_MISCTWEAKS_CHARGEN_CHEATS_SCORE_6_ROLL_36~
 BEGIN @78 // Min. ability score: 6, total roll: 69 (13 extra)
 REQUIRE_PREDICATE (GAME_IS ~pstee~) @1001  // This component is not available for your game.
 GROUP @1100 // Convenience Tweaks/Cheats
-SUBCOMPONENT @70  // Character Generation Cheats in PST:EE
+SUBCOMPONENT @70  // Character generation cheats in PST:EE
 DESIGNATED 78
 LABEL ~A7_MISCTWEAKS_CHARGEN_CHEATS_SCORE_6_ROLL_49~
 
@@ -417,7 +417,7 @@ LABEL ~A7_MISCTWEAKS_CHARGEN_CHEATS_SCORE_6_ROLL_49~
 BEGIN @79 // Min. ability score: 6, total roll: 62 (26 extra)
 REQUIRE_PREDICATE (GAME_IS ~pstee~) @1001  // This component is not available for your game.
 GROUP @1100 // Convenience Tweaks/Cheats
-SUBCOMPONENT @70  // Character Generation Cheats in PST:EE
+SUBCOMPONENT @70  // Character generation cheats in PST:EE
 DESIGNATED 79
 LABEL ~A7_MISCTWEAKS_CHARGEN_CHEATS_SCORE_6_ROLL_62~
 
@@ -428,7 +428,7 @@ LABEL ~A7_MISCTWEAKS_CHARGEN_CHEATS_SCORE_6_ROLL_62~
 BEGIN @80 // Min. ability score: 6, total roll: 75 (39 extra)
 REQUIRE_PREDICATE (GAME_IS ~pstee~) @1001  // This component is not available for your game.
 GROUP @1100 // Convenience Tweaks/Cheats
-SUBCOMPONENT @70  // Character Generation Cheats in PST:EE
+SUBCOMPONENT @70  // Character generation cheats in PST:EE
 DESIGNATED 80
 LABEL ~A7_MISCTWEAKS_CHARGEN_CHEATS_SCORE_6_ROLL_75~
 
@@ -439,7 +439,7 @@ LABEL ~A7_MISCTWEAKS_CHARGEN_CHEATS_SCORE_6_ROLL_75~
 BEGIN @81 // Min. ability score: 6, total roll: 82 (46 extra)
 REQUIRE_PREDICATE (GAME_IS ~pstee~) @1001  // This component is not available for your game.
 GROUP @1100 // Convenience Tweaks/Cheats
-SUBCOMPONENT @70  // Character Generation Cheats in PST:EE
+SUBCOMPONENT @70  // Character generation cheats in PST:EE
 DESIGNATED 81
 LABEL ~A7_MISCTWEAKS_CHARGEN_CHEATS_SCORE_6_ROLL_82~
 
@@ -450,7 +450,7 @@ LABEL ~A7_MISCTWEAKS_CHARGEN_CHEATS_SCORE_6_ROLL_82~
 BEGIN @82 // Min. ability score: 6, total roll: 89 (53 extra)
 REQUIRE_PREDICATE (GAME_IS ~pstee~) @1001  // This component is not available for your game.
 GROUP @1100 // Convenience Tweaks/Cheats
-SUBCOMPONENT @70  // Character Generation Cheats in PST:EE
+SUBCOMPONENT @70  // Character generation cheats in PST:EE
 DESIGNATED 82
 LABEL ~A7_MISCTWEAKS_CHARGEN_CHEATS_SCORE_6_ROLL_89~
 
@@ -461,7 +461,7 @@ LABEL ~A7_MISCTWEAKS_CHARGEN_CHEATS_SCORE_6_ROLL_89~
 BEGIN @83 // Min. ability score: 6, total roll: 96 (60 extra)
 REQUIRE_PREDICATE (GAME_IS ~pstee~) @1001  // This component is not available for your game.
 GROUP @1100 // Convenience Tweaks/Cheats
-SUBCOMPONENT @70  // Character Generation Cheats in PST:EE
+SUBCOMPONENT @70  // Character generation cheats in PST:EE
 DESIGNATED 83
 LABEL ~A7_MISCTWEAKS_CHARGEN_CHEATS_SCORE_6_ROLL_96~
 

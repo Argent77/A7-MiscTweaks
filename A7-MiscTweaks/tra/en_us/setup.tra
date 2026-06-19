@@ -18,7 +18,7 @@
 
 @30 = ~Visual feedback for wild surge "Gold Vanishes!"~
 
-@40 = ~Customized Selection Circles~
+@40 = ~Customized selection circles~
 @41 = ~Solid Thick~
 @42 = ~Solid Thin~
 @43 = ~Dashed~
@@ -28,9 +28,9 @@
 
 @50 = ~Breakable cutscenes~
 
-@60 = ~Upscaled character portraits~
+@60 = ~High-resolution character portraits~
 
-@70 = ~Character Generation Cheats~
+@70 = ~Character generation cheats~
 @71 = ~Min. ability score: 9, total roll: 54 (0 extra)~
 @72 = ~Min. ability score: 9, total roll: 61 (7 extra)~
 @73 = ~Min. ability score: 9, total roll: 68 (14 extra)~

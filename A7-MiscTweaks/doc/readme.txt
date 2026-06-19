@@ -1,8 +1,11 @@
 Argent's Miscellaneous Tweaks
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Version:  0.1
-Author:   Argent77
+Version:    0.1
+Author:     Argent77
+
+Download:   https://github.com/Argent77/A7-MiscTweaks/releases
+Discussion: https://
 
 
 Overview
@@ -16,12 +19,13 @@ also compatible with the original games (BG2, BGT, Tutu, and PST).
 Installation
 ~~~~~~~~~~~~
 
-This is a WeiDU mod, that means it is very easy to install. Simply unpack the downloaded archive
-into your game directory and run either "setup-A7-MiscTweaks.exe" (Windows) or
-"setup-A7-MiscTweaks.command" (macOS). Follow the instructions and you are ready to start.
+This is a WeiDU mod, that means it is very easy to install. Simply unpack the downloaded
+archive into your game directory and run either "setup-A7-MiscTweaks.exe" (Windows),
+"setup-A7-MiscTweaks" (Linux), or "setup-A7-MiscTweaks.command" (macOS). Follow the
+instructions and you are ready to start.
 
-To uninstall, run "setup-A7-MiscTweaks.exe" (Windows) or "setup-A7-MiscTweaks.command" (macOS)
-again and follow the prompts.
+To uninstall, run "setup-A7-MiscTweaks.exe" (Windows), "setup-A7-MiscTweaks" (Linux), or
+"setup-A7-MiscTweaks.command" (macOS) again and follow the prompts.
 
 Note for Siege of Dragonspear (SoD):
 GOG and Steam both install the "Siege of Dragonspear" expansion in a way that is not moddable out
@@ -60,8 +64,11 @@ Critical hit protection can be enabled for the following item categories:
 
 Group: Visual Tweaks
 
-This component removes tooltips from all creatures in the game. Creatures that are already present
-in saved games are not affected.
+This component removes tooltips that are displayed when pressing and holding the Tab key from all
+creatures in the game.
+
+Note: Tooltips of the protagonist or creatures that are already stored in saved games are not
+      affected. Use the component below to handle that issue.
 
 
 3. Update saved games (unlogged) (BG:EE, SoD, BG2:EE, EET, IWD:EE, and PST:EE)
@@ -93,7 +100,7 @@ This component adds a custom visual effect that underlines the removal of gold b
 wild surge.
 
 
-5. Customized Selection Circles (PST:EE and PST)
+5. Customized selection circles (PST:EE and PST)
 
 Group: Visual Tweaks
 
@@ -117,7 +124,7 @@ This components adds the option to prematurely end scripted cutscenes to a great
 cutscene scripts in PST:EE.
 
 
-7. Upscaled character portraits (PST:EE only)
+7. High-resolution character portraits (PST:EE only)
 
 Group: Visual Tweaks
 
@@ -131,7 +138,7 @@ Preview images of the character portraits in their original and updated state ca
 "preview" subfolder.
 
 
-8. Character Generation Cheats (PST:EE only)
+8. Character generation cheats (PST:EE only)
 
 Group: Convenience Tweaks/Cheats
 

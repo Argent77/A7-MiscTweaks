@@ -33,7 +33,9 @@ Critical hit protection can be enabled for the following item categories:
 
 ### Disable creature tooltips *(BG:EE, SoD, BG2:EE, EET, IWD:EE, and PST:EE)*
 
-This component removes tooltips from all creatures in the game. Creatures that are already present in saved games are not affected.
+This component removes tooltips that are displayed when pressing and holding the Tab key from all creatures in the game.
+
+**Note:** Tooltips of the protagonist or creatures that are already stored in saved games are not affected. Use the component below to handle that issue.
 
 ### Update saved games (unlogged) *(BG:EE, SoD, BG2:EE, EET, IWD:EE, and PST:EE)*
 
@@ -55,7 +57,7 @@ The following options are available:
 
 This component adds a custom visual effect that underlines the removal of gold by the triggered wild surge.
 
-### Customized Selection Circles *(PST:EE and PST)*
+### Customized selection circles *(PST:EE and PST)*
 
 This component installs customized graphics for character selection circles in Planescape Torment (original game or Enhanced Edition).
 
@@ -73,7 +75,7 @@ Preview images of the individual selection circles can be found in the "preview"
 
 This components adds the option to prematurely end scripted cutscenes to a great number of cutscene scripts in PST:EE.
 
-### Upscaled character portraits *(PST:EE only)*
+### High-resolution character portraits *(PST:EE only)*
 
 This component installs upscaled versions of the character portrait animations for the game screen toolbar, and static portrait images for the statistics screen in PST:EE.
 
@@ -81,7 +83,7 @@ The portraits have been upscaled by 400 percent with an xBR smart filter which p
 
 Preview images of the character portraits in their original and updated state can be found in the "preview" subfolder.
 
-### Character Generation Cheats *(PST:EE only)*
+### Character generation cheats *(PST:EE only)*
 
 This component tweaks starting ability scores and points to spend at character generation in PST:EE.
 
