@@ -1,7 +1,7 @@
 <!-- [![GitHub release (latest by date)](https://img.shields.io/github/v/release/Argent77/A7-MiscTweaks?color=darkred&include_prereleases&label=latest%20release)](https://github.com/Argent77/A7-MiscTweaks/releases/latest) -->
 <!-- [![Github downloads (all releases)](https://img.shields.io/github/downloads/Argent77/A7-MiscTweaks/total.svg?color=gold)](https://github.com/Argent77/A7-MiscTweaks/releases) -->
 [![Platform](https://img.shields.io/static/v1?label=platform&message=Windows%20%7C%20macOS%20%7C%20Linux%20%7C%20Project%20Infinity&color=informational)](https://github.com/Argent77/A7-MiscTweaks/releases/latest)
-[![Supported games](https://img.shields.io/static/v1?label=supported%20games&message=BG%3AEE%20%7C%20SoD%20%7C%20BG2%3AEE%20%7C%20EET%20%7C%20IWD%3AEE%20%7C%20PST%3AEE&color=indigo)](https://github.com/Argent77/A7-MiscTweaks)
+[![Supported games](https://img.shields.io/static/v1?label=supported%20games&message=BG2%20%7C%20Tutu%20%7C%20BGT%20%7C%20PST%20%7C%20BG%3AEE%20%7C%20SoD%20%7C%20BG2%3AEE%20%7C%20EET%20%7C%20IWD%3AEE%20%7C%20PST%3AEE&color=indigo)](https://github.com/Argent77/A7-MiscTweaks)
 [![Language](https://img.shields.io/static/v1?label=language&message=English%20%7C%20German&color=limegreen)](https://github.com/Argent77/A7-MiscTweaks)
 
 # Argent's Miscellaneous Tweaks
@@ -11,7 +11,7 @@
 
 ## Overview
 
-This is my personal collection of tweaks, cheats, and fixes I have coded over the years. It mostly contains components for EE games (BGEE, SoD, BG2EE, IWDEE, PSTEE, and EET), but some of them are also compatible with the original games (BG2, BGT, Tutu, or PST).
+This is my personal collection of tweaks, cheats, and fixes I have coded over the years. It mostly contains components for EE games (BGEE, SoD, BG2EE, IWDEE, PSTEE, and EET), but some of them are also compatible with the original games (BG2, BGT, Tutu, and PST).
 
 ## Installation order and mod compatibility
 

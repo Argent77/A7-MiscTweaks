@@ -10,7 +10,7 @@ Overview
 
 This is my personal collection of tweaks, cheats, and fixes I have coded over the years. It mostly
 contains components for EE games (BGEE, SoD, BG2EE, IWDEE, PSTEE, and EET), but some of them are
-also compatible with the original games (BG2, BGT, Tutu, or PST).
+also compatible with the original games (BG2, BGT, Tutu, and PST).
 
 
 Installation
