@@ -111,9 +111,9 @@ This component installs customized graphics for character selection circles in P
 - Dashed: BG-style selection circle with a dashed border.
 - Dotted: BG-style selection circle with a dotted border.
 - Filled: Filled BG-style selection circle (discs).
-- Translucent: A translucent version of the original selection circle (PSTEE only).
+- Translucent: A translucent version of the original selection circle (PST:EE only).
 
-Preview images of the individual selection circles can be found in the "preview" subfolder.
+Preview images of the individual selection circles can be found in the "doc/preview" subfolder.
 
 
 6. Breakable cutscenes (PST:EE only)
@@ -135,7 +135,7 @@ The portraits have been upscaled by 400 percent with an xBR smart filter which p
 and improves overall sharpness.
 
 Preview images of the character portraits in their original and updated state can be found in the
-"preview" subfolder.
+"doc/preview" subfolder.
 
 
 8. Character generation cheats (PST:EE only)

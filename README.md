@@ -67,9 +67,9 @@ The following options are available:
 - **Dashed:** BG-style selection circle with a dashed border.
 - **Dotted:** BG-style selection circle with a dotted border.
 - **Filled:** Filled BG-style selection circle (discs).
-- **Translucent:** A translucent version of the original selection circle (PSTEE only).
+- **Translucent:** A translucent version of the original selection circle (PST:EE only).
 
-Preview images of the individual selection circles can be found in the "preview" subfolder of the mod.
+Preview images of the individual selection circles can be found in the "doc/preview" subfolder of the mod.
 
 ### Breakable cutscenes *(PST:EE only)*
 
@@ -81,7 +81,7 @@ This component installs upscaled versions of the character portrait animations f
 
 The portraits have been upscaled by 400 percent with an xBR smart filter which preserves details, and improves overall sharpness.
 
-Preview images of the character portraits in their original and updated state can be found in the "preview" subfolder.
+Preview images of the character portraits in their original and updated state can be found in the "doc/preview" subfolder.
 
 ### Character generation cheats *(PST:EE only)*
 
