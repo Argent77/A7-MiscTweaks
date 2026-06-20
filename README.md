@@ -7,7 +7,7 @@
 # Argent's Miscellaneous Tweaks
 *Loose collection of tweaks, cheats, and fixes.*
 
-<!-- [![G3 Forums](https://img.shields.io/static/v1?label=Discussion&message=G3%20Forums&color=3b45a3&labelColor=eee&style=for-the-badge)](https://www.gibberlings3.net/forums/topic/xxx "The Gibberlings Three Forums") -->
+[![G3 Forums](https://img.shields.io/static/v1?label=Discussion&message=G3%20Forums&color=3b45a3&labelColor=eee&style=for-the-badge)](https://www.gibberlings3.net/forums/topic/41350-mod-argents-miscellaneous-tweaks "The Gibberlings Three Forums")
 
 ## Overview
 

@@ -1,11 +1,11 @@
 Argent's Miscellaneous Tweaks
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Version:    0.1
+Version:    1.0
 Author:     Argent77
 
 Download:   https://github.com/Argent77/A7-MiscTweaks/releases
-Discussion: https://
+Discussion: https://www.gibberlings3.net/forums/topic/41350-mod-argents-miscellaneous-tweaks
 
 
 Overview
