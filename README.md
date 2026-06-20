@@ -35,7 +35,7 @@ Critical hit protection can be enabled for the following item categories:
 
 This component removes tooltips that are displayed when pressing and holding the Tab key from all creatures in the game.
 
-**Note:** Tooltips of the protagonist or creatures that are already stored in saved games are not affected. Use the component below to handle that issue.
+**Note:** Tooltips of the protagonist or creatures that are already stored in saved games are not affected. Use the component below to handle that case.
 
 ### Update saved games (unlogged) *(BG:EE, SoD, BG2:EE, EET, IWD:EE, and PST:EE)*
 

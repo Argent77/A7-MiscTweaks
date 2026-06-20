@@ -68,7 +68,7 @@ This component removes tooltips that are displayed when pressing and holding the
 creatures in the game.
 
 Note: Tooltips of the protagonist or creatures that are already stored in saved games are not
-      affected. Use the component below to handle that issue.
+      affected. Use the component below to handle that case.
 
 
 3. Update saved games (unlogged) (BG:EE, SoD, BG2:EE, EET, IWD:EE, and PST:EE)
