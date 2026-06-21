@@ -195,7 +195,7 @@ Group: Convenience Tweaks/Cheats
 
 The "Back" button in the dual-class menu had been deactivated by Beamdog in more recent game
 patches because it could potentially corrupt the dual-class process. As a result the character
-could potentially lose class-specific skills or weapon proficiencies for the original class.
+could lose class-specific skills or weapon proficiencies for the original class.
 
 This component reactivates the "Back" button in the dual-class menu until the player has chosen
 a new class. From that point on the back button will be disabled to prevent the afore-mentioned
