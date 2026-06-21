@@ -1,0 +1,19 @@
+// IWDEE: TotLM transition
+IF
+  True()
+THEN
+  RESPONSE #100
+    CutSceneId(Player1Fill)
+    MoveViewObject(Myself,INSTANT)
+    Activate("Hobart")
+    Wait(1)
+    DisplayStringHeadNoLog(Myself,@2100)  // Several days later...
+    Wait(4)
+    FaceObject("Hobart")
+    ActionOverride("Hobart",SetNumTimesTalkedTo(0))
+    SetGlobal("Master_Quest","GLOBAL",0)
+    ActionOverride("Hobart",FaceObject(Player1Fill))
+    FadeFromColor([45.0],0)
+    Wait(3)
+    ActionOverride("Hobart",Dialogue(Player1Fill))
+END

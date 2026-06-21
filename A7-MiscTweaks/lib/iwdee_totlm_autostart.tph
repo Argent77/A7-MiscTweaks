@@ -123,6 +123,7 @@ COPY ~%MOD_FOLDER%/spl/bdrejuve.spl~ ~override~
 
 COMPILE ~%MOD_FOLDER%/bcs/a7#hct1a.baf~
         ~%MOD_FOLDER%/bcs/a7#hct1b.baf~
+        ~%MOD_FOLDER%/bcs/a7#hct1c.baf~
         ~%MOD_FOLDER%/bcs/a7#hct2a.baf~
 
 COMPILE ~%MOD_FOLDER%/dlg/dhobart.d~

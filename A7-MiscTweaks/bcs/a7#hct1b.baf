@@ -4,16 +4,12 @@ IF
 THEN
   RESPONSE #100
     CutSceneId(Player1Fill)
-    MoveViewObject(Myself,INSTANT)
-    Activate("Hobart")
-    Wait(1)
-    DisplayStringHeadNoLog(Myself,@2100)  // Several days later...
-    Wait(4)
-    FaceObject("Hobart")
-    ActionOverride("Hobart",SetNumTimesTalkedTo(0))
-    SetGlobal("Master_Quest","GLOBAL",0)
-    ActionOverride("Hobart",FaceObject(Player1Fill))
-    FadeFromColor([45.0],0)
-    Wait(3)
-    ActionOverride("Hobart",Dialogue(Player1Fill))
+    ActionOverride(Player2Fill,LeaveAreaLUA("AR9101","",[904.392],SW))
+    ActionOverride(Player3Fill,LeaveAreaLUA("AR9101","",[936.407],SWW))
+    ActionOverride(Player4Fill,LeaveAreaLUA("AR9101","",[881.360],SW))
+    ActionOverride(Player5Fill,LeaveAreaLUA("AR9101","",[930.356],SW))
+    ActionOverride(Player6Fill,LeaveAreaLUA("AR9101","",[963.380],SWW))
+    LeaveAreaLUAPanic("AR9101","",[859.406],SW)
+    LeaveAreaLUA("AR9101","",[859.406],SW)
+    StartCutScene("a7#hct1c")
 END

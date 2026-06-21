@@ -4,15 +4,17 @@ IF
 THEN
   RESPONSE #100
     CutSceneId(Player1Fill)
+    AdvanceTime(ONE_DAY)
+    SmallWait(2)
     ApplySpellRES("bdrejuve",Myself)
     Wait(1)
-    ActionOverride(Player2Fill,LeaveAreaLUA("AR9101","",[904.392],SW))
-    ActionOverride(Player3Fill,LeaveAreaLUA("AR9101","",[936.407],SWW))
-    ActionOverride(Player4Fill,LeaveAreaLUA("AR9101","",[881.360],SW))
-    ActionOverride(Player5Fill,LeaveAreaLUA("AR9101","",[930.356],SW))
-    ActionOverride(Player6Fill,LeaveAreaLUA("AR9101","",[963.380],SWW))
-    LeaveAreaLUAPanic("AR9101","",[859.406],SW)
-    LeaveAreaLUA("AR9101","",[859.406],SW)
+    ActionOverride(Player2Fill,LeaveAreaLUA("AR9100","",[322.604],SE))
+    ActionOverride(Player3Fill,LeaveAreaLUA("AR9100","",[322.604],SE))
+    ActionOverride(Player4Fill,LeaveAreaLUA("AR9100","",[322.604],SE))
+    ActionOverride(Player5Fill,LeaveAreaLUA("AR9100","",[322.604],SE))
+    ActionOverride(Player6Fill,LeaveAreaLUA("AR9100","",[322.604],SE))
+    LeaveAreaLUAPanic("AR9100","",[322.604],SE)
+    LeaveAreaLUA("AR9100","",[322.604],SE)
     StartCutScene("a7#hct1b")
 END
 
@@ -21,6 +23,7 @@ IF
 THEN
   RESPONSE #100
     CutSceneId(Player2Fill)
+    SmallWait(2)
     ApplySpellRES("bdrejuve",Myself)
 END
 
@@ -29,6 +32,7 @@ IF
 THEN
   RESPONSE #100
     CutSceneId(Player3Fill)
+    SmallWait(2)
     ApplySpellRES("bdrejuve",Myself)
 END
 
@@ -37,6 +41,7 @@ IF
 THEN
   RESPONSE #100
     CutSceneId(Player4Fill)
+    SmallWait(2)
     ApplySpellRES("bdrejuve",Myself)
 END
 
@@ -45,6 +50,7 @@ IF
 THEN
   RESPONSE #100
     CutSceneId(Player5Fill)
+    SmallWait(2)
     ApplySpellRES("bdrejuve",Myself)
 END
 
@@ -53,5 +59,6 @@ IF
 THEN
   RESPONSE #100
     CutSceneId(Player6Fill)
+    SmallWait(2)
     ApplySpellRES("bdrejuve",Myself)
 END
