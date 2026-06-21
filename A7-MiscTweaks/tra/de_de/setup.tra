@@ -51,6 +51,8 @@
 
 @110 = ~Aktiviere "Zurück"-Schaltfläche im Klassenkombinationsmenü~
 
+@120 = ~Punkteverteilung für Fertigkeiten beschleunigen~
+
 // Messages
 @1000 = ~DLC Merger wird benötigt, bevor in diesem Spiel Mods installiert werden können. Links und weitere Informationen werden in der Readme aufgeführt.~
 @1001 = ~Diese Komponente ist für dieses Spiel nicht verfügbar.~

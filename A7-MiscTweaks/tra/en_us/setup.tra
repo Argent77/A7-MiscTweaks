@@ -51,6 +51,8 @@
 
 @110 = ~Reactivate "Back" button in the Dual-Class menu~
 
+@120 = ~Speed up distributing skill or ability points~
+
 // Messages
 @1000 = ~DLC Merger is required before mods can be installed on this game. Check the readme for more information and a link to download DLC Merger.~
 @1001 = ~This component is not available for your game.~

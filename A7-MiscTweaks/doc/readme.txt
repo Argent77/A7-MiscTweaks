@@ -202,6 +202,17 @@ a new class. From that point on the back button will be disabled to prevent the 
 corruption of the character.
 
 
+12. Speed up distributing skill or ability points (BG:EE, BG2:EE, EET, IWD:EE, and PST:EE)
+
+Group: Convenience Tweaks/Cheats
+
+This component increases the speed for distributing points to thieving skills, proficiencies,
+or character attributes while pressing and holding the respective plus/minus buttons on character
+generation or level-up screens.
+
+Note: Some GUI mods may not be affected by this tweak.
+
+
 Credits
 ~~~~~~~
 

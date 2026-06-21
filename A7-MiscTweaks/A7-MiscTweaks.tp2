@@ -511,3 +511,18 @@ REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee~ && FILE_EXISTS_IN_GAME ~ui.men
 GROUP @1100 // Convenience Tweaks/Cheats
 DESIGNATED 110
 LABEL ~A7_MISCTWEAKS_DUALCLASS_BACK_BUTTON~
+
+
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
+///// Speed up distributing skill or ability points    \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+BEGIN @120  // Speed up distributing skill or ability points
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee pstee~ && FILE_EXISTS_IN_GAME ~ui.menu~) @1001  // This component is not available for your game.
+GROUP @1100 // Convenience Tweaks/Cheats
+DESIGNATED 120
+LABEL ~A7_MISCTWEAKS_SPEED_UP_POINTS_DISTRIBUTION~

@@ -124,6 +124,12 @@ The "Back" button in the dual-class menu had been deactivated by Beamdog in more
 
 This component reactivates the "Back" button in the dual-class menu until the player has chosen a new class. From that point on the back button will be disabled to prevent the afore-mentioned corruption of the character.
 
+### Speed up distributing skill or ability points *(BG:EE, BG2:EE, EET, IWD:EE, and PST:EE)*
+
+This component increases the speed for distributing points to thieving skills, proficiencies, or character attributes while pressing and holding the respective plus/minus buttons on character generation or level-up screens.
+
+**Note:** Some GUI mods may not be affected by this tweak.
+
 ## Credits
 
 Coding and testing: Argent77

@@ -1,0 +1,16 @@
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
+///// Speed up distributing skill or ability points    \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+COPY_EXISTING ~ui.menu~ ~override~
+  REPLACE_EVALUATE ~\(ticksPassed[ %TAB%]*=[ %TAB%]*ticksPassed[ %TAB%]*\+[ %TAB%]*\)\([1-9][0-9]*\)~ BEGIN
+    PATCH_IF (IS_AN_INT ~MATCH2~) BEGIN
+      SET MATCH2 *= 3
+      SPRINT MATCH0 ~%MATCH1%%MATCH2%~
+    END
+  END ~%MATCH0%~
+BUT_ONLY
