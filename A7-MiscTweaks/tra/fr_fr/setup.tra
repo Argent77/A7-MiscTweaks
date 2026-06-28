@@ -16,7 +16,7 @@
 @25 = ~Activer les infobulles des membres du groupe et des PNJ~
 @26 = ~Activer les infobulles des creatures, des membres du groupe et des PNJ~
 
-@30 = ~Effet visuel pour le hiatus entropique "L'or a disparu !"~
+@30 = ~Effet visuel pour le hiatus entropique "L'or a disparu !"~
 
 @40 = ~Cercles de selection personnalises~
 @41 = ~Plein epais~
@@ -45,13 +45,13 @@
 @82 = ~Score de capacite minimum : 6, total du jet : 89 (53 supplementaires)~
 @83 = ~Score de capacite minimum : 6, total du jet : 96 (60 supplementaires)~
 
-@90 = ~Lancer automatiquement "Les epreuves du Maître des leurres" apres la campagne "Le Cœur de l'hiver"~
+@90 = ~Lancer automatiquement "Les epreuves du Maitre des leurres" apres la campagne "Le Coeur de l'hiver"~
 
-@100 = ~Ajouter la capacite "Balise du Grand Chêne"~
+@100 = ~Ajouter la capacite "Balise du Grand Chene"~
 
 @110 = ~Reactiver le bouton "Retour" dans le menu classe jumelee~
 
-@120 = ~Accelerer la répartition des points de competence ou de caracteristiques~
+@120 = ~Accelerer la repartition des points de competence ou de caracteristiques~
 
 // Messages
 @1000 = ~L'installation de DLC Merger est requise avant de pouvoir installer des mods sur ce jeu. Consultez le fichier Lisez-moi pour plus d'informations et pour obtenir un lien de telechargement de DLC Merger.~
