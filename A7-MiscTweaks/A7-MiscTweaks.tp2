@@ -34,6 +34,12 @@ LANGUAGE ~Deutsch~
          ~A7-MiscTweaks/tra/en_us/mod.tra~
          ~A7-MiscTweaks/tra/de_de/setup.tra~
          ~A7-MiscTweaks/tra/de_de/mod.tra~
+LANGUAGE ~Francais~
+         ~fr_fr~
+         ~A7-MiscTweaks/tra/en_us/setup.tra~
+         ~A7-MiscTweaks/tra/en_us/mod.tra~
+         ~A7-MiscTweaks/tra/fr_fr/setup.tra~
+         ~A7-MiscTweaks/tra/fr_fr/mod.tra~
 
 
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\

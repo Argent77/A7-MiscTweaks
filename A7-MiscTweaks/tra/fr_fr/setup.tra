@@ -1,0 +1,64 @@
+// use tra indices 0 to 1999
+
+// Components
+@1 = ~Activer la protection contre les coups critiques : Bracelets~
+@2 = ~Activer la protection contre les coups critiques : Boucliers~
+@3 = ~Activer la protection contre les coups critiques : Capes~
+@4 = ~Activer la protection contre les coups critiques : Ceintures~
+
+@10 = ~Desactiver les infobulles des creatures~
+
+@20 = ~Mettre a jour les parties sauvegardees (non connectees)~
+@21 = ~Desactiver les infobulles des creatures~
+@22 = ~Desactiver les infobulles des membres du groupe et des PNJ~
+@23 = ~Desactiver les infobulles des creatures, des membres du groupe et des PNJ~
+@24 = ~Activer les infobulles des creatures~
+@25 = ~Activer les infobulles des membres du groupe et des PNJ~
+@26 = ~Activer les infobulles des creatures, des membres du groupe et des PNJ~
+
+@30 = ~Effet visuel pour le hiatus entropique "L'or a disparu !"~
+
+@40 = ~Cercles de selection personnalises~
+@41 = ~Plein epais~
+@42 = ~Plein fin~
+@43 = ~Tire~
+@44 = ~Pointille~
+@45 = ~Rempli~
+@46 = ~Translucide~
+
+@50 = ~Cinematiques interrompables~
+
+@60 = ~Portraits de personnages en haute resolution~
+
+@70 = ~Astuce pour la creation de personnage~
+@71 = ~Score de capacite minimum : 9, total du jet : 54 (0 point supplementaire)~
+@72 = ~Score de capacite minimum : 9, total du jet : 61 (7 points supplementaires)~
+@73 = ~Score de capacite minimum : 9, total du jet : 68 (14 points supplementaires)~
+@74 = ~Score de capacite minimum : 9, total du jet : 82 (28 points supplementaires)~
+@75 = ~Score de capacite minimum : 9, total du jet : 89 (35 points supplementaires)~
+@76 = ~Score de capacite minimum : 9, total du jet : 96 (42 points supplementaires)~
+@77 = ~Score de capacite minimum : 6, total du jet : 36 (0 point supplementaire)~
+@78 = ~Score de capacite minimum : 6, total du jet : 69 (13 points supplementaires)~
+@79 = ~Score de capacite minimum : 6, total du jet : 62 (26 points supplementaires)~
+@80 = ~Score de capacite minimum : 6, total du jet : 75 (39 points supplementaires)~
+@81 = ~Score de capacite minimum : 6, total du jet : 82 (46 points supplementaires)~
+@82 = ~Score de capacite minimum : 6, total du jet : 89 (53 supplementaires)~
+@83 = ~Score de capacite minimum : 6, total du jet : 96 (60 supplementaires)~
+
+@90 = ~Lancer automatiquement "Les epreuves du Maître des leurres" apres la campagne "Le Cœur de l'hiver"~
+
+@100 = ~Ajouter la capacite "Balise du Grand Chêne"~
+
+@110 = ~Reactiver le bouton "Retour" dans le menu classe jumelee~
+
+@120 = ~Accelerer la répartition des points de competence ou de caracteristiques~
+
+// Messages
+@1000 = ~L'installation de DLC Merger est requise avant de pouvoir installer des mods sur ce jeu. Consultez le fichier Lisez-moi pour plus d'informations et pour obtenir un lien de telechargement de DLC Merger.~
+@1001 = ~Ce composant n'est pas disponible pour votre jeu.~
+@1002 = ~Le composant de mod selectionne n'a pas ete implemente.~
+@1003 = ~Ce composant n'est pas compatible avec l'etat actuel du jeu.~
+
+// Groupes
+@1100 = ~Ajustements pratiques/Astuces~
+@1101 = ~Ajustements visuels~

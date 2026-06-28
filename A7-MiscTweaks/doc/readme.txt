@@ -218,6 +218,8 @@ Credits
 
 Coding and testing: Argent77
 
+French translation: Deratiseur
+
 
 Copyright Notice
 ~~~~~~~~~~~~~~~~

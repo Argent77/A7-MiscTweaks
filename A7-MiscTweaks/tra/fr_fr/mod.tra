@@ -1,0 +1,28 @@
+// use tra indices 2000 or higher
+
+// Item description strings for "Equipment with critical hit protection"
+// Specify empty strings to skip item description update
+// Search strings as regular expressions
+@2000 = ~STATISTIQUES :~
+@2001 = ~Capacités d'équipement :~
+// replacement strings
+@2010 = ~STATISTIQUES :~
+@2011 = ~Capacités d'équipement :~
+// new string
+@2020 = ~– Protège contre les coups critiques~
+
+// Lines for automatic TotLM transition
+@2100 = ~Quelques jours plus tard…~
+
+// Lines for "Great Oak's Beacon" ability
+@2200 = ~Balise du Grand Chêne~
+@2201 = ~Balise du Grand Chêne
+Le Grand Chêne de Kuldahar vous confère le pouvoir de retourner à Kuldahar pendant 8 heures depuis n'importe quel endroit d'Icewind Dale. Une fois ces 8 heures écoulées, le groupe est automatiquement ramené à son point de départ.~
+@2202 = ~Retour à la maison~
+@2203 = ~Retour à la maison
+Grâce à cette capacité, vous pouvez retourner instantanément à l'endroit où le voyage a commencé sans avoir à attendre que l'enchantement de la balise vous ramène.~
+
+@2210 = ~Le Grand Chêne vous accorde la bénédiction de la nature.~
+@2211 = ~Le mal qui règne en ce lieu affaiblit les pouvoirs du Grand Chêne.~
+@2212 = ~Le sort ne semble pas fonctionner ici.~
+@2213 = ~Balise~
