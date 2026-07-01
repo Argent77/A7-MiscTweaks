@@ -1,0 +1,31 @@
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
+///// Improved font for input controls                 \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+/////                                                  \\\\\
+///// Bold font (debug console only)                   \\\\\
+/////                                                  \\\\\
+
+INCLUDE ~%MOD_FOLDER%/lib/sod_console_font.tph~
+
+LAF update_input_font
+  INT_VAR
+    point = 13
+    use_font_zoom = 1
+  STR_VAR
+    ttf_file = EVAL ~%MOD_FOLDER%/ttf/alte_haas_grotesk/a7grotb.ttf~
+    name = ~a7edit~
+    font = ~a7grotb~
+    color = ~B~
+    valign = ~top~
+    halign = ~left~
+  RET success
+END
+
+ACTION_IF (NOT success) BEGIN
+  WARN ~WARNING: Failed to install console font.~
+END

@@ -53,6 +53,12 @@
 
 @120 = ~Speed up distributing skill or ability points~
 
+@130 = ~Improved font for input controls~
+@131 = ~Bold font (debug console only)~
+@132 = ~Regular font (debug console only)~
+@133 = ~Bold font (all input controls)~
+@134 = ~Regular font (all input controls)~
+
 // Messages
 @1000 = ~DLC Merger is required before mods can be installed on this game. Check the readme for more information and a link to download DLC Merger.~
 @1001 = ~This component is not available for your game.~

@@ -1,0 +1,174 @@
+// BGEE.LUA font definition
+<<<<<<<< .../inlined/A7-MiscTweaks/sod_console_font-append.lua
+	},
+	%name% =
+	{
+		color = '%color%',
+		font = '%font%',
+		point = %point%,
+		useFontZoom = %use_font_zoom%,
+		valign = '%valign%',
+		halign = '%halign%',
+>>>>>>>>
+<<<<<<<< .../inlined/A7-MiscTweaks/sod_console_font-append-eet.lua
+styles['%name%'] = {
+	color = '%color%',
+	font = '%font%',
+	point = %point%,
+	useFontZoom = %use_font_zoom%,
+	valign = '%valign%',
+	halign = '%halign%',
+}
+>>>>>>>>
+
+<<<<<<<< .../inlined/A7-MiscTweaks/sod_console_font-replace.lua
+	%name% =
+	{
+		color = '%color%',
+		font = '%font%',
+		point = %point%,
+		useFontZoom = %use_font_zoom%,
+		valign = '%valign%',
+		halign = '%halign%',
+>>>>>>>>
+<<<<<<<< .../inlined/A7-MiscTweaks/sod_console_font-replace-eet.lua
+styles['%name%'] = {
+	color = '%color%',
+	font = '%font%',
+	point = %point%,
+	useFontZoom = %use_font_zoom%,
+	valign = '%valign%',
+	halign = '%halign%',
+>>>>>>>>
+
+/**
+ * Installs a custom font for input controls in the GUI.
+ *
+ * INT_VAR point          Point size of the font. (Default: 14)
+ * INT_VAR use_font_zoom  Whether to link it to the font zoom. (Default: 1)
+ * STR_VAR ttf_file       Path of the TTF font file to install.
+ * STR_VAR name           Name of the font definition. (Default: a7edit)
+ *                        Existing font definitions are applied globally.
+ *                        New font definitions are only applied to the input field of the debug console.
+ * STR_VAR font           Resref of the TTF font resource.
+ * STR_VAR color          Font color name. (Default: B)
+ * STR_VAR valign         Vertical alignment. (Default: top)
+ * STR_VAR halign         Horizontal alignment. (Default: left)
+ * RET success            Returns whether the font installation was successful.
+ */
+DEFINE_ACTION_FUNCTION update_input_font
+INT_VAR
+  point = 14
+  use_font_zoom = 1
+STR_VAR
+  ttf_file = ~~
+  name = ~a7edit~
+  font = ~~
+  color = ~B~
+  valign = ~top~
+  halign = ~left~
+RET
+  success
+BEGIN
+  OUTER_SET success = 0
+  ACTION_IF (NOT ~%name%~ STR_EQ ~~ && NOT ~%font%~ STR_EQ ~~ && FILE_EXISTS ~%ttf_file%~) BEGIN
+    // parameter validation
+    OUTER_SET point = (point < 1 || point > 256) ? 14 : point
+    OUTER_SET use_font_zoom = (use_font_zoom != 0)
+    ACTION_IF (STRING_LENGTH ~%color%~ != 1) BEGIN
+      OUTER_SPRINT color ~B~
+    END
+    ACTION_IF (~%valign%~ STR_EQ ~~) BEGIN
+      OUTER_SPRINT valign ~top~
+    END
+    ACTION_IF (~%halign%~ STR_EQ ~~) BEGIN
+      OUTER_SPRINT halign ~left~
+    END
+
+    // installing font
+    COPY ~%ttf_file%~ ~override/%font%.ttf~
+
+    // updating BGEE.LUA
+    ACTION_TO_UPPER ~font~
+    OUTER_SET append = 0
+    COPY_EXISTING ~bgee.lua~ ~override~
+      SET ofs1 = INDEX_BUFFER(~^[ %TAB%]*styles[ %TAB%%WNL%]*=[ %TAB%%WNL%]*{~)
+      PATCH_IF (ofs1 >= 0) BEGIN
+        // checking whether to replace existing definition
+        SET ofs2 = INDEX_BUFFER(~^[ %TAB%]*%name%[ %TAB%]*=[ %TAB%%WNL%]*{~ ofs1)
+        PATCH_IF (ofs2 > ofs1) BEGIN
+          // replacing existing font definition
+          SET ofs3 = INDEX_BUFFER(~^[ %TAB%]*}~ ofs2)
+          PATCH_IF (ofs3 > ofs2) BEGIN
+            SET success = 1
+            DELETE_BYTES ofs2 (ofs3 - ofs2)
+            INSERT_FILE ofs2 ~.../inlined/A7-MiscTweaks/sod_console_font-replace.lua~
+            EVAL
+          END
+        END ELSE BEGIN
+          // adding new font definition
+          SET ofs2 = INDEX_BUFFER(~^[ %TAB%]*},?[ %TAB%%WNL%]*}~ ofs1)
+          PATCH_IF (ofs2 > ofs1) BEGIN
+            SET success = 1
+            SET append = 1
+            INSERT_FILE ofs2 ~.../inlined/A7-MiscTweaks/sod_console_font-append.lua~
+            EVAL
+          END
+        END
+      END
+    BUT_ONLY
+
+    // Special: EET overrides original font definitions
+    ACTION_IF (FILE_EXISTS_IN_GAME ~m_k#gui.lua~) BEGIN
+      COPY_EXISTING ~m_k#gui.lua~ ~override~
+        SET ofs1 = INDEX_BUFFER(~^[ %TAB%]*styles\['%name%'\][ %TAB%]*=[ %TAB%]*{~)
+        PATCH_IF (ofs1 >= 0) BEGIN
+          SET ofs2 = INDEX_BUFFER(~^[ %TAB%]*}~ ofs1)
+          PATCH_IF (ofs2 > ofs1) BEGIN
+            // replacing font override
+            DELETE_BYTES ofs1 (ofs2 - ofs1)
+            INSERT_FILE ofs1 ~.../inlined/A7-MiscTweaks/sod_console_font-replace-eet.lua~
+            EVAL
+          END
+        END ELSE BEGIN
+          // adding font override
+          SET ofs1 = BUFFER_LENGTH
+          INSERT_FILE ofs1 ~.../inlined/A7-MiscTweaks/sod_console_font-append-eet.lua~
+          EVAL
+        END
+      BUT_ONLY
+    END
+
+    // updating UI.MENU
+    ACTION_IF (success && append) BEGIN
+      COPY_EXISTING ~ui.menu~ ~override~
+        SET ofs1 = INDEX_BUFFER(~name[ %TAB%]*'cheatConsole'~)
+        PATCH_IF (ofs1 >= 0) BEGIN
+          SET ofs1 = INDEX_BUFFER(~name[ %TAB%]*['"]luaEditArea['"]~ ofs1)
+          PATCH_IF (ofs1 > 0) BEGIN
+            SET ofs1 = INDEX_BUFFER(~text[ %TAB%]+style[ %TAB%]*['"][^'"]+['"]~ ofs1)
+            PATCH_IF (ofs1 > 0) BEGIN
+              SET ofs2 = INDEX_BUFFER(~[%WNL%]~ ofs1)
+              PATCH_IF (ofs2 > ofs1) BEGIN
+                SET old_len = ofs2 - ofs1
+                READ_ASCII ofs1 old_line (old_len)
+                INNER_PATCH_SAVE new_line ~%old_line%~ BEGIN
+                  REPLACE_TEXTUALLY ~\(text[ %TAB%]+style[ %TAB%]*['"]\)[^'"]+\(['"]\)~
+                                    ~\1%name%\2~
+                END
+                SET new_len = STRING_LENGTH ~%new_line%~
+                PATCH_IF (new_len != old_len) BEGIN
+                  DELETE_BYTES ofs1 old_len
+                  INSERT_BYTES ofs1 new_len
+                END
+                WRITE_ASCIIE ofs1 ~%new_line%~ (new_len)
+              END ELSE BEGIN
+                SET success = 0
+              END
+            END
+          END
+        END
+      BUT_ONLY
+    END
+  END
+END

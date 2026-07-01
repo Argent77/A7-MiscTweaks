@@ -69,7 +69,7 @@ The following options are available:
 - **Filled:** Filled BG-style selection circle (discs).
 - **Translucent:** A translucent version of the original selection circle (PST:EE only).
 
-Preview images of the individual selection circles can be found in the "doc/preview" subfolder of the mod.
+Preview images of the individual selection circles can be found in the "doc/preview" subfolder of the mod (circles-\*.webp).
 
 ### Breakable cutscenes *(PST:EE only)*
 
@@ -81,7 +81,7 @@ This component installs upscaled versions of the character portrait animations f
 
 The portraits have been upscaled by 400 percent with an xBR smart filter which preserves details, and improves overall sharpness.
 
-Preview images of the character portraits in their original and updated state can be found in the "doc/preview" subfolder.
+Preview images of the character portraits in their original and updated state can be found in the "doc/preview" subfolder of the mod (stats-\*.webp and toolbar-portraits.webp).
 
 ### Character generation cheats *(PST:EE only)*
 
@@ -129,6 +129,20 @@ This component reactivates the "Back" button in the dual-class menu until the pl
 This component increases the speed for distributing points to thieving skills, proficiencies, or character attributes while pressing and holding the respective plus/minus buttons on character generation or level-up screens.
 
 **Note:** Some GUI mods may not be affected by this tweak.
+
+### Improved font for input controls *(SoD or EET with SoD GUI)*
+
+The original font for input controls in the SoD GUI uses a sans-serif font with several characters that are out of proportion (e.g. the underscore symbol).
+
+This component replaces the original font for input controls with a custom font that might be more visually appealing. The font may not work for Cyrillic or Asian characters.
+
+The following options are available:
+- Bold font (debug console only)
+- Regular font (debug console only)
+- Bold font (all input controls)
+- Regular font (all input controls)
+
+Preview images of the fonts can be found in the "doc/preview" subfolder of the mod (font-debug-\*.webp and font-all-\*.webp).
 
 ## Credits
 

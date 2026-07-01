@@ -532,3 +532,56 @@ REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee pstee~ && FILE_EXISTS_IN_GAME ~
 GROUP @1100 // Convenience Tweaks/Cheats
 DESIGNATED 120
 LABEL ~A7_MISCTWEAKS_SPEED_UP_POINTS_DISTRIBUTION~
+
+
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
+///// Improved font for input controls                 \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+/////                                                  \\\\\
+///// Bold font (debug console only)                   \\\\\
+/////                                                  \\\\\
+
+BEGIN @131  // Bold font (debug console only)
+REQUIRE_PREDICATE (GAME_IS ~bgee~ && GAME_INCLUDES ~sod~) || (MOD_IS_INSTALLED ~EET_gui.tp2~ 0) @1001  // This component is not available for your game.
+GROUP @1101 // Visual Tweaks
+SUBCOMPONENT @130  // Improved font for input controls
+DESIGNATED 131
+LABEL ~A7_MISCTWEAKS_INPUT_DEBUG_FONT_BOLD~
+
+/////                                                  \\\\\
+///// Regular font (debug console only)                \\\\\
+/////                                                  \\\\\
+
+BEGIN @132  // Regular font (debug console only)
+REQUIRE_PREDICATE (GAME_IS ~bgee~ && GAME_INCLUDES ~sod~) || (MOD_IS_INSTALLED ~EET_gui.tp2~ 0) @1001  // This component is not available for your game.
+GROUP @1101 // Visual Tweaks
+SUBCOMPONENT @130  // Improved font for input controls
+DESIGNATED 132
+LABEL ~A7_MISCTWEAKS_INPUT_DEBUG_FONT_REGULAR~
+
+/////                                                  \\\\\
+///// Bold font (all input controls)                   \\\\\
+/////                                                  \\\\\
+
+BEGIN @133  // Bold font (all input controls)
+REQUIRE_PREDICATE (GAME_IS ~bgee~ && GAME_INCLUDES ~sod~) || (MOD_IS_INSTALLED ~EET_gui.tp2~ 0) @1001  // This component is not available for your game.
+GROUP @1101 // Visual Tweaks
+SUBCOMPONENT @130  // Improved font for input controls
+DESIGNATED 133
+LABEL ~A7_MISCTWEAKS_INPUT_ALL_FONT_BOLD~
+
+/////                                                  \\\\\
+///// Regular font (all input controls)                \\\\\
+/////                                                  \\\\\
+
+BEGIN @134  // Regular font (all input controls)
+REQUIRE_PREDICATE (GAME_IS ~bgee~ && GAME_INCLUDES ~sod~) || (MOD_IS_INSTALLED ~EET_gui.tp2~ 0) @1001  // This component is not available for your game.
+GROUP @1101 // Visual Tweaks
+SUBCOMPONENT @130  // Improved font for input controls
+DESIGNATED 134
+LABEL ~A7_MISCTWEAKS_INPUT_ALL_FONT_REGULAR~
