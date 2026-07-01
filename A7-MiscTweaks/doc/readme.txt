@@ -251,5 +251,12 @@ NonCommercial-ShareAlike 4.0 International License" (https://creativecommons.org
 History
 ~~~~~~~
 
+1.1
+- Added new tweak: Speed up distributing skill or ability points
+- Added French translation (thanks Deratiseur)
+- Automatic TotLM transition: Fixed a (cosmetic) issue with the position of the party on the worldmap
+- Automatic TotLM transition: Added an automatic savegame right before the transition
+- Added new tweak: Improved font for input controls (bold or regular style for all input controls or just the debug console)
+
 1.0
 - Initial release
