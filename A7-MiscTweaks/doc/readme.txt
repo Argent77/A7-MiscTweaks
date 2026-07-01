@@ -176,7 +176,7 @@ The quest starts automatically after the end boss of HoW has been defeated and t
 the boss area.
 
 The party is able to choose whether to accept or reject the quest. In the latter case the game
-continues or ends normally.
+continues or ends normally. A savegame is automatically created right before the transition.
 
 
 10. Add "Great Oak's Beacon" ability (IWD:EE only)

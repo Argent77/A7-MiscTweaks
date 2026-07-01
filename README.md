@@ -110,7 +110,7 @@ Note: Attributes cannot be lowered to 8 or less by the "Minus" button if they ha
 
 This component moves the "Trials of the Luremaster" side quest to the end of the "Heart of Winter" campaign. For that reason the quest giver will be removed from Lonelywood until HoW is completed. The quest starts automatically after the end boss of HoW has been defeated and the party leaves the boss area.
 
-The party is able to choose whether to accept or reject the quest. In the latter case the game continues or ends normally.
+The party is able to choose whether to accept or reject the quest. In the latter case the game continues or ends normally. A savegame is automatically created right before the transition.
 
 ### Add "Great Oak's Beacon" ability *(IWD:EE only)*
 
