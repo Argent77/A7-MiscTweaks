@@ -1,7 +1,7 @@
 Argent's Miscellaneous Tweaks
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Version:    1.0
+Version:    1.1
 Author:     Argent77
 
 Download:   https://github.com/Argent77/A7-MiscTweaks/releases
@@ -253,10 +253,10 @@ History
 
 1.1
 - Added new tweak: Speed up distributing skill or ability points
-- Added French translation (thanks Deratiseur)
-- Automatic TotLM transition: Fixed a (cosmetic) issue with the position of the party on the worldmap
-- Automatic TotLM transition: Added an automatic savegame right before the transition
 - Added new tweak: Improved font for input controls in the SoD GUI (bold or regular style for all input controls or just the debug console)
+- Added French translation (thanks Deratiseur)
+- Automatic TotLM transition: Added an automatic savegame right before the transition
+- Automatic TotLM transition: Fixed a (cosmetic) issue with the position of the party on the worldmap
 
 1.0
 - Initial release
