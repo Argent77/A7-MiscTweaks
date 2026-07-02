@@ -130,7 +130,7 @@ This component increases the speed for distributing points to thieving skills, p
 
 **Note:** Some GUI mods may not be affected by this tweak.
 
-### Improved font for input controls *(SoD or EET with SoD GUI)*
+### Improved font for input controls in the SoD GUI *(SoD or EET with SoD GUI)*
 
 The original font for input controls in the SoD GUI uses a sans-serif font with several characters that are out of proportion (e.g. the underscore symbol).
 
