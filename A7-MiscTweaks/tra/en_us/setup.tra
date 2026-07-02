@@ -53,7 +53,7 @@
 
 @120 = ~Speed up distributing skill or ability points~
 
-@130 = ~Improved font for input controls~
+@130 = ~Improved font for input controls in the SoD GUI~
 @131 = ~Bold font (debug console only)~
 @132 = ~Regular font (debug console only)~
 @133 = ~Bold font (all input controls)~

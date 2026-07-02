@@ -537,7 +537,7 @@ LABEL ~A7_MISCTWEAKS_SPEED_UP_POINTS_DISTRIBUTION~
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
 /////                                                  \\\\\
-///// Improved font for input controls                 \\\\\
+///// Improved font for input controls in the SoD GUI  \\\\\
 /////                                                  \\\\\
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
@@ -549,7 +549,7 @@ LABEL ~A7_MISCTWEAKS_SPEED_UP_POINTS_DISTRIBUTION~
 BEGIN @131  // Bold font (debug console only)
 REQUIRE_PREDICATE (GAME_IS ~bgee~ && GAME_INCLUDES ~sod~) || (MOD_IS_INSTALLED ~EET_gui.tp2~ 0) @1001  // This component is not available for your game.
 GROUP @1101 // Visual Tweaks
-SUBCOMPONENT @130  // Improved font for input controls
+SUBCOMPONENT @130  // Improved font for input controls in the SoD GUI
 DESIGNATED 131
 LABEL ~A7_MISCTWEAKS_INPUT_DEBUG_FONT_BOLD~
 
@@ -560,7 +560,7 @@ LABEL ~A7_MISCTWEAKS_INPUT_DEBUG_FONT_BOLD~
 BEGIN @132  // Regular font (debug console only)
 REQUIRE_PREDICATE (GAME_IS ~bgee~ && GAME_INCLUDES ~sod~) || (MOD_IS_INSTALLED ~EET_gui.tp2~ 0) @1001  // This component is not available for your game.
 GROUP @1101 // Visual Tweaks
-SUBCOMPONENT @130  // Improved font for input controls
+SUBCOMPONENT @130  // Improved font for input controls in the SoD GUI
 DESIGNATED 132
 LABEL ~A7_MISCTWEAKS_INPUT_DEBUG_FONT_REGULAR~
 
@@ -571,7 +571,7 @@ LABEL ~A7_MISCTWEAKS_INPUT_DEBUG_FONT_REGULAR~
 BEGIN @133  // Bold font (all input controls)
 REQUIRE_PREDICATE (GAME_IS ~bgee~ && GAME_INCLUDES ~sod~) || (MOD_IS_INSTALLED ~EET_gui.tp2~ 0) @1001  // This component is not available for your game.
 GROUP @1101 // Visual Tweaks
-SUBCOMPONENT @130  // Improved font for input controls
+SUBCOMPONENT @130  // Improved font for input controls in the SoD GUI
 DESIGNATED 133
 LABEL ~A7_MISCTWEAKS_INPUT_ALL_FONT_BOLD~
 
@@ -582,6 +582,6 @@ LABEL ~A7_MISCTWEAKS_INPUT_ALL_FONT_BOLD~
 BEGIN @134  // Regular font (all input controls)
 REQUIRE_PREDICATE (GAME_IS ~bgee~ && GAME_INCLUDES ~sod~) || (MOD_IS_INSTALLED ~EET_gui.tp2~ 0) @1001  // This component is not available for your game.
 GROUP @1101 // Visual Tweaks
-SUBCOMPONENT @130  // Improved font for input controls
+SUBCOMPONENT @130  // Improved font for input controls in the SoD GUI
 DESIGNATED 134
 LABEL ~A7_MISCTWEAKS_INPUT_ALL_FONT_REGULAR~

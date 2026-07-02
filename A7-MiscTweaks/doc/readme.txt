@@ -214,7 +214,7 @@ generation or level-up screens.
 Note: Some GUI mods may not be affected by this tweak.
 
 
-13. Improved font for input controls (SoD or EET with SoD GUI)
+13. Improved font for input controls in the SoD GUI (SoD or EET with SoD GUI)
 
 Group: Visual Tweaks
 
@@ -256,7 +256,7 @@ History
 - Added French translation (thanks Deratiseur)
 - Automatic TotLM transition: Fixed a (cosmetic) issue with the position of the party on the worldmap
 - Automatic TotLM transition: Added an automatic savegame right before the transition
-- Added new tweak: Improved font for input controls (bold or regular style for all input controls or just the debug console)
+- Added new tweak: Improved font for input controls in the SoD GUI (bold or regular style for all input controls or just the debug console)
 
 1.0
 - Initial release
