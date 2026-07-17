@@ -585,3 +585,34 @@ GROUP @1101 // Visual Tweaks
 SUBCOMPONENT @130  // Improved font for input controls in the SoD GUI
 DESIGNATED 134
 LABEL ~A7_MISCTWEAKS_INPUT_ALL_FONT_REGULAR~
+
+
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
+///// Restore original order of character portraits    \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+/////                                                  \\\\\
+///// Default portrait order                           \\\\\
+/////                                                  \\\\\
+
+BEGIN @141  // Default portrait order
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee~ && FILE_EXISTS_IN_GAME ~bgee.lua~) @1001  // This component is not available for your game.
+GROUP @1101 // Visual Tweaks
+SUBCOMPONENT @140  // Restore original order of character portraits
+DESIGNATED 141
+LABEL ~A7_MISCTWEAKS_ORIGINAL_PORTRAIT_ORDER_DEFAULT~
+
+/////                                                  \\\\\
+///// BG2 portrait order                               \\\\\
+/////                                                  \\\\\
+
+BEGIN @142  // BG2 portrait order
+REQUIRE_PREDICATE (GAME_IS ~bgee eet~ && FILE_EXISTS_IN_GAME ~bgee.lua~) @1001  // This component is not available for your game.
+GROUP @1101 // Visual Tweaks
+SUBCOMPONENT @140  // Restore original order of character portraits
+DESIGNATED 142
+LABEL ~A7_MISCTWEAKS_ORIGINAL_PORTRAIT_ORDER_BG2~

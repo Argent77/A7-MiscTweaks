@@ -1,0 +1,240 @@
+// list of predefined portraits for all supported games
+ACTION_DEFINE_ASSOCIATIVE_ARRAY portraits_fixed BEGIN
+  // game, portrait resref => gender id (1=male, 2=female)
+  ~bg1~, ~MAN1~ => 1
+  ~bg1~, ~MAN2~ => 1
+  ~bg1~, ~GENDWRF~ => 1
+  ~bg1~, ~GENMELF~ => 1
+  ~bg1~, ~GENMHLF~ => 1
+  ~bg1~, ~AJANTIS~ => 1
+  ~bg1~, ~CORAN~ => 1
+  ~bg1~, ~EDWIN~ => 1
+  ~bg1~, ~ELDOTH~ => 1
+  ~bg1~, ~GARRICK~ => 1
+  ~bg1~, ~KAGAIN~ => 1
+  ~bg1~, ~KHALID~ => 1
+  ~bg1~, ~KIVAN~ => 1
+  ~bg1~, ~MINSC~ => 1
+  ~bg1~, ~MONTAR~ => 1
+  ~bg1~, ~QUAYLE~ => 1
+  ~bg1~, ~TIAX~ => 1
+  ~bg1~, ~XAN~ => 1
+  ~bg1~, ~XZAR~ => 1
+  ~bg1~, ~YESLICK~ => 1
+  ~bg1~, ~WOMAN1~ => 2
+  ~bg1~, ~WOMAN2~ => 2
+  ~bg1~, ~ALORA~ => 2
+  ~bg1~, ~BRANWE~ => 2
+  ~bg1~, ~DYNAHEI~ => 2
+  ~bg1~, ~FALDORN~ => 2
+  ~bg1~, ~IMOEN~ => 2
+  ~bg1~, ~JAHEIRA~ => 2
+  ~bg1~, ~SAFANA~ => 2
+  ~bg1~, ~SHARTEL~ => 2
+  ~bg1~, ~SKIE~ => 2
+  ~bg1~, ~VICONIA~ => 2
+
+  ~bg2~, ~NCERND~ => 1
+  ~bg2~, ~NKELDOR~ => 1
+  ~bg2~, ~NANOMEN~ => 1
+  ~bg2~, ~NEDWIN~ => 1
+  ~bg2~, ~NHAER~ => 1
+  ~bg2~, ~NHORC~ => 1
+  ~bg2~, ~NJAN~ => 1
+  ~bg2~, ~NMINSC~ => 1
+  ~bg2~, ~NVALYGA~ => 1
+  ~bg2~, ~NYOSHIM~ => 1
+  ~bg2~, ~NKORGAN~ => 1
+  ~bg2~, ~MAN1~ => 1
+  ~bg2~, ~MAN2~ => 1
+  ~bg2~, ~GENDWRF~ => 1
+  ~bg2~, ~GENMELF~ => 1
+  ~bg2~, ~GENMHLF~ => 1
+  ~bg2~, ~AJANTIS~ => 1
+  ~bg2~, ~CORAN~ => 1
+  ~bg2~, ~EDWIN~ => 1
+  ~bg2~, ~ELDOTH~ => 1
+  ~bg2~, ~GARRICK~ => 1
+  ~bg2~, ~KAGAIN~ => 1
+  ~bg2~, ~KHALID~ => 1
+  ~bg2~, ~KIVAN~ => 1
+  ~bg2~, ~MINSC~ => 1
+  ~bg2~, ~MONTAR~ => 1
+  ~bg2~, ~QUAYLE~ => 1
+  ~bg2~, ~TIAX~ => 1
+  ~bg2~, ~XAN~ => 1
+  ~bg2~, ~XZAR~ => 1
+  ~bg2~, ~YESLICK~ => 1
+  ~bg2~, ~NNALIA~ => 2
+  ~bg2~, ~NMAZZY~ => 2
+  ~bg2~, ~NAERIE~ => 2
+  ~bg2~, ~NJAHEIR~ => 2
+  ~bg2~, ~NVICON~ => 2
+  ~bg2~, ~WOMAN1~ => 2
+  ~bg2~, ~WOMAN2~ => 2
+  ~bg2~, ~ALORA~ => 2
+  ~bg2~, ~BRANWE~ => 2
+  ~bg2~, ~DYNAHEI~ => 2
+  ~bg2~, ~FALDORN~ => 2
+  ~bg2~, ~IMOEN~ => 2
+  ~bg2~, ~JAHEIRA~ => 2
+  ~bg2~, ~SAFANA~ => 2
+  ~bg2~, ~SHARTEL~ => 2
+  ~bg2~, ~SKIE~ => 2
+  ~bg2~, ~VICONIA~ => 2
+
+  ~iwd~, ~DMC_~ => 1
+  ~iwd~, ~DMF_~ => 1
+  ~iwd~, ~DMF2_~ => 1
+  ~iwd~, ~DMT_~ => 1
+  ~iwd~, ~EMC_~ => 1
+  ~iwd~, ~EMF_~ => 1
+  ~iwd~, ~EMF2_~ => 1
+  ~iwd~, ~EMT_~ => 1
+  ~iwd~, ~EMW_~ => 1
+  ~iwd~, ~GMT_~ => 1
+  ~iwd~, ~GMW_~ => 1
+  ~iwd~, ~HAMF_~ => 1
+  ~iwd~, ~HAMT_~ => 1
+  ~iwd~, ~HEMF_~ => 1
+  ~iwd~, ~HEMT_~ => 1
+  ~iwd~, ~HEMW_~ => 1
+  ~iwd~, ~HMC_~ => 1
+  ~iwd~, ~HMC2_~ => 1
+  ~iwd~, ~HMC3_~ => 1
+  ~iwd~, ~HMC4_~ => 1
+  ~iwd~, ~HMF_~ => 1
+  ~iwd~, ~HMF2_~ => 1
+  ~iwd~, ~HMF3_~ => 1
+  ~iwd~, ~HMF4_~ => 1
+  ~iwd~, ~HMF5_~ => 1
+  ~iwd~, ~HMF6_~ => 1
+  ~iwd~, ~HMF7_~ => 1
+  ~iwd~, ~HMW_~ => 1
+  ~iwd~, ~HMW2_~ => 1
+  ~iwd~, ~HMW3_~ => 1
+  ~iwd~, ~HMW4_~ => 1
+  ~iwd~, ~HMB_~ => 1
+  ~iwd~, ~HMB2_~ => 1
+  ~iwd~, ~DFF_~ => 2
+  ~iwd~, ~EFC_~ => 2
+  ~iwd~, ~EFF_~ => 2
+  ~iwd~, ~EFW_~ => 2
+  ~iwd~, ~EFW2_~ => 2
+  ~iwd~, ~GFW_~ => 2
+  ~iwd~, ~HAFF_~ => 2
+  ~iwd~, ~HEFC_~ => 2
+  ~iwd~, ~HAFT_~ => 2
+  ~iwd~, ~HEFB_~ => 2
+  ~iwd~, ~HEFF_~ => 2
+  ~iwd~, ~HEFW_~ => 2
+  ~iwd~, ~HFD_~ => 2
+  ~iwd~, ~HFF_~ => 2
+  ~iwd~, ~HFF2_~ => 2
+  ~iwd~, ~HFT_~ => 2
+  ~iwd~, ~HFT2_~ => 2
+  ~iwd~, ~HFW_~ => 2
+  ~iwd~, ~HFW2_~ => 2
+  ~iwd~, ~HFW3_~ => 2
+END
+
+// preparations
+OUTER_SET force_bg2 = IS_AN_INT ~force_bg2~ ? force_bg2 : 0
+ACTION_IF (force_bg2) BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY games BEGIN
+    ~bgee~  => ~bg2~
+    ~bg2ee~ => ~bg2~
+    ~eet~   => ~bg2 bg1~
+    ~iwdee~ => ~iwd~
+  END
+END ELSE BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY games BEGIN
+    ~bgee~  => ~bg1~
+    ~bg2ee~ => ~bg2~
+    ~eet~   => ~bg1 bg2~
+    ~iwdee~ => ~iwd~
+  END
+END
+
+OUTER_SET game = 0
+ACTION_PHP_EACH games AS cur_game => list BEGIN
+  ACTION_IF (EVAL ~is_%cur_game%~ != 0) BEGIN
+    OUTER_PATCH ~%list%~ BEGIN
+      REPLACE_EVALUATE ~\b[A-Za-z0-9]+\b~ BEGIN
+        SPRINT $game(~%game%~) ~%MATCH0%~
+        SET game += 1
+      END ~%MATCH0%~
+    END
+  END
+END
+
+// generating portraits cache
+OUTER_FOR (i = 0; i < game; ++i) BEGIN
+  OUTER_SPRINT cur_game $game(~%i%~)
+  ACTION_PHP_EACH portraits_fixed AS keys => gender BEGIN
+    ACTION_IF ($keys(~0~) STR_EQ ~%cur_game%~) BEGIN
+      OUTER_SPRINT resref $keys(~1~)
+      ACTION_IF (NOT VARIABLE_IS_SET $portrait_cache(~%resref%~)) BEGIN
+        OUTER_SET $portrait_cache(~%resref%~) = gender
+      END
+    END
+  END
+END
+
+OUTER_SET success = 0
+COPY_EXISTING ~bgee.lua~ ~override~
+  // reading original portraits array into string buffer
+  SET start_pos = INDEX_BUFFER(~^[ %TAB%]*portraits[ %TAB%]*=[ %TAB%%WNL%]*{[ %TAB%%WNL%]*{~)
+  PATCH_IF (start_pos >= 0) BEGIN
+    SET end_pos = INDEX_BUFFER(~},?[ %TAB%%WNL%]*}~ start_pos)
+    PATCH_IF (end_pos > start_pos) BEGIN
+      SET end_pos += 1
+      READ_ASCII end_pos char (1)
+      PATCH_IF (~%char%~ STR_EQ ~,~) BEGIN
+        SET end_pos += 1
+      END
+      READ_ASCII start_pos old_array (end_pos - start_pos)
+      SET success = 1
+    END
+  END
+
+  PATCH_IF (success) BEGIN
+    // parsing existing portraits
+    SET success = 0
+    INNER_PATCH ~%old_array%~ BEGIN
+      REPLACE_EVALUATE ~{[ %TAB%]*'\([^']+\)',[ %TAB%]*\([12]\)[ %TAB%]*}~ BEGIN
+        SPRINT resref ~%MATCH1%~
+        SET gender = IS_AN_INT ~MATCH2~ ? MATCH2 : 0
+        PATCH_IF (gender > 0) BEGIN
+          SPRINT resref_upper ~%resref%~
+          TO_UPPER ~resref_upper~
+          PATCH_IF (NOT VARIABLE_IS_SET $portrait_cache(~%resref_upper%~) && NOT VARIABLE_IS_SET $portrait_cache(~%resref%~)) BEGIN
+            SET $portrait_cache(~%resref%~) = gender
+          END
+          SET success = 1
+        END
+      END ~%MATCH0%~
+    END
+  END
+
+  PATCH_IF (success) BEGIN
+    // generating new portraits array
+    SPRINT new_array ~portraits =%WNL%{~
+    PHP_EACH portrait_cache AS resref => gender BEGIN
+      SPRINT new_array ~%new_array%%WNL%%TAB%{'%resref%', %gender%},~
+    END
+
+    // updating lua script
+    SET old_len = STRING_LENGTH ~%old_array%~
+    SET new_len = STRING_LENGTH ~%new_array%~
+    PATCH_IF (old_len != new_len) BEGIN
+      DELETE_BYTES start_pos old_len
+      INSERT_BYTES start_pos new_len
+    END
+    WRITE_ASCIIE start_pos ~%new_array%~ (new_len)
+  END
+BUT_ONLY IF_EXISTS
+
+ACTION_IF (NOT success) BEGIN
+  FAIL ~List of portraits could not be patched.~
+END

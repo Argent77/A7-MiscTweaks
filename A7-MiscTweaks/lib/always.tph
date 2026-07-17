@@ -1,6 +1,6 @@
 // available games and expansion
-OUTER_SET is_bgee = GAME_IS ~bgee~
-OUTER_SET is_bg2ee = GAME_IS ~bg2ee~
+OUTER_SET is_bgee = GAME_IS ~bgee~ && NOT GAME_IS ~eet~
+OUTER_SET is_bg2ee = GAME_IS ~bg2ee~ && NOT GAME_IS ~eet~
 OUTER_SET is_iwdee = GAME_IS ~iwdee~
 OUTER_SET is_pstee = GAME_IS ~pstee~
 OUTER_SET is_eet = GAME_IS ~eet~

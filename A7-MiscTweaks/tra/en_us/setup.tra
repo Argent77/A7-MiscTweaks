@@ -59,6 +59,10 @@
 @133 = ~Bold font (all input controls)~
 @134 = ~Regular font (all input controls)~
 
+@140 = ~Restore original order of character portraits~
+@141 = ~Default portrait order~
+@142 = ~BG2 portrait order~
+
 // Messages
 @1000 = ~DLC Merger is required before mods can be installed on this game. Check the readme for more information and a link to download DLC Merger.~
 @1001 = ~This component is not available for your game.~

@@ -144,6 +144,16 @@ The following options are available:
 
 Preview images of the fonts can be found in the "doc/preview" subfolder of the mod (font-debug-\*.webp and font-all-\*.webp).
 
+### Restore original order of character portraits *(BG:EE, BG2:EE, EET, and IWD:EE)*
+
+The Enhanced Edition games changed the order of character portraits in the portrait picker menu. This component restores the original portrait order as defined by the original games (BG1, BG2, and IWD). EE-specific portrait additions are appended to the list.
+
+The following options are available:
+- **Default portrait order:** This option is available for all supported games.
+- **BG2 portrait order:** This option enforces BG2 portrait order in BGEE and EET.
+
+**Note:** Portrait order may be ignored by some GUI replacement mods.
+
 ## Credits
 
 Coding and testing: Argent77

@@ -233,6 +233,21 @@ Preview images of the fonts can be found in the "doc/preview" subfolder (font-de
 font-all-*.webp).
 
 
+14. Restore original order of character portraits (BG:EE, BG2:EE, EET, and IWD:EE)
+
+Group: Visual Tweaks
+
+The Enhanced Edition games changed the order of character portraits in the portrait picker menu.
+This component restores the original portrait order as defined by the original games (BG1, BG2,
+and IWD). EE-specific portrait additions are appended to the list.
+
+The following options are available:
+- Default portrait order: This option is available for all supported games.
+- BG2 portrait order: This option enforces BG2 portrait order in BGEE and EET.
+
+Note: Portrait order may be ignored by some GUI replacement mods.
+
+
 Credits
 ~~~~~~~
 
@@ -250,6 +265,9 @@ NonCommercial-ShareAlike 4.0 International License" (https://creativecommons.org
 
 History
 ~~~~~~~
+
+1.2
+- Added new tweak: Restore original order of character portraits
 
 1.1
 - Added new tweak: Speed up distributing skill or ability points
