@@ -186,6 +186,40 @@ BUT_ONLY
 
 EXTEND_TOP ~ar9603.bcs~ ~.../inlined/A7-MiscTweaks/iwdee_totlm_transition.baf~
 
+// patching TotLM completion
+<<<<<<<< .../inlined/A7-MiscTweaks/iwdee_totlm_return.baf
+IF
+  Global("OHLURE","GLOBAL",1)
+  Global("AR1006_VISITED","GLOBAL",1)
+  !Global("BELHIEFET_DEAD","GLOBAL",1)
+THEN
+  RESPONSE #100
+    ClearAllActions()
+    StartCutSceneMode()
+    StartCutScene("a7#hct3a")
+END
+
+IF
+  Global("OHLURE","GLOBAL",1)
+  OR(2)
+    !Global("AR1006_VISITED","GLOBAL",1)
+    Global("BELHIEFET_DEAD","GLOBAL",1)
+THEN
+  RESPONSE #100
+    ClearAllActions()
+    StartCutSceneMode()
+    StartCutScene("a7#hct4a")
+END
+>>>>>>>>
+
+COPY_EXISTING ~baldur.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    REPLACE_TEXTUALLY ~\(Global("OHLURE","GLOBAL",1)\)~ ~False() \1~
+  END
+BUT_ONLY
+
+EXTEND_TOP ~baldur.bcs~ ~.../inlined/A7-MiscTweaks/iwdee_totlm_return.baf~
+
 COPY ~%MOD_FOLDER%/spl/bdrejuve.spl~ ~override~
      ~%MOD_FOLDER%/spl/bdresurr.spl~ ~override~
 
@@ -193,5 +227,7 @@ COMPILE ~%MOD_FOLDER%/bcs/a7#hct1a.baf~
         ~%MOD_FOLDER%/bcs/a7#hct1b.baf~
         ~%MOD_FOLDER%/bcs/a7#hct1c.baf~
         ~%MOD_FOLDER%/bcs/a7#hct2a.baf~
+        ~%MOD_FOLDER%/bcs/a7#hct3a.baf~
+        ~%MOD_FOLDER%/bcs/a7#hct4a.baf~
 
 COMPILE ~%MOD_FOLDER%/dlg/dhobart.d~

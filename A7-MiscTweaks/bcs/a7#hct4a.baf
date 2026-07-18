@@ -1,0 +1,21 @@
+// IWDEE: TotLM-EndGame transition
+
+IF
+  True()
+THEN
+  RESPONSE #100
+    CutSceneId(Player1)
+    MultiPlayerSync()
+    SetGlobal("OHLURE","GLOBAL",2)
+    SetGlobal("Master_Quest","GLOBAL",7)
+    SetQuestDone(27209)
+    ReallyForceSpell(Myself,INNATE_TELEPORT_WITHOUT_ERROR)
+    Wait(1)
+    FadeToColor([30.0],0)
+    Wait(2)
+    StartMovie("ECREDIT")
+    SmallWait(5)
+    FadeFromColor([0.0],0)
+    EndCutSceneMode()
+    GoToStartScreen()
+END

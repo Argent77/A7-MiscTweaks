@@ -4,6 +4,7 @@ IF
 THEN
   RESPONSE #100
     CutSceneId(Player1Fill)
+    SetGlobal("a7#totlm_transition","AR9603",2)
     AdvanceTime(ONE_DAY)
     SmallWait(2)
     ApplySpellRES("bdrejuve",Myself)
