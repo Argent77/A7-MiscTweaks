@@ -248,6 +248,18 @@ The following options are available:
 Note: Portrait order may be ignored by some GUI replacement mods.
 
 
+15. Remove black bar on the world map screen (BG2:EE and EET)
+
+Group: Visual Tweaks
+
+The game engine contains a bug that results in a big black bar at the bottom of the world map
+screen in the vanilla BG2:EE and EET GUI if you scroll the map all the way down.
+This component removes the black bar by reducing the height of the map viewport to a size that
+doesn't produce the black bar.
+
+Note: The patch will only be applied to the world map screen of the original GUI of the game.
+
+
 Credits
 ~~~~~~~
 
@@ -265,6 +277,9 @@ NonCommercial-ShareAlike 4.0 International License" (https://creativecommons.org
 
 History
 ~~~~~~~
+
+1.3
+- Added new tweak: Remove black bar on the world map screen
 
 1.2
 - Added new tweak: Restore original order of character portraits

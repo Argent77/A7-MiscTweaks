@@ -616,3 +616,18 @@ GROUP @1101 // Visual Tweaks
 SUBCOMPONENT @140  // Restore original order of character portraits
 DESIGNATED 142
 LABEL ~A7_MISCTWEAKS_ORIGINAL_PORTRAIT_ORDER_BG2~
+
+
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
+///// Remove black bar on the world map screen         \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+BEGIN @150  // Remove black bar on the world map screen
+REQUIRE_PREDICATE (GAME_IS ~bg2ee eet~ && FILE_EXISTS_IN_GAME ~ui.menu~) @1001  // This component is not available for your game.
+GROUP @1101 // Visual Tweaks
+DESIGNATED 150
+LABEL ~A7_MISCTWEAKS_WMP_REMOVE_BLACK_BAR~

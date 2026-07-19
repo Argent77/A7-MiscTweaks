@@ -1,0 +1,58 @@
+OUTER_SET patched = 0
+COPY_EXISTING ~ui.menu~ ~override~
+  // finding world map menu
+  SET match = 0
+  SET start_pos = INDEX_BUFFER(~menu[ %TAB%%WNL%]*{[ %TAB%%WNL%]*name[ %TAB%%WNL%]*["']WORLD_MAP["']~)
+  PATCH_IF (start_pos >= 0) BEGIN
+    SET end_pos = INDEX_BUFFER(~`\|\bmenu\b~ start_pos + 1)
+    PATCH_IF (end_pos > start_pos) BEGIN
+      SET end_pos = RINDEX_BUFFER(~}~ end_pos)
+      PATCH_IF (end_pos > start_pos) BEGIN
+        SET end_pos += 1
+        SET old_block_len = end_pos - start_pos
+        READ_ASCII start_pos old_block (old_block_len)
+        SET match = 1
+      END
+    END
+  END
+
+  // patching block
+  PATCH_IF (match) BEGIN
+    INNER_PATCH_SAVE new_block ~%old_block%~ BEGIN
+      // sanity check
+      SET match = INDEX_BUFFER(~label[ %TAB%%WNL%]+{[ %TAB%%WNL%]+area[ %TAB%]+0[ %TAB%]+0[ %TAB%]+1024[ %TAB%]+768[ %TAB%%WNL%]+mosaic[ %TAB%]+['"]?GUIMAPWB['"]?~) >= 0 &&
+                  INDEX_BUFFER(~map[ %TAB%%WNL%]+{[ %TAB%%WNL%]+area[ %TAB%]+13[ %TAB%]+110[ %TAB%]+1000[ %TAB%]+649~) >= 0
+
+      // adjusting controls
+      PATCH_IF (match) BEGIN
+        REPLACE_TEXTUALLY ~\(label[ %TAB%%WNL%]+{[ %TAB%%WNL%]+area\)[ %TAB%]+0[ %TAB%]+0[ %TAB%]+1024[ %TAB%]+768~ ~\1 0 0 1024 684~
+        REPLACE_TEXTUALLY ~\(map[ %TAB%%WNL%]+{[ %TAB%%WNL%]+area\)[ %TAB%]+13[ %TAB%]+110[ %TAB%]+1000[ %TAB%]+649~ ~\1 13 110 1000 564~
+        REPLACE_TEXTUALLY ~\(button[ %TAB%%WNL%]+{[ %TAB%%WNL%]+area\)[ %TAB%]+808[ %TAB%]+715[ %TAB%]+205[ %TAB%]+44~ ~\1 808 630 205 44~
+        SET patched = 1
+      END
+    END
+  END
+
+  // writing changes back to file
+  PATCH_IF (patched) BEGIN
+    SET new_block_len = STRING_LENGTH ~%new_block%~
+    PATCH_IF (old_block_len != new_block_len) BEGIN
+      DELETE_BYTES start_pos old_block_len
+      INSERT_BYTES start_pos new_block_len
+    END
+    WRITE_ASCIIE start_pos ~%new_block%~ (new_block_len)
+  END
+BUT_ONLY
+
+ACTION_IF (NOT patched) BEGIN
+  ABORT ~Incompatible world map screen found. Skipping component.~
+END
+
+// installing modified world map screen
+COPY ~%MOD_FOLDER%/mos/bg2ee/guimapwb.mos~ ~override~
+  LPF UPDATE_PVRZ_INDICES RET original_base_index new_base_index END
+
+LAF INSTALL_PVRZ
+  INT_VAR original_base_index new_base_index
+  STR_VAR source_file = EVAL ~%MOD_FOLDER%/pvrz/bg2ee/mos1100.pvrz~
+END
