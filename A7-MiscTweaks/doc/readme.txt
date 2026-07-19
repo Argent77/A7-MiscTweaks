@@ -1,7 +1,7 @@
 Argent's Miscellaneous Tweaks
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Version:    1.1
+Version:    1.2
 Author:     Argent77
 
 Download:   https://github.com/Argent77/A7-MiscTweaks/releases
@@ -268,6 +268,7 @@ History
 
 1.2
 - Added new tweak: Restore original order of character portraits
+- Fixed a few loose ends in the "Automatic TotLM transition" component
 
 1.1
 - Added new tweak: Speed up distributing skill or ability points
