@@ -1,0 +1,18 @@
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
+///// Pressing Escape on the start screen quits the    \\\\\
+///// game                                             \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+INCLUDE ~%MOD_FOLDER%/lib/ui_escape_handling.tph~
+
+LAF set_ui_escape_enabled INT_VAR enable = 1 RET success END
+
+ACTION_IF (success < 0) BEGIN
+  ABORT ~Desired UI behavior was already set. Skipping component.~
+END ELSE ACTION_IF (success == 0) BEGIN
+  WARN ~WARNING: UI could not be patched.~
+END

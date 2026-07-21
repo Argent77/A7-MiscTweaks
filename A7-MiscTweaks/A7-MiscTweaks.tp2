@@ -631,3 +631,35 @@ REQUIRE_PREDICATE (GAME_IS ~bg2ee eet~ && FILE_EXISTS_IN_GAME ~ui.menu~) @1001  
 GROUP @1101 // Visual Tweaks
 DESIGNATED 150
 LABEL ~A7_MISCTWEAKS_WMP_REMOVE_BLACK_BAR~
+
+
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
+///// Pressing Escape on the start screen quits the    \\\\\
+///// game                                             \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+BEGIN @160  // Pressing Escape on the start screen quits the game
+REQUIRE_PREDICATE ((GAME_IS ~bgee bg2ee eet iwdee~) && FILE_EXISTS_IN_GAME ~ui.menu~) @1001  // This component is not available for your game.
+GROUP @1100 // Convenience Tweaks/Cheats
+DESIGNATED 160
+LABEL ~A7_MISCTWEAKS_ESC_QUIT_GAME~
+
+
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
+///// Pressing Escape on the start screen does not     \\\\\
+///// quit the game                                    \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+BEGIN @170  // Pressing Escape on the start screen does not quit the game
+REQUIRE_PREDICATE ((GAME_IS ~bgee bg2ee eet iwdee pstee~) && FILE_EXISTS_IN_GAME ~ui.menu~) @1001  // This component is not available for your game.
+GROUP @1100 // Convenience Tweaks/Cheats
+DESIGNATED 170
+LABEL ~A7_MISCTWEAKS_ESC_NOT_QUIT_GAME~

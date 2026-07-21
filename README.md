@@ -160,6 +160,18 @@ The game engine contains a bug that results in a big black bar at the bottom of 
 
 **Note:** The patch will be applied only to the world map screen of the original GUI of the game.
 
+### Pressing Escape on the start screen quits the game *(BG:EE, BG2:EE, EET, and IWD:EE)*
+
+This component allows the player to quit the game on the start screen by pressing the Escape key. It applies to the vanilla BG:EE, BG2:EE, EET, and IWD:EE GUI. The SoD and PST:EE GUIs already provide this feature by default.
+
+**Note:** Some GUI mods may not be affected by this tweak.
+
+### Pressing Escape on the start screen does not quit the game *(BG:EE, BG2:EE, EET, IWD:EE, and PST:EE)*
+
+This component is basically the opposite version of the component above. It prevents the player from quitting the game on the start screen when pressing the Escape key. It applies to the vanilla SoD GUI, the SoD GUI for EET, and PST:EE. The BG:EE, BG2:EE, and IWD:EE GUIs provide this feature by default.
+
+**Note:** Some GUI mods may not be affected by this tweak.
+
 ## Credits
 
 Coding and testing: Argent77

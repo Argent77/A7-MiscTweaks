@@ -260,6 +260,29 @@ doesn't produce the black bar.
 Note: The patch will only be applied to the world map screen of the original GUI of the game.
 
 
+16. Pressing Escape on the start screen quits the game (BG:EE, BG2:EE, EET, and IWD:EE)
+
+Group: Convenience Tweaks/Cheats
+
+This component allows the player to quit the game on the start screen by pressing the Escape key.
+It applies to the vanilla BG:EE, BG2:EE, EET, and IWD:EE GUI. The SoD and PST:EE GUIs already
+provide this feature by default.
+
+Note: Some GUI mods may not be affected by this tweak.
+
+
+17. Pressing Escape on the start screen does not quit the game (BG:EE, BG2:EE, EET, IWD:EE, and PST:EE)
+
+Group: Convenience Tweaks/Cheats
+
+This component is basically the opposite version of the component above. It prevents the player
+from quitting the game on the start screen when pressing the Escape key.
+It applies to the vanilla SoD GUI, the SoD GUI for EET, and PST:EE. The BG:EE, BG2:EE, and IWD:EE
+GUIs provide this feature by default.
+
+Note: Some GUI mods may not be affected by this tweak.
+
+
 Credits
 ~~~~~~~
 
@@ -280,6 +303,8 @@ History
 
 1.3
 - Added new tweak: Remove black bar on the world map screen
+- Added new tweak: Pressing Escape on the start screen quits the game
+- Added new tweak: Pressing Escape on the start screen does not quit the game
 
 1.2
 - Added new tweak: Restore original order of character portraits

@@ -1,0 +1,212 @@
+/**
+ * Enables or disables Escape key handling on the start screen.
+ *
+ * INT_VAR enable   Whether to enable or disable Escape key handling.
+ * RET success      Returns 1 if the operation was successful,
+ *                  -1 if the operation was skipped because the condition was already met,
+ *                  and 0 if the operation could not be performed.
+ */
+DEFINE_ACTION_FUNCTION set_ui_escape_enabled
+INT_VAR
+  enable = 1
+RET
+  success
+BEGIN
+  OUTER_SET success = 0
+
+  // PSTEE UI is laid out a bit differently
+  ACTION_IF (is_pstee) BEGIN
+    OUTER_SPRINT menu_name ~START_MAIN~
+    OUTER_SPRINT control_pattern ~\baction[ %TAB%]+["']startEngine:OnQuitButtonClick()["']~
+  END ELSE BEGIN
+    OUTER_SPRINT menu_name ~START~
+    OUTER_SPRINT control_pattern ~\btext\b.+\bQUIT_GAME_BUTTON\b~
+  END
+  OUTER_SPRINT control_type ~button~
+
+  COPY_EXISTING ~ui.menu~ ~override~
+    LPF get_ui_control
+      STR_VAR menu_name control_type control_pattern
+      RET start_ofs end_ofs
+    END
+
+    PATCH_IF (start_ofs >= 0) BEGIN
+      SET old_block_size = end_ofs - start_ofs
+      READ_ASCII start_ofs old_block (old_block_size)
+      INNER_PATCH_SAVE new_block ~%old_block%~ BEGIN
+        SPRINT on_escape_reg ~^[ %TAB%]*on[ %TAB%]+escape\([ %TAB%]*--.*\)?[ %TAB%]*[%WNL%]*~
+        SET exists = INDEX_BUFFER(~%on_escape_reg%~) >= 0
+        PATCH_IF (enable) BEGIN
+          PATCH_IF (NOT exists) BEGIN
+            // adding directive
+            SET pos = INDEX_BUFFER(~^[ %TAB%]*action[ %TAB%"]*~)
+            PATCH_IF (pos < 0) BEGIN
+              SET pos = INDEX_BUFFER(~^[ %TAB%]*}~)
+            END
+            PATCH_IF (pos >= 0) BEGIN
+              SPRINT line ~%TAB%%TAB%on escape%WNL%~
+              SET len = STRING_LENGTH ~%line%~
+              INSERT_BYTES pos len
+              WRITE_ASCIIE pos ~%line%~ (len)
+              SET success = 1
+            END
+          END ELSE BEGIN
+            SET success = "-1"
+          END
+        END ELSE PATCH_IF (NOT enable) BEGIN
+          PATCH_IF (exists) BEGIN
+            // removing directive
+            REPLACE_TEXTUALLY ~%on_escape_reg%~ ~~
+            SET success = 1
+          END ELSE BEGIN
+            SET success = "-1"
+          END
+        END
+      END
+
+      PATCH_IF (success > 0) BEGIN
+        LPF set_ui_control
+          INT_VAR start_ofs end_ofs
+          STR_VAR block = EVAL ~%new_block%~
+        END
+      END
+    END
+  BUT_ONLY
+END
+
+
+/**
+ * Returns start and end offsets of the UI control specified by the given parameters.
+ *
+ * INT_VAR skip_count       Number of matching UI controls to skip before returning a match.
+ *                          Specify nonzero if more than one UI control matches the pattern.
+ * STR_VAR menu_name        Name of the menu structure.
+ * STR_VAR control_type     UI control type (e.g. button).
+ * STR_VAR control_pattern  A regular expression pattern that matches a string in the UI control.
+ * RET start_ofs            Start offset of the UI control. Returns start offset of the menu structure
+ *                          if no control type is specified.
+ * RET end_ofs              Offset after the closing brace of the UI control or menu structure.
+ */
+DEFINE_PATCH_FUNCTION get_ui_control
+INT_VAR
+  skip_count = 0
+STR_VAR
+  menu_name = ~~
+  control_type = ~~
+  control_pattern = ~~
+RET
+  start_ofs
+  end_ofs
+BEGIN
+  SET start_ofs = "-1"
+  SET end_ofs = "-1"
+
+  PATCH_IF (NOT ~%menu_name%~ STR_EQ ~~) BEGIN
+    SET menu_start = INDEX_BUFFER(~menu[ %TAB%%WNL%]*{[ %TAB%%WNL%]*name[ %TAB%]*['"]?%menu_name%["']?\b~)
+    PATCH_IF (menu_start >= 0) BEGIN
+      LPF get_ui_end_offset INT_VAR start_ofs = menu_start RET menu_end = end_ofs END
+      PATCH_IF (menu_end > menu_start) BEGIN
+        SET menu_end = INDEX_BUFFER(~}~ menu_end + 1) + 1
+
+        PATCH_IF (NOT ~%control_type%~ STR_EQ ~~) BEGIN
+          READ_ASCII menu_start menu_block (menu_end - menu_start)
+          INNER_PATCH ~%menu_block%~ BEGIN
+            SET running = 1
+            SET offset = 0
+            WHILE (running) BEGIN
+              // processing control structure
+              SET ctrl_start = INDEX_BUFFER(~\b%control_type%\([ %TAB%]*--.*[%WNL%]\)?[ %TAB%%WNL%]*{~ offset)
+              PATCH_IF (ctrl_start >= 0) BEGIN
+                SET ctrl_end = INDEX_BUFFER(~}~ ctrl_start)
+                PATCH_IF (ctrl_end > ctrl_start) BEGIN
+                  SET ctrl_end += 1
+                  READ_ASCII ctrl_start ctrl_block (ctrl_end - ctrl_start)
+                  INNER_PATCH ~%ctrl_block%~ BEGIN
+                    PATCH_IF (INDEX_BUFFER(~%control_pattern%~) >= 0) BEGIN
+                      PATCH_IF (skip_count > 0) BEGIN
+                        SET skip_count -= 1
+                      END ELSE BEGIN
+                        SET running = 0
+                        SET start_ofs = menu_start + ctrl_start
+                        SET end_ofs = menu_start + ctrl_end
+                      END
+                    END
+                  END
+                  SET offset = ctrl_end
+                END ELSE BEGIN
+                  SET running = 0
+                END
+              END ELSE BEGIN
+                SET running = 0
+              END
+            END
+          END
+        END ELSE BEGIN
+          // return whole menu structure
+          SET start_ofs = menu_start
+          SET end_ofs = menu_end
+        END
+      END
+    END
+  END
+END
+
+/**
+ * Returns the end offset of the structure starting at the given offset.
+ *
+ * INT_VAR start_ofs  Start offset of the UI structure.
+ * RET end_ofs        End offset of the structure. Returns -1 if the end offset could not be determined.
+ */
+DEFINE_PATCH_FUNCTION get_ui_end_offset
+INT_VAR
+  start_ofs = 0
+RET
+  end_ofs
+BEGIN
+  SET inside = 0
+  SET count = 0
+  SET pos1 = start_ofs
+  SET pos2 = "-1"
+  WHILE ((NOT inside || count > 0) && pos1 >= 0) BEGIN
+    SET pos2 = INDEX_BUFFER(~[%WNL%]~ pos1)
+    PATCH_IF (pos2 >= pos1) BEGIN
+      READ_ASCII pos1 line (pos2 - pos1)
+      INNER_PATCH ~%line%~ BEGIN
+        COUNT_REGEXP_INSTANCES EXACT_MATCH ~{~  num_open
+        COUNT_REGEXP_INSTANCES EXACT_MATCH ~}~  num_closed
+        SET inside = inside || (num_open > 0)
+        SET count = count + num_open - num_closed
+      END
+      SET pos1 = INDEX_BUFFER(~[^%WNL%]~ pos2)
+    END ELSE BEGIN
+      SET pos1 = pos2
+    END
+  END
+  SET end_ofs = pos2
+END
+
+
+/**
+ * Replaces the UI text block defined by start and end offset by the given string.
+ *
+ * INT_VAR start_ofs  Start offset of the original block to replace.
+ * INT_VAR end_ofs    End offset of the original block to replace.
+ * STR_VAR block      Text content to write to the current buffer.
+ */
+DEFINE_PATCH_FUNCTION set_ui_control
+INT_VAR
+  start_ofs = "-1"
+  end_ofs = "-1"
+STR_VAR
+  block = ~~
+BEGIN
+  PATCH_IF (start_ofs >= 0 && end_ofs >= start_ofs) BEGIN
+    SET old_len = end_ofs - start_ofs
+    SET new_len = STRING_LENGTH ~%block%~
+    PATCH_IF (new_len != old_len) BEGIN
+      DELETE_BYTES start_ofs old_len
+      INSERT_BYTES start_ofs new_len
+    END
+    WRITE_ASCIIE start_ofs ~%block%~ (new_len)
+  END
+END

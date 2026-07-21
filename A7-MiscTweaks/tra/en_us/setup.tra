@@ -65,6 +65,10 @@
 
 @150 = ~Remove black bar on the world map screen~
 
+@160 = ~Pressing Escape on the start screen quits the game~
+
+@170 = ~Pressing Escape on the start screen does not quit the game~
+
 // Messages
 @1000 = ~DLC Merger is required before mods can be installed on this game. Check the readme for more information and a link to download DLC Merger.~
 @1001 = ~This component is not available for your game.~

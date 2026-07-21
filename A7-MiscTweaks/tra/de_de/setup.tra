@@ -65,6 +65,10 @@
 
 @150 = ~Schwarze Leiste auf dem Weltkartenbildschirm entfernen~
 
+@160 = ~Escape-Taste im Startbildschirm beendet das Spiel~
+
+@170 = ~Escape-Taste im Startbildschirm beendet das Spiel nicht~
+
 // Messages
 @1000 = ~DLC Merger wird benötigt, bevor in diesem Spiel Mods installiert werden können. Links und weitere Informationen werden in der Readme aufgeführt.~
 @1001 = ~Diese Komponente ist für dieses Spiel nicht verfügbar.~
