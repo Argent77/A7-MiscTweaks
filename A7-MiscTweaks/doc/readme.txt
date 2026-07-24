@@ -46,7 +46,7 @@ There are no compatibility issues known with other mods.
 Components
 ~~~~~~~~~~
 
-1. Enable critical hit protection (BG:EE, SoD, BG2:EE, EET, and IWD:EE)
+*** Enable critical hit protection (BG:EE, SoD, BG2:EE, EET, and IWD:EE) ***
 
 Group: Convenience Tweaks/Cheats
 
@@ -60,64 +60,7 @@ Critical hit protection can be enabled for the following item categories:
 - Belts
 
 
-2. Disable creature tooltips (BG:EE, SoD, BG2:EE, EET, IWD:EE, and PST:EE)
-
-Group: Visual Tweaks
-
-This component removes tooltips that are displayed when pressing and holding the Tab key from all
-creatures in the game.
-
-Note: Tooltips of the protagonist or creatures that are already stored in saved games are not
-      affected. Use the component below to handle that case.
-
-
-3. Update saved games (unlogged) (BG:EE, SoD, BG2:EE, EET, IWD:EE, and PST:EE)
-
-Group: Visual Tweaks
-
-This component scans all saved games made for this game and updates tooltip visibility of party
-members, NPCs, and/or creatures on maps that are already stored in the saved game.
-
-These options are useful if you want to update tooltips in a running game, or to explicitly hide
-the tooltip of the protagonist who isn't caught by the previous component.
-
-The following options are available:
-- Disable tooltips of creatures
-- Disable tooltips of party members and NPCs
-- Disable tooltips of creatures, party members, and NPCs
-- Enable tooltips of creatures
-- Enable tooltips of party members and NPCs
-- Enable tooltips of creatures, party members, and NPCs
-
-Note: These options are not registered in the WeiDU.log and can therefore be invoked multiple times.
-
-
-4. Visual feedback for wild surge "Gold Vanishes!" (BG2, BGT, Tutu, BG:EE, SoD, BG2:EE, EET, and IWD:EE)
-
-Group: Visual Tweaks
-
-This component adds a custom visual effect that underlines the removal of gold by the triggered
-wild surge.
-
-
-5. Customized selection circles (PST:EE and PST)
-
-Group: Visual Tweaks
-
-This component installs customized graphics for character selection circles in Planescape Torment
-(original game or Enhanced Edition). The following options are available:
-- Solid Thick: BG-style selection circle with a thick solid border.
-- Solid Thin: BG-style selection circle with a thin solid border.
-- Dashed: BG-style selection circle with a dashed border.
-- Dotted: BG-style selection circle with a dotted border.
-- Filled: Filled BG-style selection circle (discs).
-- Translucent: A translucent version of the original selection circle (PST:EE only).
-
-Preview images of the individual selection circles can be found in the "doc/preview" subfolder
-(circles-*.webp).
-
-
-6. Breakable cutscenes (PST:EE only)
+*** Breakable cutscenes (PST:EE only) ***
 
 Group: Convenience Tweaks/Cheats
 
@@ -125,21 +68,7 @@ This components adds the option to prematurely end scripted cutscenes to a great
 cutscene scripts in PST:EE.
 
 
-7. High-resolution character portraits (PST:EE only)
-
-Group: Visual Tweaks
-
-This component installs upscaled versions of the character portrait animations for the game screen
-toolbar, and static portrait images for the statistics screen in PST:EE.
-
-The portraits have been upscaled by 400 percent with an xBR smart filter which preserves details,
-and improves overall sharpness.
-
-Preview images of the character portraits in their original and updated state can be found in the
-"doc/preview" subfolder (stats-*.webp and toolbar-portraits.webp).
-
-
-8. Character generation cheats (PST:EE only)
+*** Character generation cheats (PST:EE only) ***
 
 Group: Convenience Tweaks/Cheats
 
@@ -166,7 +95,7 @@ Note: Attributes cannot be lowered to 8 or less by the "Minus" button if they ha
       to 9 or higher. That behavior seems to be hardcoded.
 
 
-9. Start "Trials of the Luremaster" automatically after the "Heart of Winter" campaign (IWD:EE only)
+*** Start "Trials of the Luremaster" automatically after the "Heart of Winter" campaign (IWD:EE only) ***
 
 Group: Convenience Tweaks/Cheats
 
@@ -179,7 +108,7 @@ The party is able to choose whether to accept or reject the quest. In the latter
 continues or ends normally. A savegame is automatically created right before the transition.
 
 
-10. Add "Great Oak's Beacon" ability (IWD:EE only)
+*** Add "Great Oak's Beacon" ability (IWD:EE only) ***
 
 Group: Convenience Tweaks/Cheats
 
@@ -190,7 +119,7 @@ The ability is granted by the Great Oak of Kuldahar after the events that take p
 when the party returned from Dragon's Eye.
 
 
-11. Reactivate "Back" button in the Dual-Class menu (BG:EE, BG2:EE, EET, and IWD:EE)
+*** Reactivate "Back" button in the Dual-Class menu (BG:EE, BG2:EE, EET, and IWD:EE) ***
 
 Group: Convenience Tweaks/Cheats
 
@@ -203,7 +132,7 @@ a new class. From that point on the back button will be disabled to prevent the 
 corruption of the character.
 
 
-12. Speed up distributing skill or ability points (BG:EE, BG2:EE, EET, IWD:EE, and PST:EE)
+*** Speed up distributing skill or ability points (BG:EE, BG2:EE, EET, IWD:EE, and PST:EE) ***
 
 Group: Convenience Tweaks/Cheats
 
@@ -214,7 +143,101 @@ generation or level-up screens.
 Note: Some GUI mods may not be affected by this tweak.
 
 
-13. Improved font for input controls in the SoD GUI (SoD or EET with SoD GUI)
+*** Pressing Escape on the start screen quits the game (BG:EE, BG2:EE, EET, and IWD:EE) ***
+
+Group: Convenience Tweaks/Cheats
+
+This component allows the player to quit the game on the start screen by pressing the Escape key.
+It applies to the vanilla BG:EE, BG2:EE, EET, and IWD:EE GUI. The SoD and PST:EE GUIs already
+provide this feature by default.
+
+Note: Some GUI mods may not be affected by this tweak.
+
+
+*** Pressing Escape on the start screen does not quit the game (BG:EE, BG2:EE, EET, IWD:EE, and PST:EE) ***
+
+Group: Convenience Tweaks/Cheats
+
+This component is basically the opposite version of the component above. It prevents the player
+from quitting the game on the start screen when pressing the Escape key.
+It applies to the vanilla SoD GUI, the SoD GUI for EET, and PST:EE. The BG:EE, BG2:EE, and IWD:EE
+GUIs provide this feature by default.
+
+Note: Some GUI mods may not be affected by this tweak.
+
+
+*** Disable creature tooltips (BG:EE, SoD, BG2:EE, EET, IWD:EE, and PST:EE) ***
+
+Group: Visual Tweaks
+
+This component removes tooltips that are displayed when pressing and holding the Tab key from all
+creatures in the game.
+
+Note: Tooltips of the protagonist or creatures that are already stored in saved games are not
+      affected. Use the component below to handle that case.
+
+
+*** Update saved games (unlogged) (BG:EE, SoD, BG2:EE, EET, IWD:EE, and PST:EE) ***
+
+Group: Visual Tweaks
+
+This component scans all saved games made for this game and updates tooltip visibility of party
+members, NPCs, and/or creatures on maps that are already stored in the saved game.
+
+These options are useful if you want to update tooltips in a running game, or to explicitly hide
+the tooltip of the protagonist who isn't caught by the previous component.
+
+The following options are available:
+- Disable tooltips of creatures
+- Disable tooltips of party members and NPCs
+- Disable tooltips of creatures, party members, and NPCs
+- Enable tooltips of creatures
+- Enable tooltips of party members and NPCs
+- Enable tooltips of creatures, party members, and NPCs
+
+Note: These options are not registered in the WeiDU.log and can therefore be invoked multiple times.
+
+
+*** Visual feedback for wild surge "Gold Vanishes!" (BG2, BGT, Tutu, BG:EE, SoD, BG2:EE, EET, and IWD:EE) ***
+
+Group: Visual Tweaks
+
+This component adds a custom visual effect that underlines the removal of gold by the triggered
+wild surge.
+
+
+*** Customized selection circles (PST:EE and PST) ***
+
+Group: Visual Tweaks
+
+This component installs customized graphics for character selection circles in Planescape Torment
+(original game or Enhanced Edition). The following options are available:
+- Solid Thick: BG-style selection circle with a thick solid border.
+- Solid Thin: BG-style selection circle with a thin solid border.
+- Dashed: BG-style selection circle with a dashed border.
+- Dotted: BG-style selection circle with a dotted border.
+- Filled: Filled BG-style selection circle (discs).
+- Translucent: A translucent version of the original selection circle (PST:EE only).
+
+Preview images of the individual selection circles can be found in the "doc/preview" subfolder
+(circles-*.webp).
+
+
+*** High-resolution character portraits (PST:EE only) ***
+
+Group: Visual Tweaks
+
+This component installs upscaled versions of the character portrait animations for the game screen
+toolbar, and static portrait images for the statistics screen in PST:EE.
+
+The portraits have been upscaled by 400 percent with an xBR smart filter which preserves details,
+and improves overall sharpness.
+
+Preview images of the character portraits in their original and updated state can be found in the
+"doc/preview" subfolder (stats-*.webp and toolbar-portraits.webp).
+
+
+*** Improved font for input controls in the SoD GUI (SoD or EET with SoD GUI) ***
 
 Group: Visual Tweaks
 
@@ -233,7 +256,7 @@ Preview images of the fonts can be found in the "doc/preview" subfolder (font-de
 font-all-*.webp).
 
 
-14. Restore original order of character portraits (BG:EE, BG2:EE, EET, and IWD:EE)
+*** Restore original order of character portraits (BG:EE, BG2:EE, EET, and IWD:EE) ***
 
 Group: Visual Tweaks
 
@@ -248,7 +271,7 @@ The following options are available:
 Note: Portrait order may be ignored by some GUI replacement mods.
 
 
-15. Remove black bar on the world map screen (BG2:EE and EET)
+*** Remove black bar on the world map screen (BG2:EE and EET) ***
 
 Group: Visual Tweaks
 
@@ -258,29 +281,6 @@ This component removes the black bar by reducing the height of the map viewport 
 doesn't produce the black bar.
 
 Note: The patch will only be applied to the world map screen of the original GUI of the game.
-
-
-16. Pressing Escape on the start screen quits the game (BG:EE, BG2:EE, EET, and IWD:EE)
-
-Group: Convenience Tweaks/Cheats
-
-This component allows the player to quit the game on the start screen by pressing the Escape key.
-It applies to the vanilla BG:EE, BG2:EE, EET, and IWD:EE GUI. The SoD and PST:EE GUIs already
-provide this feature by default.
-
-Note: Some GUI mods may not be affected by this tweak.
-
-
-17. Pressing Escape on the start screen does not quit the game (BG:EE, BG2:EE, EET, IWD:EE, and PST:EE)
-
-Group: Convenience Tweaks/Cheats
-
-This component is basically the opposite version of the component above. It prevents the player
-from quitting the game on the start screen when pressing the Escape key.
-It applies to the vanilla SoD GUI, the SoD GUI for EET, and PST:EE. The BG:EE, BG2:EE, and IWD:EE
-GUIs provide this feature by default.
-
-Note: Some GUI mods may not be affected by this tweak.
 
 
 Credits
@@ -305,6 +305,7 @@ History
 - Added new tweak: Remove black bar on the world map screen
 - Added new tweak: Pressing Escape on the start screen quits the game
 - Added new tweak: Pressing Escape on the start screen does not quit the game
+- Changed install order of mod components (sorted by category)
 
 1.2
 - Added new tweak: Restore original order of character portraits

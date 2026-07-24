@@ -105,194 +105,6 @@ LABEL ~A7_MISCTWEAKS_CRITPROTECT_BELTS~
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
 /////                                                  \\\\\
-///// Disable creature tooltips                        \\\\\
-/////                                                  \\\\\
-/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
-/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
-
-BEGIN @10 // Disable creature tooltips
-REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee pstee~) @1001  // This component is not available for your game.
-GROUP @1101 // Visual Tweaks
-DESIGNATED 10
-LABEL ~A7_MISCTWEAKS_TOOLTIPS_DISABLE_CRE~
-
-
-/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
-/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
-/////                                                  \\\\\
-///// Update saved games (unlogged)                    \\\\\
-/////                                                  \\\\\
-/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
-/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
-
-/////                                                  \\\\\
-///// Disable tooltips of creatures                    \\\\\
-/////                                                  \\\\\
-
-BEGIN @21 // Disable tooltips of creatures
-REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee pstee~) @1001  // This component is not available for your game.
-GROUP @1101 // Visual Tweaks
-SUBCOMPONENT @20  // Update saved games (unlogged)
-DESIGNATED 21
-LABEL ~A7_MISCTWEAKS_TOOLTIPS_SAVE_DISABLE_CRE~
-NO_LOG_RECORD
-
-/////                                                  \\\\\
-///// Disable tooltips of party members and NPCs       \\\\\
-/////                                                  \\\\\
-
-BEGIN @22 // Disable tooltips of party members and NPCs
-REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee pstee~) @1001  // This component is not available for your game.
-GROUP @1101 // Visual Tweaks
-SUBCOMPONENT @20  // Update saved games (unlogged)
-DESIGNATED 22
-LABEL ~A7_MISCTWEAKS_TOOLTIPS_SAVE_DISABLE_NPC~
-NO_LOG_RECORD
-
-/////                                                  \\\\\
-///// Disable tooltips of creatures, party members,    \\\\\
-///// and NPCs                                         \\\\\
-/////                                                  \\\\\
-
-BEGIN @23 // Disable tooltips of creatures, party members, and NPCs
-REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee pstee~) @1001  // This component is not available for your game.
-GROUP @1101 // Visual Tweaks
-SUBCOMPONENT @20  // Update saved games (unlogged)
-DESIGNATED 23
-LABEL ~A7_MISCTWEAKS_TOOLTIPS_SAVE_DISABLE_ALL~
-NO_LOG_RECORD
-
-/////                                                  \\\\\
-///// Enable tooltips of creatures                     \\\\\
-/////                                                  \\\\\
-
-BEGIN @24 // Enable tooltips of creatures
-REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee pstee~) @1001  // This component is not available for your game.
-GROUP @1101 // Visual Tweaks
-SUBCOMPONENT @20  // Update saved games (unlogged)
-DESIGNATED 24
-LABEL ~A7_MISCTWEAKS_TOOLTIPS_SAVE_ENABLE_CRE~
-NO_LOG_RECORD
-
-/////                                                  \\\\\
-///// Enable tooltips of party members and NPCs        \\\\\
-/////                                                  \\\\\
-
-BEGIN @25 // Enable tooltips of party members and NPCs
-REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee pstee~) @1001  // This component is not available for your game.
-GROUP @1101 // Visual Tweaks
-SUBCOMPONENT @20  // Update saved games (unlogged)
-DESIGNATED 25
-LABEL ~A7_MISCTWEAKS_TOOLTIPS_SAVE_ENABLE_NPC~
-NO_LOG_RECORD
-
-/////                                                  \\\\\
-///// Enable tooltips of creatures, party members,     \\\\\
-///// and NPCs                                         \\\\\
-/////                                                  \\\\\
-
-BEGIN @26 // Enable tooltips of creatures, party members, and NPCs
-REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee pstee~) @1001  // This component is not available for your game.
-GROUP @1101 // Visual Tweaks
-SUBCOMPONENT @20  // Update saved games (unlogged)
-DESIGNATED 26
-LABEL ~A7_MISCTWEAKS_TOOLTIPS_SAVE_ENABLE_ALL~
-NO_LOG_RECORD
-
-
-/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
-/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
-/////                                                  \\\\\
-///// Visual feedback for wild surge "Gold Vanishes!"  \\\\\
-/////                                                  \\\\\
-/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
-/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
-
-BEGIN @30  // Visual feedback for wild surge "Gold Vanishes!"
-REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee soa tob tutu tutu_totsc bgt~) @1001  // This component is not available for your game.
-GROUP @1101 // Visual Tweaks
-DESIGNATED 30
-LABEL ~A7_MISCTWEAKS_GOLD_VANISHES_FEEDBACK~
-
-
-/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
-/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
-/////                                                  \\\\\
-///// Customized selection circles in PST              \\\\\
-/////                                                  \\\\\
-/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
-/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
-
-/////                                                  \\\\\
-///// Solid Thick                                      \\\\\
-/////                                                  \\\\\
-
-BEGIN @41 // Solid Thick
-REQUIRE_PREDICATE (GAME_IS ~pstee pst~) @1001  // This component is not available for your game.
-GROUP @1101 // Visual Tweaks
-SUBCOMPONENT @40  // Customized selection circles in PST:EE
-DESIGNATED 41
-LABEL ~A7_MISCTWEAKS_CUSTOMIZED_CIRCLE_PSTEE_THICK~
-
-/////                                                  \\\\\
-///// Solid Thin                                       \\\\\
-/////                                                  \\\\\
-
-BEGIN @42 // Solid Thin
-REQUIRE_PREDICATE (GAME_IS ~pstee pst~) @1001  // This component is not available for your game.
-GROUP @1101 // Visual Tweaks
-SUBCOMPONENT @40  // Customized selection circles in PST:EE
-DESIGNATED 42
-LABEL ~A7_MISCTWEAKS_CUSTOMIZED_CIRCLE_PSTEE_THIN~
-
-/////                                                  \\\\\
-///// Dashed                                           \\\\\
-/////                                                  \\\\\
-
-BEGIN @43 // Dashed
-REQUIRE_PREDICATE (GAME_IS ~pstee pst~) @1001  // This component is not available for your game.
-GROUP @1101 // Visual Tweaks
-SUBCOMPONENT @40  // Customized selection circles in PST:EE
-DESIGNATED 43
-LABEL ~A7_MISCTWEAKS_CUSTOMIZED_CIRCLE_PSTEE_DASHED~
-
-/////                                                  \\\\\
-///// Dotted                                           \\\\\
-/////                                                  \\\\\
-
-BEGIN @44 // Dotted
-REQUIRE_PREDICATE (GAME_IS ~pstee pst~) @1001  // This component is not available for your game.
-GROUP @1101 // Visual Tweaks
-SUBCOMPONENT @40  // Customized selection circles in PST:EE
-DESIGNATED 44
-LABEL ~A7_MISCTWEAKS_CUSTOMIZED_CIRCLE_PSTEE_DOTTED~
-
-/////                                                  \\\\\
-///// Filled                                           \\\\\
-/////                                                  \\\\\
-
-BEGIN @45 // Filled
-REQUIRE_PREDICATE (GAME_IS ~pstee pst~) @1001  // This component is not available for your game.
-GROUP @1101 // Visual Tweaks
-SUBCOMPONENT @40  // Customized selection circles in PST:EE
-DESIGNATED 45
-LABEL ~A7_MISCTWEAKS_CUSTOMIZED_CIRCLE_PSTEE_FILLED~
-
-/////                                                  \\\\\
-///// Translucent                                      \\\\\
-/////                                                  \\\\\
-
-BEGIN @46 // Translucent
-REQUIRE_PREDICATE (GAME_IS ~pstee~) @1001  // This component is not available for your game.
-GROUP @1101 // Visual Tweaks
-SUBCOMPONENT @40  // Customized selection circles in PST:EE
-DESIGNATED 46
-LABEL ~A7_MISCTWEAKS_CUSTOMIZED_CIRCLE_PSTEE_TRANSLUCENT~
-
-
-/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
-/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
-/////                                                  \\\\\
 ///// Breakable cutscenes in PST:EE                    \\\\\
 /////                                                  \\\\\
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
@@ -303,21 +115,6 @@ REQUIRE_PREDICATE (GAME_IS ~pstee~) @1001  // This component is not available fo
 GROUP @1100 // Convenience Tweaks/Cheats
 DESIGNATED 50
 LABEL ~A7_MISCTWEAKS_BREAKABLE_CUTSCENES_PSTEE~
-
-
-/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
-/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
-/////                                                  \\\\\
-///// High-resolution character portraits in PST:EE    \\\\\
-/////                                                  \\\\\
-/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
-/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
-
-BEGIN @60 // High-resolution character portraits in PST:EE
-REQUIRE_PREDICATE (GAME_IS ~pstee~) @1001  // This component is not available for your game.
-GROUP @1101 // Visual Tweaks
-DESIGNATED 60
-LABEL ~A7_MISCTWEAKS_UPSCALED_PORTRAITS_PSTEE~
 
 
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
@@ -537,6 +334,241 @@ LABEL ~A7_MISCTWEAKS_SPEED_UP_POINTS_DISTRIBUTION~
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
 /////                                                  \\\\\
+///// Pressing Escape on the start screen quits the    \\\\\
+///// game                                             \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+BEGIN @160  // Pressing Escape on the start screen quits the game
+REQUIRE_PREDICATE ((GAME_IS ~bgee bg2ee eet iwdee~) && FILE_EXISTS_IN_GAME ~ui.menu~) @1001  // This component is not available for your game.
+GROUP @1100 // Convenience Tweaks/Cheats
+DESIGNATED 160
+LABEL ~A7_MISCTWEAKS_ESC_QUIT_GAME~
+
+
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
+///// Pressing Escape on the start screen does not     \\\\\
+///// quit the game                                    \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+BEGIN @170  // Pressing Escape on the start screen does not quit the game
+REQUIRE_PREDICATE ((GAME_IS ~bgee bg2ee eet iwdee pstee~) && FILE_EXISTS_IN_GAME ~ui.menu~) @1001  // This component is not available for your game.
+GROUP @1100 // Convenience Tweaks/Cheats
+DESIGNATED 170
+LABEL ~A7_MISCTWEAKS_ESC_NOT_QUIT_GAME~
+
+
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
+///// Disable creature tooltips                        \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+BEGIN @10 // Disable creature tooltips
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee pstee~) @1001  // This component is not available for your game.
+GROUP @1101 // Visual Tweaks
+DESIGNATED 10
+LABEL ~A7_MISCTWEAKS_TOOLTIPS_DISABLE_CRE~
+
+
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
+///// Update saved games (unlogged)                    \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+/////                                                  \\\\\
+///// Disable tooltips of creatures                    \\\\\
+/////                                                  \\\\\
+
+BEGIN @21 // Disable tooltips of creatures
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee pstee~) @1001  // This component is not available for your game.
+GROUP @1101 // Visual Tweaks
+SUBCOMPONENT @20  // Update saved games (unlogged)
+DESIGNATED 21
+LABEL ~A7_MISCTWEAKS_TOOLTIPS_SAVE_DISABLE_CRE~
+NO_LOG_RECORD
+
+/////                                                  \\\\\
+///// Disable tooltips of party members and NPCs       \\\\\
+/////                                                  \\\\\
+
+BEGIN @22 // Disable tooltips of party members and NPCs
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee pstee~) @1001  // This component is not available for your game.
+GROUP @1101 // Visual Tweaks
+SUBCOMPONENT @20  // Update saved games (unlogged)
+DESIGNATED 22
+LABEL ~A7_MISCTWEAKS_TOOLTIPS_SAVE_DISABLE_NPC~
+NO_LOG_RECORD
+
+/////                                                  \\\\\
+///// Disable tooltips of creatures, party members,    \\\\\
+///// and NPCs                                         \\\\\
+/////                                                  \\\\\
+
+BEGIN @23 // Disable tooltips of creatures, party members, and NPCs
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee pstee~) @1001  // This component is not available for your game.
+GROUP @1101 // Visual Tweaks
+SUBCOMPONENT @20  // Update saved games (unlogged)
+DESIGNATED 23
+LABEL ~A7_MISCTWEAKS_TOOLTIPS_SAVE_DISABLE_ALL~
+NO_LOG_RECORD
+
+/////                                                  \\\\\
+///// Enable tooltips of creatures                     \\\\\
+/////                                                  \\\\\
+
+BEGIN @24 // Enable tooltips of creatures
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee pstee~) @1001  // This component is not available for your game.
+GROUP @1101 // Visual Tweaks
+SUBCOMPONENT @20  // Update saved games (unlogged)
+DESIGNATED 24
+LABEL ~A7_MISCTWEAKS_TOOLTIPS_SAVE_ENABLE_CRE~
+NO_LOG_RECORD
+
+/////                                                  \\\\\
+///// Enable tooltips of party members and NPCs        \\\\\
+/////                                                  \\\\\
+
+BEGIN @25 // Enable tooltips of party members and NPCs
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee pstee~) @1001  // This component is not available for your game.
+GROUP @1101 // Visual Tweaks
+SUBCOMPONENT @20  // Update saved games (unlogged)
+DESIGNATED 25
+LABEL ~A7_MISCTWEAKS_TOOLTIPS_SAVE_ENABLE_NPC~
+NO_LOG_RECORD
+
+/////                                                  \\\\\
+///// Enable tooltips of creatures, party members,     \\\\\
+///// and NPCs                                         \\\\\
+/////                                                  \\\\\
+
+BEGIN @26 // Enable tooltips of creatures, party members, and NPCs
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee pstee~) @1001  // This component is not available for your game.
+GROUP @1101 // Visual Tweaks
+SUBCOMPONENT @20  // Update saved games (unlogged)
+DESIGNATED 26
+LABEL ~A7_MISCTWEAKS_TOOLTIPS_SAVE_ENABLE_ALL~
+NO_LOG_RECORD
+
+
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
+///// Visual feedback for wild surge "Gold Vanishes!"  \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+BEGIN @30  // Visual feedback for wild surge "Gold Vanishes!"
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee soa tob tutu tutu_totsc bgt~) @1001  // This component is not available for your game.
+GROUP @1101 // Visual Tweaks
+DESIGNATED 30
+LABEL ~A7_MISCTWEAKS_GOLD_VANISHES_FEEDBACK~
+
+
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
+///// Customized selection circles in PST              \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+/////                                                  \\\\\
+///// Solid Thick                                      \\\\\
+/////                                                  \\\\\
+
+BEGIN @41 // Solid Thick
+REQUIRE_PREDICATE (GAME_IS ~pstee pst~) @1001  // This component is not available for your game.
+GROUP @1101 // Visual Tweaks
+SUBCOMPONENT @40  // Customized selection circles in PST:EE
+DESIGNATED 41
+LABEL ~A7_MISCTWEAKS_CUSTOMIZED_CIRCLE_PSTEE_THICK~
+
+/////                                                  \\\\\
+///// Solid Thin                                       \\\\\
+/////                                                  \\\\\
+
+BEGIN @42 // Solid Thin
+REQUIRE_PREDICATE (GAME_IS ~pstee pst~) @1001  // This component is not available for your game.
+GROUP @1101 // Visual Tweaks
+SUBCOMPONENT @40  // Customized selection circles in PST:EE
+DESIGNATED 42
+LABEL ~A7_MISCTWEAKS_CUSTOMIZED_CIRCLE_PSTEE_THIN~
+
+/////                                                  \\\\\
+///// Dashed                                           \\\\\
+/////                                                  \\\\\
+
+BEGIN @43 // Dashed
+REQUIRE_PREDICATE (GAME_IS ~pstee pst~) @1001  // This component is not available for your game.
+GROUP @1101 // Visual Tweaks
+SUBCOMPONENT @40  // Customized selection circles in PST:EE
+DESIGNATED 43
+LABEL ~A7_MISCTWEAKS_CUSTOMIZED_CIRCLE_PSTEE_DASHED~
+
+/////                                                  \\\\\
+///// Dotted                                           \\\\\
+/////                                                  \\\\\
+
+BEGIN @44 // Dotted
+REQUIRE_PREDICATE (GAME_IS ~pstee pst~) @1001  // This component is not available for your game.
+GROUP @1101 // Visual Tweaks
+SUBCOMPONENT @40  // Customized selection circles in PST:EE
+DESIGNATED 44
+LABEL ~A7_MISCTWEAKS_CUSTOMIZED_CIRCLE_PSTEE_DOTTED~
+
+/////                                                  \\\\\
+///// Filled                                           \\\\\
+/////                                                  \\\\\
+
+BEGIN @45 // Filled
+REQUIRE_PREDICATE (GAME_IS ~pstee pst~) @1001  // This component is not available for your game.
+GROUP @1101 // Visual Tweaks
+SUBCOMPONENT @40  // Customized selection circles in PST:EE
+DESIGNATED 45
+LABEL ~A7_MISCTWEAKS_CUSTOMIZED_CIRCLE_PSTEE_FILLED~
+
+/////                                                  \\\\\
+///// Translucent                                      \\\\\
+/////                                                  \\\\\
+
+BEGIN @46 // Translucent
+REQUIRE_PREDICATE (GAME_IS ~pstee~) @1001  // This component is not available for your game.
+GROUP @1101 // Visual Tweaks
+SUBCOMPONENT @40  // Customized selection circles in PST:EE
+DESIGNATED 46
+LABEL ~A7_MISCTWEAKS_CUSTOMIZED_CIRCLE_PSTEE_TRANSLUCENT~
+
+
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
+///// High-resolution character portraits in PST:EE    \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+BEGIN @60 // High-resolution character portraits in PST:EE
+REQUIRE_PREDICATE (GAME_IS ~pstee~) @1001  // This component is not available for your game.
+GROUP @1101 // Visual Tweaks
+DESIGNATED 60
+LABEL ~A7_MISCTWEAKS_UPSCALED_PORTRAITS_PSTEE~
+
+
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
 ///// Improved font for input controls in the SoD GUI  \\\\\
 /////                                                  \\\\\
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
@@ -631,35 +663,3 @@ REQUIRE_PREDICATE (GAME_IS ~bg2ee eet~ && FILE_EXISTS_IN_GAME ~ui.menu~) @1001  
 GROUP @1101 // Visual Tweaks
 DESIGNATED 150
 LABEL ~A7_MISCTWEAKS_WMP_REMOVE_BLACK_BAR~
-
-
-/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
-/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
-/////                                                  \\\\\
-///// Pressing Escape on the start screen quits the    \\\\\
-///// game                                             \\\\\
-/////                                                  \\\\\
-/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
-/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
-
-BEGIN @160  // Pressing Escape on the start screen quits the game
-REQUIRE_PREDICATE ((GAME_IS ~bgee bg2ee eet iwdee~) && FILE_EXISTS_IN_GAME ~ui.menu~) @1001  // This component is not available for your game.
-GROUP @1100 // Convenience Tweaks/Cheats
-DESIGNATED 160
-LABEL ~A7_MISCTWEAKS_ESC_QUIT_GAME~
-
-
-/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
-/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
-/////                                                  \\\\\
-///// Pressing Escape on the start screen does not     \\\\\
-///// quit the game                                    \\\\\
-/////                                                  \\\\\
-/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
-/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
-
-BEGIN @170  // Pressing Escape on the start screen does not quit the game
-REQUIRE_PREDICATE ((GAME_IS ~bgee bg2ee eet iwdee pstee~) && FILE_EXISTS_IN_GAME ~ui.menu~) @1001  // This component is not available for your game.
-GROUP @1100 // Convenience Tweaks/Cheats
-DESIGNATED 170
-LABEL ~A7_MISCTWEAKS_ESC_NOT_QUIT_GAME~
