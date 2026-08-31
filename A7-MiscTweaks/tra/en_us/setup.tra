@@ -69,11 +69,26 @@
 
 @170 = ~Pressing Escape on the start screen does not quit the game~
 
+@180 = ~Use enchantment of the launcher to determine what to hit: Bows~
+@181 = ~Only for weapons usable by the player~
+@182 = ~For all weapons in the game~
+
+@190 = ~Use enchantment of launcher to determine what to hit: Crossbows~
+
+@200 = ~Use enchantment of launcher to determine what to hit: Slings~
+
+@210 = ~Add damage bonus to bows~
+@211 = ~Full bonus to weapons usable by the player~
+@212 = ~Half bonus to weapons usable by the player~
+@213 = ~Full bonus to all weapons in the game~
+@214 = ~Half bonus to all weapons in the game~
+
 // Messages
 @1000 = ~DLC Merger is required before mods can be installed on this game. Check the readme for more information and a link to download DLC Merger.~
 @1001 = ~This component is not available for your game.~
 @1002 = ~Selected mod component has not been implemented.~
 @1003 = ~This component is not compatible with the current state of the game.~
+@1004 = ~Damage bonus is already applied.~
 
 // Groups
 @1100 = ~Convenience Tweaks/Cheats~

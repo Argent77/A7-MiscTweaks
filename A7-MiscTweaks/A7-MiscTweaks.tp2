@@ -105,6 +105,155 @@ LABEL ~A7_MISCTWEAKS_CRITPROTECT_BELTS~
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
 /////                                                  \\\\\
+///// Use enchantment of the launcher to determine     \\\\\
+///// what to hit: Bows                                \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+/////                                                  \\\\\
+///// Only for weapons usable by the player            \\\\\
+/////                                                  \\\\\
+
+BEGIN @181  // Only for weapons usable by the player
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee~) @1001  // This component is not available for your game.
+GROUP @1100 // Convenience Tweaks/Cheats
+SUBCOMPONENT @180 // Use enchantment of launcher to determine what to hit: Bows
+DESIGNATED 181
+LABEL ~A7_MISCTWEAKS_ENCHANT_LAUNCHER_BOWS_PLAYER~
+
+/////                                                  \\\\\
+///// For all weapons in the game                      \\\\\
+/////                                                  \\\\\
+
+BEGIN @182  // For all weapons in the game
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee~) @1001  // This component is not available for your game.
+GROUP @1100 // Convenience Tweaks/Cheats
+SUBCOMPONENT @180 // Use enchantment of launcher to determine what to hit: Bows
+DESIGNATED 182
+LABEL ~A7_MISCTWEAKS_ENCHANT_LAUNCHER_BOWS_ALL~
+
+
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
+///// Use enchantment of the launcher to determine     \\\\\
+///// what to hit: Crossbows                           \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+/////                                                  \\\\\
+///// Only for weapons usable by the player            \\\\\
+/////                                                  \\\\\
+
+BEGIN @181  // Only for weapons usable by the player
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee~) @1001  // This component is not available for your game.
+GROUP @1100 // Convenience Tweaks/Cheats
+SUBCOMPONENT @190 // Use enchantment of launcher to determine what to hit: Crossbows
+DESIGNATED 191
+LABEL ~A7_MISCTWEAKS_ENCHANT_LAUNCHER_CROSSBOWS_PLAYER~
+
+/////                                                  \\\\\
+///// For all weapons in the game                      \\\\\
+/////                                                  \\\\\
+
+BEGIN @182  // For all weapons in the game
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee~) @1001  // This component is not available for your game.
+GROUP @1100 // Convenience Tweaks/Cheats
+SUBCOMPONENT @190 // Use enchantment of launcher to determine what to hit: Crossbows
+DESIGNATED 192
+LABEL ~A7_MISCTWEAKS_ENCHANT_LAUNCHER_CROSSBOWS_ALL~
+
+
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
+///// Use enchantment of the launcher to determine     \\\\\
+///// what to hit: Slings                              \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+/////                                                  \\\\\
+///// Only for weapons usable by the player            \\\\\
+/////                                                  \\\\\
+
+BEGIN @181  // Only for weapons usable by the player
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee~) @1001  // This component is not available for your game.
+GROUP @1100 // Convenience Tweaks/Cheats
+SUBCOMPONENT @200 // Use enchantment of launcher to determine what to hit: Slings
+DESIGNATED 201
+LABEL ~A7_MISCTWEAKS_ENCHANT_LAUNCHER_SLINGS_PLAYER~
+
+/////                                                  \\\\\
+///// For all weapons in the game                      \\\\\
+/////                                                  \\\\\
+
+BEGIN @182  // For all weapons in the game
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee~) @1001  // This component is not available for your game.
+GROUP @1100 // Convenience Tweaks/Cheats
+SUBCOMPONENT @200 // Use enchantment of launcher to determine what to hit: Slings
+DESIGNATED 202
+LABEL ~A7_MISCTWEAKS_ENCHANT_LAUNCHER_SLINGS_ALL~
+
+
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
+///// Add damage bonus to bows                         \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+/////                                                  \\\\\
+///// Full bonus to weapons usable by the player       \\\\\
+/////                                                  \\\\\
+
+BEGIN @211  // Full bonus to weapons usable by the player
+REQUIRE_PREDICATE (GAME_IS ~bg2ee eet~) @1001  // This component is not available for your game.
+GROUP @1100 // Convenience Tweaks/Cheats
+SUBCOMPONENT @210 // Add damage bonus to bows
+DESIGNATED 211
+LABEL ~A7_MISCTWEAKS_ENCHANT_BOWS_DAMAGE_BONUS_PLAYER_FULL~
+
+/////                                                  \\\\\
+///// Half bonus to weapons usable by the player       \\\\\
+/////                                                  \\\\\
+
+BEGIN @212  // Half bonus to weapons usable by the player
+REQUIRE_PREDICATE (GAME_IS ~bg2ee eet~) @1001  // This component is not available for your game.
+GROUP @1100 // Convenience Tweaks/Cheats
+SUBCOMPONENT @210 // Add damage bonus to bows
+DESIGNATED 212
+LABEL ~A7_MISCTWEAKS_ENCHANT_BOWS_DAMAGE_BONUS_PLAYER_HALF~
+
+/////                                                  \\\\\
+///// Full bonus to all weapons in the game            \\\\\
+/////                                                  \\\\\
+
+BEGIN @213  // Full bonus to all weapons in the game
+REQUIRE_PREDICATE (GAME_IS ~bg2ee eet~) @1001  // This component is not available for your game.
+GROUP @1100 // Convenience Tweaks/Cheats
+SUBCOMPONENT @210 // Add damage bonus to bows
+DESIGNATED 213
+LABEL ~A7_MISCTWEAKS_ENCHANT_BOWS_DAMAGE_BONUS_ALL_FULL~
+
+/////                                                  \\\\\
+///// Half bonus to all weapons in the game            \\\\\
+/////                                                  \\\\\
+
+BEGIN @214  // Half bonus for all weapons in the game
+REQUIRE_PREDICATE (GAME_IS ~bg2ee eet~) @1001  // This component is not available for your game.
+GROUP @1100 // Convenience Tweaks/Cheats
+SUBCOMPONENT @210 // Add damage bonus to bows
+DESIGNATED 214
+LABEL ~A7_MISCTWEAKS_ENCHANT_BOWS_DAMAGE_BONUS_ALL_HALF~
+
+
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
 ///// Breakable cutscenes in PST:EE                    \\\\\
 /////                                                  \\\\\
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\

@@ -1,0 +1,278 @@
+// Functions for patching launcher weapons (bows, crossbows, slings)
+
+/**
+ * Enchants bows, crossbows, or slings, so that their enchantment value determines what can be hit
+ * in addition to the projectile's enchantment.
+ *
+ * Quirk: Protection from Normal Missiles still protects even with enchanted launchers.
+ *
+ * INT_VAR enchant_bows         Whether to enchant bows (Default: 1)
+ * INT_VAR enchant_crossbows    Whether to enchant crossbows (Default: 1)
+ * INT_VAR enchant_slings       Whether to enchant slings (Default: 1)
+ * INT_VAR player_only          Whether to enchant only weapons that can be equipped by party members. (Default: 0)
+ * INT_VAR factor_nominator     Nominator of a factor that is applied to the enchantment value. (Default: 1)
+ * INT_VAR factor_denominator   Denominator of a factor that is applied to the enchantment value. (Default: 1)
+ * INT_VAR factor_rounding      Whether to round fractional values. (Default: 1)
+ */
+DEFINE_ACTION_FUNCTION ENCHANT_LAUNCHERS
+INT_VAR
+  enchant_bows = 1
+  enchant_crossbows = 1
+  enchant_slings = 1
+  player_only = 0
+  factor_nominator = 1
+  factor_denominator = 1
+  factor_rounding = 1
+BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY cat_filters BEGIN
+    15 => ~%enchant_bows%~
+    18 => ~%enchant_slings%~
+    27 => ~%enchant_crossbows%~
+  END
+
+  OUTER_SET factor_denominator = (factor_denominator <= 0) ? 1 : factor_denominator
+
+  // flags: droppable, displayable
+  OUTER_SET usable_flag = player_only ? BIT2 | BIT3 : 0
+
+  COPY_EXISTING_REGEXP ~^.+\.itm$~ ~override~
+    READ_LONG 0x18 flags
+    SET match = (flags & usable_flag) == usable_flag
+    PATCH_IF (match) BEGIN
+      READ_SHORT 0x1c cat
+      PATCH_MATCH cat WITH
+        15 18 27 BEGIN    // bows, slings, crossbows
+          PATCH_IF (VARIABLE_IS_SET $cat_filters(~%cat%~) && $cat_filters(~%cat%~) != 0) BEGIN
+            READ_LONG 0x60 enchantment
+            SET fract = (enchantment * factor_nominator) MODULO factor_denominator
+            SET round = (factor_denominator > 1 && fract >= factor_denominator / 2)
+            SET enchantment = (enchantment * factor_nominator / factor_denominator) + round
+            PATCH_IF (enchantment > 0) BEGIN
+              // look for launcher header
+              SET is_launcher = 0
+              GET_OFFSET_ARRAY abil_headers ITM_V10_HEADERS
+              PATCH_PHP_EACH abil_headers AS _ => ofs_abil BEGIN
+                PATCH_IF (NOT is_launcher) BEGIN
+                  READ_BYTE ofs_abil abil_type
+                  SET is_launcher = (abil_type == 4)
+                END
+              END
+
+              PATCH_IF (is_launcher) BEGIN
+                LPF ADD_ITEM_EQEFFECT
+                  INT_VAR
+                    opcode = 345  // Enchantment bonus
+                    target = 1    // Self
+                    parameter1 = enchantment
+                    timing = 2    // Instant/While equipped
+                    special = 1   // main-hand weapon
+                END
+              END
+            END
+          END
+        END
+        DEFAULT
+      END
+    END
+  BUT_ONLY
+END
+
+/**
+ * Checks whether damage bonus for bows already exist.
+ *
+ * RET result   Returns 1 if damage bonus already exists, 0 otherwise.
+ */
+DEFINE_ACTION_FUNCTION BOW_HAS_DAMAGE_BONUS
+RET result
+BEGIN
+  OUTER_SET result = 0
+  // launcher damage check: abort if damage bonus already exists
+  COPY_EXISTING ~bow06.itm~ ~override~
+    GET_OFFSET_ARRAY abil_headers ITM_V10_HEADERS
+    PATCH_PHP_EACH abil_headers AS _ => ofs_abil BEGIN
+      PATCH_IF (NOT result) BEGIN
+        READ_SHORT (ofs_abil + 0x1a) damage_bonus
+        SET result = (damage_bonus > 0)
+      END
+    END
+  BUT_ONLY IF_EXISTS
+END
+
+/**
+ * Adds a damage bonus based on the bow's enchantment value.
+ *
+ * INT_VAR update_description   Whether to reflect the damage modification in the item description. (Default: 1)
+ * INT_VAR player_only          Whether to add damage only to weapons that can be equipped by party members. (Default: 0)
+ * INT_VAR factor_nominator     Nominator of a factor that is applied to the calculated damage value. (Default: 1)
+ * INT_VAR factor_denominator   Denominator of a factor that is applied to the calculated damage value. (Default: 1)
+ * INT_VAR factor_rounding      Whether to round fractional values. (Default: 1)
+ */
+DEFINE_ACTION_FUNCTION APPLY_BOW_DAMAGE_BONUS
+INT_VAR
+  update_description = 1
+  player_only = 0
+  factor_nominator = 1
+  factor_denominator = 1
+  factor_rounding = 1
+BEGIN
+  OUTER_SET factor_denominator = (factor_denominator <= 0) ? 1 : factor_denominator
+
+  // flags: droppable, displayable
+  OUTER_SET usable_flag = player_only ? BIT2 | BIT3 : 0
+
+  COPY_EXISTING_REGEXP ~^.+\.itm$~ ~override~
+    READ_LONG 0x18 flags
+    SET match = (flags & usable_flag) == usable_flag
+    PATCH_IF (match) BEGIN
+      READ_SHORT 0x1c cat
+      PATCH_IF (cat == 15) BEGIN  // bows only
+        READ_LONG 0x60 enchantment
+        SET fract = (enchantment * factor_nominator) MODULO factor_denominator
+        SET round = (factor_denominator > 1 && fract >= factor_denominator / 2)
+        SET enchantment = (enchantment * factor_nominator / factor_denominator) + round
+        PATCH_IF (enchantment > 0) BEGIN
+          SET patched = 0
+          GET_OFFSET_ARRAY abil_headers ITM_V10_HEADERS
+          PATCH_PHP_EACH abil_headers AS _ => ofs_abil BEGIN
+            READ_BYTE ofs_abil abil_type
+            PATCH_IF (abil_type == 4) BEGIN // launcher only
+              READ_SHORT (ofs_abil + 0x1a) damage
+              SET damage += enchantment
+              WRITE_SHORT (ofs_abil + 0x1a) damage
+              SET patched = 1
+            END
+          END
+
+          PATCH_IF (update_description && patched) BEGIN
+            // update item description: add or update damage bonus
+            READ_LONG IDENTIFIED_DESC strref
+            PATCH_IF (strref > 0 && strref < NEXT_STRREF) BEGIN
+              READ_STRREF IDENTIFIED_DESC desc
+              LPF UPDATE_DESC INT_VAR damage STR_VAR desc RET updated_desc END
+              SAY IDENTIFIED_DESC ~%updated_desc%~
+            END ELSE BEGIN
+              READ_STRREF UNIDENTIFIED_DESC desc
+              LPF UPDATE_DESC INT_VAR damage STR_VAR desc RET updated_desc END
+              SAY UNIDENTIFIED_DESC ~%updated_desc%~
+            END
+          END
+        END
+      END
+    END
+  BUT_ONLY
+END
+
+/**
+ * Patches the damage modifier in the specified item description.
+ *
+ * INT_VAR damage                 Numeric damage modifier.
+ * INT_VAR tra_text_damage_full   Tra reference for the full damage definition string.
+ * INT_VAR tra_text_damage_short  Tra reference for the short damage definition string (without specifiers).
+ * INT_VAR tra_text_sign_plus     Tra reference for the positive damage modifier sign.
+ * INT_VAR tra_text_sign_minus    Tra reference for the negative damage modifier sign.
+ * INT_VAR tra_regex_damage       Tra reference for the regular expression that matches the damage modifier.
+ * INT_VAR tra_regex_before       Tra reference start index for the regular expression that matches the line positioned
+ *                                right before the damage modifier. Multiple definitions are supported.
+ * INT_VAR tra_regex_after        Tra reference start index for the regular expression that matches the line positioned
+ *                                right after the damage modifier. Multiple definitions are supported.
+ * INT_VAR tra_regex_search_count Max. number of consecutive tra references to look for before terminating search.
+ * STR_VAR desc                   Full item description string.
+ * RET updated_desc               The updated item description string.
+ */
+DEFINE_DIMORPHIC_FUNCTION UPDATE_DESC
+INT_VAR
+  damage = 0
+  tra_text_damage_full = 2300
+  tra_text_damage_short = 2301
+  tra_text_sign_plus = 2305
+  tra_text_sign_minus = 2306
+  tra_regex_damage = 2310
+  tra_regex_before = 2320
+  tra_regex_after = 2330
+  tra_regex_search_count = 10
+STR_VAR
+  desc = ~~
+RET
+  updated_desc
+BEGIN
+  OUTER_SPRINT updated_desc ~%desc%~
+  ACTION_IF (NOT ~%desc%~ STR_EQ ~~) BEGIN
+    ACTION_IF (damage != 0) BEGIN
+      ACTION_IF (damage > 0) BEGIN
+        OUTER_SPRINT sign (AT ~tra_text_sign_plus~)
+      END ELSE BEGIN
+        OUTER_SPRINT sign (AT ~tra_text_sign_minus~)
+        OUTER_SET damage = ABS damage
+      END
+
+      OUTER_PATCH_SAVE updated_desc ~%desc%~ BEGIN
+        // 1. patch existing "damage" line if available
+        SPRINT regexp (AT ~tra_regex_damage~)
+        SET patched = 0
+        FOR (tra_ref = tra_regex_damage ;
+             tra_ref >= tra_regex_damage && tra_ref < tra_regex_damage + tra_regex_search_count && TRA_ENTRY_EXISTS(tra_ref) ;
+             ++tra_ref) BEGIN
+          SPRINT regexp (AT ~tra_ref~)
+          PATCH_IF (INDEX_BUFFER(~%regexp%~) >= 0) BEGIN
+            SPRINT new_text (AT ~tra_text_damage_short~)
+            REPLACE_TEXTUALLY ~%regexp%~ ~%new_text%~
+            SET patched = 1
+            SET tra_ref = 0
+          END
+        END
+
+        PATCH_IF (NOT patched) BEGIN
+          // 2. find previous line
+          SET match = 0
+          FOR (tra_ref = tra_regex_before ;
+               tra_ref >= tra_regex_before && tra_ref < tra_regex_before + tra_regex_search_count && TRA_ENTRY_EXISTS(tra_ref) ;
+               ++tra_ref) BEGIN
+            SPRINT regexp (AT ~tra_ref~)
+            SET pos = INDEX_BUFFER(~%regexp%~)
+            PATCH_IF (pos >= 0) BEGIN
+              SET pos = INDEX_BUFFER(~[%WNL%]~ pos)
+              PATCH_IF (pos >= 0) BEGIN
+                SET pos = INDEX_BUFFER(~[^%WNL%]~ pos)
+                PATCH_IF (pos >= 0) BEGIN
+                  SET match = 1
+                  SET tra_ref = 0
+                END
+              END
+            END
+          END
+
+          PATCH_IF (NOT match) BEGIN
+            // 3. find following line
+            FOR (tra_ref = tra_regex_after ;
+                 tra_ref >= tra_regex_after && tra_ref < tra_regex_after + tra_regex_search_count && TRA_ENTRY_EXISTS(tra_ref) ;
+                 ++tra_ref) BEGIN
+              SPRINT regexp (AT ~tra_ref~)
+              SET pos = INDEX_BUFFER(~%regexp%~)
+              PATCH_IF (pos >= 0) BEGIN
+                SET match = 1
+                SET tra_ref = 0
+              END
+            END
+          END
+
+          PATCH_IF (match) BEGIN
+            // add damage definition
+            SPRINT new_line (AT ~tra_text_damage_full~)
+            SPRINT new_line ~%new_line%%WNL%~
+            SET len = STRING_LENGTH ~%new_line%~
+            INSERT_BYTES pos len
+            WRITE_ASCIIE pos ~%new_line%~ (len)
+            SET patched = 1
+            SET tra_ref = 0
+          END
+        END
+      END
+    END ELSE BEGIN
+      OUTER_PATCH_SAVE updated_desc ~%desc%~ BEGIN
+        // remove damage definition
+        SPRINT regexp (AT ~tra_regex_damage~)
+        REPLACE_TEXTUALLY ~^.*%regexp%.*[%WNL%]+~ ~~
+      END
+    END
+  END
+END

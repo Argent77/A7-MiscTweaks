@@ -1,0 +1,27 @@
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
+///// Add damage bonus to bows                         \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+/////                                                  \\\\\
+///// Full bonus to all weapons in the game            \\\\\
+/////                                                  \\\\\
+
+INCLUDE ~%MOD_FOLDER%/lib/launcher_functions.tph~
+
+// launcher damage check: abort if damage bonus already exists
+LAF BOW_HAS_DAMAGE_BONUS RET result END
+ACTION_IF (result) BEGIN
+  ABORT @1004 // Damage bonus is already applied.
+END
+
+LAF APPLY_BOW_DAMAGE_BONUS
+INT_VAR
+  player_only = 0
+  factor_nominator = 1
+  factor_denominator = 1
+  factor_rounding = 1
+END

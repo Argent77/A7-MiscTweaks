@@ -69,11 +69,26 @@
 
 @170 = ~Escape-Taste im Startbildschirm beendet das Spiel nicht~
 
+@180 = ~Verzauberung von Fernkampfwaffen nutzen, um Ziele zu treffen: Bögen~
+@181 = ~Nur für Waffen, die der Spieler nutzen kann~
+@182 = ~Für alle Waffen des Spiels~
+
+@190 = ~Verzauberung von Fernkampfwaffen nutzen, um Ziele zu treffen: Armbrüste~
+
+@200 = ~Verzauberung von Fernkampfwaffen nutzen, um Ziele zu treffen: Schleudern~
+
+@210 = ~Schadensbonus für Bögen~
+@211 = ~Voller Schadensbonus für Waffen, die der Spieler nutzen kann~
+@212 = ~Halber Schadensbonus für Waffen, die der Spieler nutzen kann~
+@213 = ~Voller Schadensbonus für alle Waffen des Spiels~
+@214 = ~Halber Schadensbonus für alle Waffen des Spiels~
+
 // Messages
 @1000 = ~DLC Merger wird benötigt, bevor in diesem Spiel Mods installiert werden können. Links und weitere Informationen werden in der Readme aufgeführt.~
 @1001 = ~Diese Komponente ist für dieses Spiel nicht verfügbar.~
 @1002 = ~Gewählte Modkomponente steht nicht zur Verfügung.~
 @1003 = ~Diese Komponente ist nicht mit dem aktuellen Zustand des Spiels kompatibel.~
+@1004 = ~Schadensbonus wurde bereits angewendet.~
 
 // Groups
 @1100 = ~Angenehme Verbesserungen/Cheats~

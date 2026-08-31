@@ -26,3 +26,21 @@ Mit dieser Fähigkeit kann die Gruppe sofort zu ihrem Ursprungsort zurückzukehr
 @2211 = ~Das Böse an diesem Ort unterdrückt die Macht der Großen Eiche.~
 @2212 = ~Der Zauber scheint an diesem Ort nicht zu funktionieren.~
 @2213 = ~Leuchtfeuer~
+
+// Lines for launcher weapon tweaks
+// Full damage definition string
+// %sign% is a placeholder for the positive or negative sign of the damage value
+// %damage% is a placeholder for the actual damage value
+@2300 = ~Schadensbonus: %sign%%damage% (Geschoss)~
+// Short damage definition string (without additional specifiers)
+@2301 = ~Schadensbonus: %sign%%damage%~
+// sign for positive damage modifier
+@2305 = ~+~
+// sign for negative damage modifier
+@2306 = ~-~
+// one or more regular expressions to match the damage modifier
+@2310 = ~Schadensbonus: [-+]?[0-9]+~
+// one or more regular expressions to match the line right before the damage modifier
+@2320 = ~ETW0-Bonus: [-+]?[0-9]+~
+// one or more regular expressions to match the line right after the damage modifier
+@2330 = ~Initiativefaktor: [0-9]+~

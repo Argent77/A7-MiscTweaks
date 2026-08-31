@@ -60,6 +60,53 @@ Critical hit protection can be enabled for the following item categories:
 - Belts
 
 
+*** Use enchantment of the launcher to determine what to hit (BG:EE, SoD, BG2:EE, EET, and IWD:EE) ***
+
+Group: Convenience Tweaks/Cheats
+
+This group of components patches ranged weapons, so that their own enchantment is used in addition
+to the enchantment of ammunition to determine whether it can hit a target. For instance, it is
+possible to use regular arrows with a Short Bow +1 to hit creatures that are immune to non-enchanted
+weapons. The effective enchantment will be the highest enchantment of launcher or ammunition.
+
+Enchantment can be patched for the following weapon categories:
+- Bows
+- Crossbows
+- Slings
+
+The following options are available for all weapon categories:
+1. Only for weapons usable by the player:
+   This option will only patch weapons that are available to the player. Note that they may also be
+   used by some enemies.
+2. For all weapons in the game:
+   This option patches all weapons, including specialized creature weapons that simulate innate
+   attack abilities.
+
+
+*** Add damage bonus to bows (BG2:EE, and EET) ***
+
+Group: Convenience Tweaks/Cheats
+
+In BG:EE and IWD:EE enchanted bows provide a damage bonus that correlates with the enchantment
+value of the weapon. This bonus doesn't exist for bows in BG2:EE. This component adds the damage
+bonus to bows in BG2:EE.
+
+The following options are available:
+1. Full bonus to weapons usable by the player:
+   This option adds a damage bonus that equals the enchantment of the bow. It will only be added to
+   bows that are available to the player. Note that they may also be used by some enemies.
+2. Half bonus to weapons usable by the player:
+   This option adds a damage bonus that equals half of the enchantment of the bow. Odd values are
+   rounded up. It will only be added to bows that are available to the player. Note that they may
+   also be used by some enemies.
+3. Full bonus to all weapons in the game:
+   Same as option 1, except that it is also applied to creature weapons that simulate innate attack
+   abilities.
+4. Half bonus to all weapons in the game:
+   Same as option 2, except that it is also applied to creature weapons that simulate innate attack
+   abilities.
+
+
 *** Breakable cutscenes (PST:EE only) ***
 
 Group: Convenience Tweaks/Cheats
@@ -77,19 +124,19 @@ By default the minimum ability score is 9, and there are 21 extra points to spen
 in a total roll of 75 ability points.
 
 The following options are available:
-- Min. ability score: 9, total roll: 54 (0 extra)
-- Min. ability score: 9, total roll: 61 (7 extra)
-- Min. ability score: 9, total roll: 68 (14 extra)
-- Min. ability score: 9, total roll: 82 (28 extra)
-- Min. ability score: 9, total roll: 89 (35 extra)
-- Min. ability score: 9, total roll: 96 (42 extra)
-- Min. ability score: 6, total roll: 36 (0 extra)
-- Min. ability score: 6, total roll: 69 (13 extra)
-- Min. ability score: 6, total roll: 62 (26 extra)
-- Min. ability score: 6, total roll: 75 (39 extra)
-- Min. ability score: 6, total roll: 82 (46 extra)
-- Min. ability score: 6, total roll: 89 (53 extra)
-- Min. ability score: 6, total roll: 96 (60 extra)
+1. Min. ability score: 9, total roll: 54 (0 extra)
+2. Min. ability score: 9, total roll: 61 (7 extra)
+3. Min. ability score: 9, total roll: 68 (14 extra)
+4. Min. ability score: 9, total roll: 82 (28 extra)
+5. Min. ability score: 9, total roll: 89 (35 extra)
+6. Min. ability score: 9, total roll: 96 (42 extra)
+7. Min. ability score: 6, total roll: 36 (0 extra)
+8. Min. ability score: 6, total roll: 69 (13 extra)
+9. Min. ability score: 6, total roll: 62 (26 extra)
+10. Min. ability score: 6, total roll: 75 (39 extra)
+11. Min. ability score: 6, total roll: 82 (46 extra)
+12. Min. ability score: 6, total roll: 89 (53 extra)
+13. Min. ability score: 6, total roll: 96 (60 extra)
 
 Note: Attributes cannot be lowered to 8 or less by the "Minus" button if they have been incremented
       to 9 or higher. That behavior seems to be hardcoded.
@@ -188,12 +235,12 @@ These options are useful if you want to update tooltips in a running game, or to
 the tooltip of the protagonist who isn't caught by the previous component.
 
 The following options are available:
-- Disable tooltips of creatures
-- Disable tooltips of party members and NPCs
-- Disable tooltips of creatures, party members, and NPCs
-- Enable tooltips of creatures
-- Enable tooltips of party members and NPCs
-- Enable tooltips of creatures, party members, and NPCs
+1. Disable tooltips of creatures
+2. Disable tooltips of party members and NPCs
+3. Disable tooltips of creatures, party members, and NPCs
+4. Enable tooltips of creatures
+5. Enable tooltips of party members and NPCs
+6. Enable tooltips of creatures, party members, and NPCs
 
 Note: These options are not registered in the WeiDU.log and can therefore be invoked multiple times.
 
@@ -212,12 +259,12 @@ Group: Visual Tweaks
 
 This component installs customized graphics for character selection circles in Planescape Torment
 (original game or Enhanced Edition). The following options are available:
-- Solid Thick: BG-style selection circle with a thick solid border.
-- Solid Thin: BG-style selection circle with a thin solid border.
-- Dashed: BG-style selection circle with a dashed border.
-- Dotted: BG-style selection circle with a dotted border.
-- Filled: Filled BG-style selection circle (discs).
-- Translucent: A translucent version of the original selection circle (PST:EE only).
+1. Solid Thick: BG-style selection circle with a thick solid border.
+2. Solid Thin: BG-style selection circle with a thin solid border.
+3. Dashed: BG-style selection circle with a dashed border.
+4. Dotted: BG-style selection circle with a dotted border.
+5. Filled: Filled BG-style selection circle (discs).
+6. Translucent: A translucent version of the original selection circle (PST:EE only).
 
 Preview images of the individual selection circles can be found in the "doc/preview" subfolder
 (circles-*.webp).
@@ -247,10 +294,10 @@ This component replaces the original font for input controls with a custom font 
 visually appealing. The font may not work for Cyrillic or Asian characters.
 
 The following options are available:
-- Bold font (debug console only)
-- Regular font (debug console only)
-- Bold font (all input controls)
-- Regular font (all input controls)
+1. Bold font (debug console only)
+2. Regular font (debug console only)
+3. Bold font (all input controls)
+4. Regular font (all input controls)
 
 Preview images of the fonts can be found in the "doc/preview" subfolder (font-debug-*.webp and
 font-all-*.webp).
@@ -265,8 +312,8 @@ This component restores the original portrait order as defined by the original g
 and IWD). EE-specific portrait additions are appended to the list.
 
 The following options are available:
-- Default portrait order: This option is available for all supported games.
-- BG2 portrait order: This option enforces BG2 portrait order in BGEE and EET.
+1. Default portrait order: This option is available for all supported games.
+2. BG2 portrait order: This option enforces BG2 portrait order in BGEE and EET.
 
 Note: Portrait order may be ignored by some GUI replacement mods.
 

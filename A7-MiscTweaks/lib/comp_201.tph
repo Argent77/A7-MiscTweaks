@@ -1,0 +1,22 @@
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
+///// Use enchantment of the launcher to determine     \\\\\
+///// what to hit: Slings                              \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+/////                                                  \\\\\
+///// Only for weapons usable by the player            \\\\\
+/////                                                  \\\\\
+
+INCLUDE ~%MOD_FOLDER%/lib/launcher_functions.tph~
+
+LAF ENCHANT_LAUNCHERS
+INT_VAR
+  enchant_bows = 0
+  enchant_crossbows = 0
+  enchant_slings = 1
+  player_only = 1
+END

@@ -26,3 +26,21 @@ With this ability you can instantly return to the place where the journey began 
 @2211 = ~The evil of this place suppresses the powers of the Great Oak.~
 @2212 = ~The spell doesn't appear to work in this place.~
 @2213 = ~Beacon~
+
+// Lines for launcher weapon tweaks
+// Full damage definition string
+// %sign% is a placeholder for the positive or negative sign of the damage value
+// %damage% is a placeholder for the actual damage value
+@2300 = ~Damage: %sign%%damage% (missile)~
+// Short damage definition string (without additional specifiers)
+@2301 = ~Damage: %sign%%damage%~
+// sign for positive damage modifier
+@2305 = ~+~
+// sign for negative damage modifier
+@2306 = ~-~
+// one or more regular expressions to match the damage modifier
+@2310 = ~Damage: [-+]?[0-9]+~
+// one or more regular expressions to match the line right before the damage modifier
+@2320 = ~THAC0: [-+]?[0-9]+~
+// one or more regular expressions to match the line right after the damage modifier
+@2330 = ~Speed Factor: [0-9]+~

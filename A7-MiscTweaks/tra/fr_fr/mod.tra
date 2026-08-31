@@ -26,3 +26,24 @@ Grâce à cette capacité, vous pouvez retourner instantanément à l'endroit o�
 @2211 = ~Le mal qui règne en ce lieu affaiblit les pouvoirs du Grand Chêne.~
 @2212 = ~Le sort ne semble pas fonctionner ici.~
 @2213 = ~Balise~
+
+// Lines for launcher weapon tweaks
+// Full damage definition string
+// %sign% is a placeholder for the positive or negative sign of the damage value
+// %damage% is a placeholder for the actual damage value
+@2300 = ~Dégâts : %sign%%damage% (projectile)~
+// Short damage definition string (without additional specifiers)
+@2301 = ~Dégâts : %sign%%damage%~
+// sign for positive damage modifier
+@2305 = ~+~
+// sign for negative damage modifier
+@2306 = ~-~
+// one or more regular expressions to match the damage modifier
+@2310 = ~Dégâts : [-+]?[0-9]+~
+@2311 = ~Dégâts : [-+]?[0-9]+~
+// one or more regular expressions to match the line right before the damage modifier
+@2320 = ~TAC0 : [-+]?[0-9]+~
+@2321 = ~TAC0 : [-+]?[0-9]+~
+// one or more regular expressions to match the line right after the damage modifier
+@2330 = ~Facteur de vitesse : [0-9]+~
+@2331 = ~Facteur de vitesse : [0-9]+~
