@@ -453,6 +453,21 @@ LABEL ~A7_MISCTWEAKS_GREAT_OAKS_BEACON_IWDEE~
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
 /////                                                  \\\\\
+///// Add a "Safe Chest" to Watcher's Keep             \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+BEGIN @220  // Add a "Safe Chest" to Watcher's Keep
+REQUIRE_PREDICATE (GAME_IS ~tob bgt bg2ee eet~) @1001 // This component is not available for your game.
+GROUP @1100 // Convenience Tweaks/Cheats
+DESIGNATED 220
+LABEL ~A7_MISCTWEAKS_WK_SAFE_CHEST~
+
+
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
 ///// Reactivate "Back" button in the Dual-Class menu  \\\\\
 /////                                                  \\\\\
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\

@@ -44,3 +44,6 @@ With this ability you can instantly return to the place where the journey began 
 @2320 = ~THAC0: [-+]?[0-9]+~
 // one or more regular expressions to match the line right after the damage modifier
 @2330 = ~Speed Factor: [0-9]+~
+
+// Map note
+@2400 = ~Safe Chest~

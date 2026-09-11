@@ -44,3 +44,6 @@ Mit dieser Fähigkeit kann die Gruppe sofort zu ihrem Ursprungsort zurückzukehr
 @2320 = ~ETW0-Bonus: [-+]?[0-9]+~
 // one or more regular expressions to match the line right after the damage modifier
 @2330 = ~Initiativefaktor: [0-9]+~
+
+// Map note
+@2400 = ~Sichere Truhe~

@@ -166,6 +166,14 @@ The ability is granted by the Great Oak of Kuldahar after the events that take p
 when the party returned from Dragon's Eye.
 
 
+*** Add a "Safe Chest" to Watcher's Keep (BG2, BGT, BG2:EE, and EET) ***
+
+Group: Convenience Tweaks/Cheats
+
+This component adds a personal storage container to the Watcher's Keep exterior map. It can be used
+to store items that should be shared between the Shadows of Amn and Throne of Bhaal campaigns.
+
+
 *** Reactivate "Back" button in the Dual-Class menu (BG:EE, BG2:EE, EET, and IWD:EE) ***
 
 Group: Convenience Tweaks/Cheats

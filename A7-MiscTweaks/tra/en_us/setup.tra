@@ -83,12 +83,16 @@
 @213 = ~Full bonus to all weapons in the game~
 @214 = ~Half bonus to all weapons in the game~
 
+@220 = ~Add a "Safe Chest" to Watcher's Keep~
+
 // Messages
 @1000 = ~DLC Merger is required before mods can be installed on this game. Check the readme for more information and a link to download DLC Merger.~
 @1001 = ~This component is not available for your game.~
 @1002 = ~Selected mod component has not been implemented.~
 @1003 = ~This component is not compatible with the current state of the game.~
 @1004 = ~Damage bonus is already applied.~
+@1005 = ~Unsupported tileset format detected: AR3000.TIS~
+@1006 = ~Could not patch file: AR3000.WED~
 
 // Groups
 @1100 = ~Convenience Tweaks/Cheats~
