@@ -97,6 +97,8 @@ The ability is granted by the Great Oak of Kuldahar after the events that take p
 
 This component adds a personal storage container to the Watcher's Keep exterior map. It can be used to store items that should be shared between the *Shadows of Amn* and *Throne of Bhaal* campaigns.
 
+**Note:** It is not recommended to install "Make Watchers' Keep accessible between SoA and ToB" from SCS together with this component.
+
 ### Reactivate "Back" button in the Dual-Class menu *(BG:EE, BG2:EE, EET, and IWD:EE)*
 
 The "Back" button in the dual-class menu had been deactivated by Beamdog in more recent game patches because it could potentially corrupt the dual-class process. As a result the character could lose class-specific skills or weapon proficiencies for the original class.

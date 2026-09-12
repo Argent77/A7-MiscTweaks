@@ -40,7 +40,7 @@ Installation order & mod compatibility
 This is primarily a tweak mod and should therefore be installed after content mods that install
 new items, spells, NPCs, or quests.
 
-There are no compatibility issues known with other mods.
+There are no technical compatibility issues known with other mods.
 
 
 Components
@@ -172,6 +172,10 @@ Group: Convenience Tweaks/Cheats
 
 This component adds a personal storage container to the Watcher's Keep exterior map. It can be used
 to store items that should be shared between the Shadows of Amn and Throne of Bhaal campaigns.
+
+Note:
+It is not recommended to install "Make Watchers' Keep accessible between SoA and ToB" from SCS
+together with this component.
 
 
 *** Reactivate "Back" button in the Dual-Class menu (BG:EE, BG2:EE, EET, and IWD:EE) ***
