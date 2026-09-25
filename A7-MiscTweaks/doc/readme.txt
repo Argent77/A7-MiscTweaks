@@ -40,7 +40,8 @@ Installation order & mod compatibility
 This is primarily a tweak mod and should therefore be installed after content mods that install
 new items, spells, NPCs, or quests.
 
-The component "Add a Safe Chest to the game" supports "Baldurs Gate Graphical Overhaul" if detected.
+The component "Add a Safe Chest to the game" supports "Baldurs Gate Graphical Overhaul" (BGGO)
+if detected.
 
 There are no technical compatibility issues known with other mods.
 
@@ -374,6 +375,9 @@ History
 ~~~~~~~
 
 1.3
+- Added new tweak: Add a "Safe Chest" to the game (with two subcomponents)
+- Added new tweak for ranged weapons: Use enchantment of the launcher to determine what to hit (for bows, crossbows, and slings)
+- Added new tweak for ranged weapons: Add damage bonus to bows
 - Added new tweak: Remove black bar on the world map screen
 - Added new tweak: Pressing Escape on the start screen quits the game
 - Added new tweak: Pressing Escape on the start screen does not quit the game

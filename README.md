@@ -15,7 +15,9 @@ This is my personal collection of tweaks, cheats, and fixes I have coded over th
 
 ## Installation order and mod compatibility
 
-This is a primarily a tweak mod and should therefore be installed after content mods that install new items, spells, NPCs, or quests.
+This is primarily a tweak mod and should therefore be installed after content mods that install new items, spells, NPCs, or quests.
+
+The component "Add a Safe Chest to the game" supports "Baldurs Gate Graphical Overhaul" (BGGO) if detected.
 
 There are no compatibility issues known with other mods.
 
