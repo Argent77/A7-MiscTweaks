@@ -1,0 +1,65 @@
+// Adds a single chest to Watcher's Keep
+
+INCLUDE ~%MOD_FOLDER%/lib/safe_chest_lib.tph~
+
+// patching tileset
+ACTION_FOR_EACH suffix IN ~~ ~n~ BEGIN
+  OUTER_SPRINT resref ~ar3000%suffix%~
+  ACTION_IF (FILE_EXISTS_IN_GAME ~%resref%.tis~) BEGIN
+    COPY_EXISTING ~%resref%.tis~ ~override~
+      LPF a7#patch_tileset
+        INT_VAR
+          $tis_coords_ee(~1583~) = 0   | (0 << 16)
+          $tis_coords_ee(~1584~) = 64  | (0 << 16)
+          $tis_coords_ee(~1585~) = 128 | (0 << 16)
+          $tis_coords_ee(~1625~) = 0   | (64 << 16)
+          $tis_coords_ee(~1626~) = 64  | (64 << 16)
+          $tis_coords_ee(~1627~) = 128 | (64 << 16)
+        STR_VAR
+          pvrz_file = EVAL ~%MOD_FOLDER%/pvrz/bg2ee/a3000%suffix%00.pvrz~
+          $tis_coords(~1583~ ~3~) = EVAL ~%MOD_FOLDER%/tis/ar3000%suffix%-safe_chest_tiles-row1.dat~
+          $tis_coords(~1625~ ~3~) = EVAL ~%MOD_FOLDER%/tis/ar3000%suffix%-safe_chest_tiles-row2.dat~
+      END
+    BUT_ONLY
+  END
+END
+
+ACTION_IF (is_bg2 || is_bgt) BEGIN
+  COPY ~%MOD_FOLDER%/mos/ar3000.mos~ ~override~
+  ACTION_IF (FILE_EXISTS_IN_GAME ~ar3000n.tis~) BEGIN
+    COPY ~%MOD_FOLDER%/mos/ar3000n.mos~ ~override/ar3000n.mos~
+  END
+
+  // original games may crash if certain relevant area files are not found in the override folder
+  LAF a7#unbiff_area_resources STR_VAR are_resref = ~ar3000~ END
+END
+
+// inserting chest in map
+LAF a7#install_chest
+  INT_VAR
+    // container
+    $fj_vertex(~0~) = 1952 | (2420 << 16)
+    $fj_vertex(~1~) = 1985 | (2440 << 16)
+    $fj_vertex(~2~) = 1985 | (2459 << 16)
+    $fj_vertex(~3~) = 1968 | (2471 << 16)
+    $fj_vertex(~4~) = 1938 | (2452 << 16)
+    $fj_vertex(~5~) = 1938 | (2432 << 16)
+    $fj_vertex(~6~) = 1944 | (2425 << 16)
+    fj_loc_x = 1924
+    fj_loc_y = 2476
+    fj_trap_loc_x = 1959
+    fj_trap_loc_y = 2446
+    // door
+    $fj_cell_open_vert(~0~) = 120 | (203 << 16)
+    $fj_cell_open_vert(~1~) = 121 | (203 << 16)
+    $fj_cell_open_vert(~2~) = 121 | (204 << 16)
+    $fj_cell_open_vert(~3~) = 122 | (204 << 16)
+    $fj_cell_open_vert(~4~) = 122 | (205 << 16)
+    $fj_cell_open_vert(~5~) = 123 | (205 << 16)
+    // automap note
+    note_loc_x = 2000
+    note_loc_y = 2420
+    note_note_strref = RESOLVE_STR_REF(@2400) // Safe Chest
+  STR_VAR
+    are_resref = ~ar3000~
+END

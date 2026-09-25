@@ -453,16 +453,32 @@ LABEL ~A7_MISCTWEAKS_GREAT_OAKS_BEACON_IWDEE~
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
 /////                                                  \\\\\
-///// Add a "Safe Chest" to Watcher's Keep             \\\\\
+///// Add a "Safe Chest" to the game                   \\\\\
 /////                                                  \\\\\
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
 
-BEGIN @220  // Add a "Safe Chest" to Watcher's Keep
+/////                                                  \\\\\
+///// Single chest to Watcher's Keep only              \\\\\
+/////                                                  \\\\\
+
+BEGIN @221  // Single chest to Watcher's Keep only
 REQUIRE_PREDICATE (GAME_IS ~tob bgt bg2ee eet~) @1001 // This component is not available for your game.
 GROUP @1100 // Convenience Tweaks/Cheats
-DESIGNATED 220
-LABEL ~A7_MISCTWEAKS_WK_SAFE_CHEST~
+SUBCOMPONENT @220 // Add a "Safe Chest" to the game
+DESIGNATED 221
+LABEL ~A7_MISCTWEAKS_SAFE_CHEST_WK~
+
+/////                                                  \\\\\
+///// Several linked chests across the game            \\\\\
+/////                                                  \\\\\
+
+BEGIN @222  // Several linked chests across the game
+REQUIRE_PREDICATE (GAME_IS ~bg2ee eet~) @1001 // This component is not available for your game.
+GROUP @1100 // Convenience Tweaks/Cheats
+SUBCOMPONENT @220 // Add a "Safe Chest" to the game
+DESIGNATED 222
+LABEL ~A7_MISCTWEAKS_SAFE_CHEST_ACROSS_GAME~
 
 
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\

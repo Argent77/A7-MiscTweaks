@@ -1,0 +1,18 @@
+// Safe Chest integration into SoD's personal equipment
+IF
+  !Global("BD_PARTY_ITEMS","BD0103",0)
+  Global("a7#safe_chest","GLOBAL",12300)
+THEN
+  RESPONSE #100
+    MoveContainerContents("BG2300*a7-safe_chest","BD0103*PlayerChest00")
+    Continue()
+END
+
+IF
+  !Global("BD_PARTY_ITEMS","BD0103",0)
+  !Global("a7#safe_chest","GLOBAL",0)
+THEN
+  RESPONSE #100
+    SetGlobal("a7#safe_chest","GLOBAL",0)
+    Continue()
+END

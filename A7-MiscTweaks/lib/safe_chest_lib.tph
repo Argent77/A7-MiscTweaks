@@ -1,0 +1,268 @@
+INCLUDE ~%MOD_FOLDER%/lib/a7_wed_lib.tph~
+
+/**
+ * Inserts new tiles to the current tileset.
+ * INT_VAR secondary        Whether to insert as secondary tiles (Default: 0)
+ * INT_VAR $tis_coords_ee   EE: Associative array with "Tile ID" -> "Texture coordinates" mappings.
+ * STR_VAR pvrz_file        EE: Full path to the source pvrz file with new tile data.
+ * STR_VAR $tis_coords      Original: Associative array with "Tile ID", "# tiles" -> "Path to TIS data file" mappings.
+ *                                    One data file per contiguous tileset row to patch.
+ */
+DEFINE_PATCH_FUNCTION a7#patch_tileset
+INT_VAR
+  secondary = 0
+  // for EE games:
+  // $tis_coords_ee(<tile_id>) = <texture coordinate>
+STR_VAR
+  pvrz_file = ~~
+  // for original games:
+  // $tis_coords(<tile_id> <num_tiles>) = <path_to_tis_data>
+BEGIN
+  PATCH_IF (secondary) BEGIN
+    // preparing mappings of tile index -> secondary tile index
+    INNER_ACTION BEGIN
+      COPY_EXISTING ~%SOURCE_RES%.wed~ ~override~
+        READ_LONG 0x10 ofs_overlay
+        READ_LONG  (ofs_overlay + 0x10) ofs_tilemaps
+        PHP_EACH tis_coords_ee AS index => _ BEGIN
+          SET ofs = ofs_tilemaps + index * 10
+          READ_SSHORT (ofs + 0x4) index_sec
+          SET $tile_map(~%index%~) = index_sec
+        END
+      BUT_ONLY IF_EXISTS
+    END
+  END
+
+  READ_LONG 0x0c tile_size
+  PATCH_IF (tile_size == 12) BEGIN
+    // patching PVRZ-based tileset
+    INNER_ACTION BEGIN
+      // installing pvrz
+      LAF RES_OF_FILESPEC STR_VAR filespec = EVAL ~%pvrz_file%~ RET pvrz_base = res END
+      OUTER_SET length = (~%pvrz_base%~ STRING_MATCHES_REGEXP ~^.....[nN].*~ == 0) ? 6 : 5  // consider night tilesets
+      LAF SUBSTRING INT_VAR start = 0 length STR_VAR string = EVAL ~%pvrz_base%~ RET pvrz_base = substring END
+      OUTER_SET pvrz_index = 0
+      OUTER_FOR (i = 0; i < 100; ++i) BEGIN
+        OUTER_SET exists = (i < 10) ? FILE_EXISTS_IN_GAME ~%pvrz_base%0%i%.pvrz~ : FILE_EXISTS_IN_GAME ~%pvrz_base%%i%.pvrz~
+        ACTION_IF (NOT exists) BEGIN
+          OUTER_SET pvrz_index = i
+          OUTER_SET i = 100
+        END
+      END
+      ACTION_IF (pvrz_index < 10) BEGIN
+        COPY ~%pvrz_file%~ ~override/%pvrz_base%0%pvrz_index%.pvrz~
+      END ELSE BEGIN
+        COPY ~%pvrz_file%~ ~override/%pvrz_base%%pvrz_index%.pvrz~
+      END
+    END
+
+    // patching tiles into tileset
+    READ_LONG 0x10 ofs_tiles
+    PHP_EACH tis_coords_ee AS index => coord BEGIN
+      SET final_index = secondary ? $tile_map(~%index%~) : index
+      PATCH_IF (final_index >= 0) BEGIN
+        SET ofs = ofs_tiles + final_index * tile_size
+        WRITE_LONG ofs pvrz_index
+        SET x = coord & 0xffff
+        SET y = (coord >> 16) & 0xffff
+        WRITE_LONG (ofs + 4) x
+        WRITE_LONG (ofs + 8) y
+      END
+    END
+  END ELSE PATCH_IF (tile_size == 5120) BEGIN
+    // patching palette-based tileset
+    READ_LONG 0x10 ofs_tiles
+    PHP_EACH tis_coords AS pos => data_file BEGIN
+      SET index = $pos(~0~)
+      SET count = $pos(~1~)
+      PATCH_IF (secondary) BEGIN
+        // patch tile-by-tile
+        FOR (idx = 0; idx < count; ++idx) BEGIN
+          SET index2 = index + idx
+          SET final_index = $tile_map(~%index2%~)
+          PATCH_IF (final_index >= 0) BEGIN
+            SET ofs = ofs_tiles + index2 * tile_size
+            DELETE_BYTES ofs 5120 // delete original tile
+            INSERT_FILE ofs ~%data_file%~
+            DELETE_BYTES ofs (idx * 5120) // delete leading tiles
+            DELETE_BYTES (ofs + 5120) (count - idx - 1) * 5120  // delete trailing tiles
+          END
+        END
+      END ELSE BEGIN
+        SET ofs = ofs_tiles + index * tile_size
+        WRITE_FILE ofs ~%data_file%~
+      END
+    END
+  END ELSE BEGIN
+    PATCH_ABORT @1005 // Unsupported tileset format detected: %SOURCE_FILE%
+  END
+END
+
+
+/**
+ * Specifically for the original games: This function extracts biffed files that are referenced
+ * by the specified area to prevent game crashes.
+ *
+ * STR_VAR are_resref   Resref of the area file.
+ */
+DEFINE_ACTION_FUNCTION a7#unbiff_area_resources
+STR_VAR
+  are_resref = ~~
+BEGIN
+  // collecting filenames
+  ACTION_TO_LOWER ~are_resref~
+  ACTION_FOR_EACH suffix IN ~ht~ ~lm~ ~ln~ ~sr~ BEGIN
+    OUTER_SPRINT filename ~%are_resref%%suffix%.bmp~
+    ACTION_IF (FILE_EXISTS_IN_GAME ~%filename%~) BEGIN
+      OUTER_SET $files(~%filename%~) = 1
+    END
+  END
+
+  COPY_EXISTING ~%are_resref%.are~ ~override~
+    GET_OFFSET_ARRAY amb_offsets ARE_V10_AMBIENTS
+    PHP_EACH amb_offsets AS _ => ofs BEGIN
+      READ_SHORT (ofs + 0x80) count
+      FOR (i = 0; i < count; ++i) BEGIN
+        READ_ASCII (ofs + 0x30 + i * 8) resref (8) NULL
+        PATCH_IF (FILE_EXISTS_IN_GAME ~%resref%.wav~) BEGIN
+          TO_LOWER ~resref~
+          SET $files(~%resref%.wav~) = 1
+        END
+      END
+    END
+    READ_LONG 0xbc ofs_songs
+    PATCH_FOR_EACH ofs IN 0x28 0x30 0x3c 0x44 BEGIN
+      READ_ASCII (ofs_songs + ofs) resref (8) NULL
+      PATCH_IF (FILE_EXISTS_IN_GAME ~%resref%.wav~) BEGIN
+        TO_LOWER ~resref~
+        SET $files(~%resref%.wav~) = 1
+      END
+    END
+  BUT_ONLY IF_EXISTS
+
+  ACTION_PHP_EACH files AS file => _ BEGIN
+    COPY_EXISTING ~%file%~ ~override~
+  END
+END
+
+/**
+ * Install necessary elements for accessing the chest to the ARE and WED resources.
+ */
+DEFINE_ACTION_FUNCTION a7#install_chest
+INT_VAR
+  // container parameters
+  // $fj_vertex(<idx>) = vertex coordinate
+  fj_type = 2 // chest
+  fj_loc_x = 0
+  fj_loc_y = 0
+  fj_trap_loc_x = 0
+  fj_trap_loc_y = 0
+  // door parameters
+  // $fj_cell_open_vert(<idx>) = cell coordinate
+  fj_flags = BIT0 | BIT5 | BIT9 // Door open, Cannot close, Can be looked through
+  fj_open_box_left = 0
+  fj_open_box_top = 0
+  fj_open_box_right = 1
+  fj_open_box_bottom = 1
+  fj_closed_box_left = 0
+  fj_closed_box_top = 0
+  fj_closed_box_right = 1
+  fj_closed_box_bottom = 1
+  // automap note
+  note_loc_x = 0
+  note_loc_y = 0
+  note_note_strref = 0
+  note_color = (is_bg2ee || is_eet) ? 2 : 4 // red
+STR_VAR
+  are_resref = ~~
+  fj_name = ~a7-safe_chest~
+  fj_door_wed_id = ~A7_CHEST~
+BEGIN
+  OUTER_SPRINT wed_resref ~%are_resref%~
+
+  COPY_EXISTING ~%are_resref%.are~ ~override~
+    READ_ASCII 0x08 wed_resref (8) NULL
+
+    // adding container
+    SET fj_box_left = 32768
+    SET fj_box_top = 32768
+    SET fj_box_right = 0
+    SET fj_box_bottom = 0
+    FOR (i = 0; VARIABLE_IS_SET $fj_vertex(~%i%~); ++i) BEGIN
+      SET x = $fj_vertex(~%i%~) & 0xffff
+      SET x = (x & BIT15) ? (BNOT 0xffff) | x : x
+      SET y = ($fj_vertex(~%i%~) >> 16) & 0xffff
+      SET y = (y & BIT15) ? (BNOT 0xffff) | y : y
+      SET fj_box_left = (x < fj_box_left) ? x : fj_box_left
+      SET fj_box_top = (y < fj_box_top) ? y : fj_box_top
+      SET fj_box_right = (x > fj_box_right) ? x : fj_box_right
+      SET fj_box_bottom = (y > fj_box_bottom) ? y : fj_box_bottom
+    END
+    LPF fj_are_structure
+      INT_VAR
+        fj_loc_x
+        fj_loc_y
+        fj_type
+        fj_trap_loc_x
+        fj_trap_loc_y
+        fj_box_left
+        fj_box_top
+        fj_box_right
+        fj_box_bottom
+      STR_VAR
+        fj_structure_type = ~container~
+        fj_name
+    END
+
+    // adding door cells
+    LPF fj_are_structure
+      INT_VAR
+        fj_flags
+        fj_open_box_left
+        fj_open_box_top
+        fj_open_box_right
+        fj_open_box_bottom
+        fj_closed_box_left
+        fj_closed_box_top
+        fj_closed_box_right
+        fj_closed_box_bottom
+      STR_VAR
+        fj_structure_type = ~door~
+        fj_name
+        fj_door_wed_id
+    END
+
+    PATCH_IF (note_note_strref > 0) BEGIN
+      // adding automap note
+      LPF fj_are_structure
+        INT_VAR
+          fj_loc_x = note_loc_x
+          fj_loc_y = note_loc_y
+          fj_note_strref = note_note_strref
+          fj_color = note_color
+        STR_VAR
+          fj_structure_type = ~note~
+      END
+    END
+  BUT_ONLY
+
+  ACTION_FOR_EACH suffix IN ~~ ~n~ BEGIN
+    // adding new WED door structure (required for oBG2, optional for BG2EE)
+    COPY_EXISTING ~%wed_resref%%suffix%.wed~ ~override~
+      LPF a7#wed_open RET success RET_ARRAY wed END
+      PATCH_IF (success) BEGIN
+        LPF a7#batch_wed_add_door
+          STR_VAR
+            door_name = EVAL ~%fj_door_wed_id%~
+          RET success
+          RET_ARRAY wed
+        END
+      END
+      PATCH_IF (success) BEGIN
+        LPF a7#wed_close RET success END
+      END ELSE BEGIN
+        PATCH_ABORT @1006 // Could not patch file: %SOURCE_FILE%
+      END
+    BUT_ONLY IF_EXISTS
+  END
+END

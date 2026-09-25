@@ -1,0 +1,8 @@
+// Safe Chest initialization
+IF
+  !Global("a7#safe_chest","GLOBAL",25000)
+THEN
+  RESPONSE #100
+    SetGlobal("a7#safe_chest","GLOBAL",25000)
+    Continue()
+END

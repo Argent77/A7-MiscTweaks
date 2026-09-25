@@ -1,0 +1,8 @@
+// Script block: Move "Safe Chest" content AR3000 -> are_resref
+IF
+  Global("a7#safe_chest","GLOBAL",23000)
+THEN
+  RESPONSE #100
+    MoveContainerContents("AR3000*a7-safe_chest","%are_resref%*a7-safe_chest")
+    Continue()
+END

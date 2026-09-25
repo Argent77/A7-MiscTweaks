@@ -1,0 +1,312 @@
+// Adds several chests across the whole game and connects them via script
+
+INCLUDE ~%MOD_FOLDER%/lib/safe_chest_lib.tph~
+INCLUDE ~%MOD_FOLDER%/lib/safe_chest_wk.tph~
+
+// AR2000 (Trademeet)
+// patching tileset
+ACTION_FOR_EACH suffix IN ~~ ~n~ BEGIN
+  COPY_EXISTING ~ar2000%suffix%.tis~ ~override~
+    LPF a7#patch_tileset
+      INT_VAR
+        $tis_coords_ee(~3212~) = 0   | (0 << 16)
+        $tis_coords_ee(~3213~) = 64  | (0 << 16)
+        $tis_coords_ee(~3214~) = 128 | (0 << 16)
+        $tis_coords_ee(~3278~) = 64  | (64 << 16)
+        $tis_coords_ee(~3279~) = 128 | (64 << 16)
+      STR_VAR
+        pvrz_file = EVAL ~%MOD_FOLDER%/pvrz/bg2ee/a2000%suffix%00.pvrz~
+        $tis_coords(~3212~ ~3~) = EVAL ~%MOD_FOLDER%/tis/ar2000%suffix%-safe_chest_tiles-row1.dat~
+        $tis_coords(~3278~ ~2~) = EVAL ~%MOD_FOLDER%/tis/ar2000%suffix%-safe_chest_tiles-row2.dat~
+    END
+  BUT_ONLY
+END
+
+ACTION_IF (is_bg2 || is_bgt) BEGIN
+  COPY ~%MOD_FOLDER%/mos/ar2000.mos~ ~override~
+       ~%MOD_FOLDER%/mos/ar2000n.mos~ ~override~
+
+  // original games may crash if certain relevant area files are not found in the override folder
+  LAF a7#unbiff_area_resources STR_VAR are_resref = ~ar2000~ END
+END
+
+// inserting chest in map
+LAF a7#install_chest
+  INT_VAR
+    // container
+    $fj_vertex(~0~) = 1824 | (3149 << 16)
+    $fj_vertex(~1~) = 1855 | (3168 << 16)
+    $fj_vertex(~2~) = 1855 | (3187 << 16)
+    $fj_vertex(~3~) = 1838 | (3198 << 16)
+    $fj_vertex(~4~) = 1809 | (3180 << 16)
+    $fj_vertex(~5~) = 1809 | (3161 << 16)
+    $fj_vertex(~6~) = 1815 | (3153 << 16)
+    fj_loc_x = 1805
+    fj_loc_y = 3203
+    fj_trap_loc_x = 1834
+    fj_trap_loc_y = 3161
+    // door
+    $fj_cell_open_vert(~0~) = 112 | (264 << 16)
+    $fj_cell_open_vert(~1~) = 112 | (265 << 16)
+    $fj_cell_open_vert(~2~) = 113 | (265 << 16)
+    $fj_cell_open_vert(~3~) = 114 | (266 << 16)
+    // automap note
+    note_loc_x = 1850
+    note_loc_y = 3142
+    note_note_strref = RESOLVE_STR_REF(@2400) // Safe Chest
+  STR_VAR
+    are_resref = ~ar2000~
+END
+
+
+// AR5000 (Saradush)
+// patching tileset
+ACTION_FOR_EACH suffix IN ~~ ~n~ BEGIN
+  OUTER_SPRINT resref ~ar5000%suffix%~
+  ACTION_IF (FILE_EXISTS_IN_GAME ~%resref%.tis~) BEGIN
+    COPY_EXISTING ~%resref%.tis~ ~override~
+      LPF a7#patch_tileset
+        INT_VAR
+          $tis_coords_ee(~1405~) = 0   | (0 << 16)
+          $tis_coords_ee(~1406~) = 64  | (0 << 16)
+          $tis_coords_ee(~1407~) = 128 | (0 << 16)
+          $tis_coords_ee(~1458~) = 0   | (64 << 16)
+          $tis_coords_ee(~1459~) = 64  | (64 << 16)
+        STR_VAR
+          pvrz_file = EVAL ~%MOD_FOLDER%/pvrz/bg2ee/a5000%suffix%00.pvrz~
+          $tis_coords(~1405~ ~3~) = EVAL ~%MOD_FOLDER%/tis/ar5000%suffix%-safe_chest_tiles-row1.dat~
+          $tis_coords(~1458~ ~2~) = EVAL ~%MOD_FOLDER%/tis/ar5000%suffix%-safe_chest_tiles-row2.dat~
+      END
+    BUT_ONLY
+  END
+END
+
+ACTION_IF (is_bg2 || is_bgt) BEGIN
+  COPY ~%MOD_FOLDER%/mos/ar5000.mos~ ~override~
+  ACTION_IF (FILE_EXISTS_IN_GAME ~ar5000n.tis~) BEGIN
+    COPY ~%MOD_FOLDER%/mos/ar5000n.mos~ ~override/ar5000n.mos~
+  END
+
+  // original games may crash if certain relevant area files are not found in the override folder
+  LAF a7#unbiff_area_resources STR_VAR are_resref = ~ar5000~ END
+END
+
+// inserting chest in map
+LAF a7#install_chest
+  INT_VAR
+    // container
+    $fj_vertex(~0~) = 1818 | (1679 << 16)
+    $fj_vertex(~1~) = 1826 | (1684 << 16)
+    $fj_vertex(~2~) = 1832 | (1691 << 16)
+    $fj_vertex(~3~) = 1832 | (1711 << 16)
+    $fj_vertex(~4~) = 1803 | (1730 << 16)
+    $fj_vertex(~5~) = 1785 | (1719 << 16)
+    $fj_vertex(~6~) = 1785 | (1699 << 16)
+    fj_loc_x = 1839
+    fj_loc_y = 1732
+    fj_trap_loc_x = 1804
+    fj_trap_loc_y = 1693
+    // door
+    $fj_cell_open_vert(~0~) = 115 | (140 << 16)
+    $fj_cell_open_vert(~1~) = 114 | (141 << 16)
+    $fj_cell_open_vert(~2~) = 115 | (141 << 16)
+    $fj_cell_open_vert(~3~) = 113 | (142 << 16)
+    $fj_cell_open_vert(~4~) = 114 | (142 << 16)
+    $fj_cell_open_vert(~5~) = 112 | (143 << 16)
+    $fj_cell_open_vert(~6~) = 113 | (143 << 16)
+    // automap note
+    note_loc_x = 1816
+    note_loc_y = 1667
+    note_note_strref = RESOLVE_STR_REF(@2400) // Safe Chest
+  STR_VAR
+    are_resref = ~ar5000~
+END
+
+
+// AR5500 (Amkethran)
+// patching tileset
+ACTION_FOR_EACH suffix IN ~~ ~n~ BEGIN
+  OUTER_SPRINT resref ~ar5500%suffix%~
+  ACTION_IF (FILE_EXISTS_IN_GAME ~%resref%.tis~) BEGIN
+    COPY_EXISTING ~%resref%.tis~ ~override~
+      PATCH_FOR_EACH state IN ~open~ ~closed~ BEGIN
+        SET secondary = (~%state%~ STR_EQ ~closed~)
+        SET idx = secondary
+        LPF a7#patch_tileset
+          INT_VAR
+            secondary
+            $tis_coords_ee(~1303~) = 64  | (0 << 16)
+            $tis_coords_ee(~1362~) = 0   | (64 << 16)
+            $tis_coords_ee(~1363~) = 64  | (64 << 16)
+            $tis_coords_ee(~1364~) = 128 | (64 << 16)
+          STR_VAR
+            pvrz_file = EVAL ~%MOD_FOLDER%/pvrz/bg2ee/a5500%suffix%0%idx%.pvrz~
+            $tis_coords(~1303~ ~1~) = EVAL ~%MOD_FOLDER%/tis/ar5500%suffix%-safe_chest_tiles-%state%-row1.dat~
+            $tis_coords(~1362~ ~3~) = EVAL ~%MOD_FOLDER%/tis/ar5500%suffix%-safe_chest_tiles-%state%-row2.dat~
+        END
+      END
+    BUT_ONLY
+  END
+END
+
+ACTION_IF (is_bg2 || is_bgt) BEGIN
+  COPY ~%MOD_FOLDER%/mos/ar5500.mos~ ~override~
+  ACTION_IF (FILE_EXISTS_IN_GAME ~ar5500n.tis~) BEGIN
+    COPY ~%MOD_FOLDER%/mos/ar5500n.mos~ ~override/ar5500n.mos~
+  END
+
+  // original games may crash if certain relevant area files are not found in the override folder
+  LAF a7#unbiff_area_resources STR_VAR are_resref = ~ar5500~ END
+END
+
+// inserting chest in map
+LAF a7#install_chest
+  INT_VAR
+    // container
+    $fj_vertex(~0~) = 2776 | (1410 << 16)
+    $fj_vertex(~1~) = 2806 | (1424 << 16)
+    $fj_vertex(~2~) = 2806 | (1444 << 16)
+    $fj_vertex(~3~) = 2794 | (1453 << 16)
+    $fj_vertex(~4~) = 2766 | (1439 << 16)
+    $fj_vertex(~5~) = 2766 | (1421 << 16)
+    $fj_vertex(~6~) = 2769 | (1415 << 16)
+    fj_loc_x = 2754
+    fj_loc_y = 1456
+    fj_trap_loc_x = 2787
+    fj_trap_loc_y = 1420
+    // door
+    $fj_cell_open_vert(~0~) = 172 | (119 << 16)
+    // automap note
+    note_loc_x = 2818
+    note_loc_y = 1408
+    note_note_strref = RESOLVE_STR_REF(@2400) // Safe Chest
+  STR_VAR
+    are_resref = ~ar5500~
+END
+
+
+ACTION_IF (is_eet) BEGIN
+  // BG2300 (Friendly Arms Inn)
+  ACTION_FOR_EACH suffix IN ~~ ~n~ BEGIN
+    OUTER_SPRINT resref ~bg2300%suffix%~
+    ACTION_IF (FILE_EXISTS_IN_GAME ~%resref%.tis~) BEGIN
+      COPY_EXISTING ~%resref%.tis~ ~override~
+        LPF a7#patch_tileset
+          INT_VAR
+            $tis_coords_ee(~2679~) = 0   | (0 << 16)
+            $tis_coords_ee(~2680~) = 64  | (0 << 16)
+            $tis_coords_ee(~2681~) = 128 | (0 << 16)
+          STR_VAR
+            pvrz_file = EVAL ~%MOD_FOLDER%/pvrz/bg2ee/b2300%suffix%00.pvrz~
+            $tis_coords(~2679~ ~3~) = EVAL ~%MOD_FOLDER%/tis/bg2300%suffix%-safe_chest_tiles-row1.dat~
+        END
+      BUT_ONLY
+    END
+  END
+
+  ACTION_IF (is_bg2 || is_bgt) BEGIN
+    COPY ~%MOD_FOLDER%/mos/bg2300.mos~ ~override/bg2300.mos~
+    ACTION_IF (FILE_EXISTS_IN_GAME ~bg2300n.tis~) BEGIN
+      COPY ~%MOD_FOLDER%/mos/bg2300n.mos~ ~override/bg2300n.mos~
+    END
+
+    // original games may crash if certain relevant area files are not found in the override folder
+    LAF a7#unbiff_area_resources STR_VAR are_resref = ~bg2300~ END
+  END
+
+  // inserting chest in map
+  LAF a7#install_chest
+    INT_VAR
+      // container
+      $fj_vertex(~0~) = 2565 | (2121 << 16)
+      $fj_vertex(~1~) = 2604 | (2134 << 16)
+      $fj_vertex(~2~) = 2604 | (2153 << 16)
+      $fj_vertex(~3~) = 2591 | (2165 << 16)
+      $fj_vertex(~4~) = 2554 | (2152 << 16)
+      $fj_vertex(~5~) = 2554 | (2133 << 16)
+      $fj_vertex(~6~) = 2558 | (2126 << 16)
+      fj_loc_x = 2560
+      fj_loc_y = 2176
+      fj_trap_loc_x = 2581
+      fj_trap_loc_y = 2131
+      // door
+      $fj_cell_open_vert(~0~) = 159 | (178 << 16)
+      $fj_cell_open_vert(~1~) = 159 | (179 << 16)
+      $fj_cell_open_vert(~2~) = 160 | (179 << 16)
+      $fj_cell_open_vert(~3~) = 161 | (179 << 16)
+      $fj_cell_open_vert(~4~) = 162 | (179 << 16)
+      // automap note
+      note_loc_x = 2605
+      note_loc_y = 2105
+      note_note_strref = RESOLVE_STR_REF(@2400) // Safe Chest
+    STR_VAR
+      are_resref = ~bg2300~
+  END
+END
+
+
+// implementing chest scripting
+/*
+Variables:
+- Global("a7#safe_chest","GLOBAL): tracks the currently active safe chest
+  - Use game id + area code to determine active chest:
+    - game id: BG1=1, BG2=2
+    - BG2300 (BG1) -> 12300
+    - AR2000 (BG2) -> 22000
+    - AR3000 (BG2) -> 23000
+    - AR5000 (BG2) -> 25000
+    - AR5500 (BG2) -> 25500
+- integrate into SoD's own "Personal Equipment" feature
+  - Set a7#safe_chest = 0
+*/
+OUTER_SPRINT are_resref ~AR2000~
+EXTEND_TOP ~ar2000.bcs~ ~%MOD_FOLDER%/bcs/safe_chest-init-ar2000.baf~ EVAL
+EXTEND_TOP ~ar2000.bcs~ ~%MOD_FOLDER%/bcs/safe_chest_move-ar5500.baf~ EVAL
+EXTEND_TOP ~ar2000.bcs~ ~%MOD_FOLDER%/bcs/safe_chest_move-ar5000.baf~ EVAL
+EXTEND_TOP ~ar2000.bcs~ ~%MOD_FOLDER%/bcs/safe_chest_move-ar3000.baf~ EVAL
+ACTION_IF (is_eet) BEGIN
+  EXTEND_TOP ~ar2000.bcs~ ~%MOD_FOLDER%/bcs/safe_chest_move-sod.baf~ EVAL
+  EXTEND_TOP ~ar2000.bcs~ ~%MOD_FOLDER%/bcs/safe_chest_move-bg2300.baf~ EVAL
+END
+
+OUTER_SPRINT are_resref ~AR3000~
+EXTEND_TOP ~ar3000.bcs~ ~%MOD_FOLDER%/bcs/safe_chest-init-ar3000.baf~ EVAL
+EXTEND_TOP ~ar3000.bcs~ ~%MOD_FOLDER%/bcs/safe_chest_move-ar5500.baf~ EVAL
+EXTEND_TOP ~ar3000.bcs~ ~%MOD_FOLDER%/bcs/safe_chest_move-ar5000.baf~ EVAL
+EXTEND_TOP ~ar3000.bcs~ ~%MOD_FOLDER%/bcs/safe_chest_move-ar2000.baf~ EVAL
+ACTION_IF (is_eet) BEGIN
+  EXTEND_TOP ~ar3000.bcs~ ~%MOD_FOLDER%/bcs/safe_chest_move-sod.baf~ EVAL
+  EXTEND_TOP ~ar3000.bcs~ ~%MOD_FOLDER%/bcs/safe_chest_move-bg2300.baf~ EVAL
+END
+
+OUTER_SPRINT are_resref ~AR5000~
+EXTEND_TOP ~ar5000.bcs~ ~%MOD_FOLDER%/bcs/safe_chest-init-ar5000.baf~ EVAL
+EXTEND_TOP ~ar5000.bcs~ ~%MOD_FOLDER%/bcs/safe_chest_move-ar5500.baf~ EVAL
+EXTEND_TOP ~ar5000.bcs~ ~%MOD_FOLDER%/bcs/safe_chest_move-ar3000.baf~ EVAL
+EXTEND_TOP ~ar5000.bcs~ ~%MOD_FOLDER%/bcs/safe_chest_move-ar2000.baf~ EVAL
+ACTION_IF (is_eet) BEGIN
+  EXTEND_TOP ~ar5000.bcs~ ~%MOD_FOLDER%/bcs/safe_chest_move-sod.baf~ EVAL
+  EXTEND_TOP ~ar5000.bcs~ ~%MOD_FOLDER%/bcs/safe_chest_move-bg2300.baf~ EVAL
+END
+
+OUTER_SPRINT are_resref ~AR5500~
+EXTEND_TOP ~ar5500.bcs~ ~%MOD_FOLDER%/bcs/safe_chest-init-ar5500.baf~ EVAL
+EXTEND_TOP ~ar5500.bcs~ ~%MOD_FOLDER%/bcs/safe_chest_move-ar5000.baf~ EVAL
+EXTEND_TOP ~ar5500.bcs~ ~%MOD_FOLDER%/bcs/safe_chest_move-ar3000.baf~ EVAL
+EXTEND_TOP ~ar5500.bcs~ ~%MOD_FOLDER%/bcs/safe_chest_move-ar2000.baf~ EVAL
+ACTION_IF (is_eet) BEGIN
+  EXTEND_TOP ~ar5500.bcs~ ~%MOD_FOLDER%/bcs/safe_chest_move-sod.baf~ EVAL
+  EXTEND_TOP ~ar5500.bcs~ ~%MOD_FOLDER%/bcs/safe_chest_move-bg2300.baf~ EVAL
+END
+
+ACTION_IF (is_eet) BEGIN
+  OUTER_SPRINT are_resref ~BG2300~
+  EXTEND_TOP ~bg2300.bcs~ ~%MOD_FOLDER%/bcs/safe_chest-init-bg2300.baf~ EVAL
+  EXTEND_TOP ~bg2300.bcs~ ~%MOD_FOLDER%/bcs/safe_chest_move-ar5500.baf~ EVAL
+  EXTEND_TOP ~bg2300.bcs~ ~%MOD_FOLDER%/bcs/safe_chest_move-ar5000.baf~ EVAL
+  EXTEND_TOP ~bg2300.bcs~ ~%MOD_FOLDER%/bcs/safe_chest_move-ar3000.baf~ EVAL
+  EXTEND_TOP ~bg2300.bcs~ ~%MOD_FOLDER%/bcs/safe_chest_move-ar2000.baf~ EVAL
+  EXTEND_TOP ~bg2300.bcs~ ~%MOD_FOLDER%/bcs/safe_chest_move-sod.baf~ EVAL
+
+  EXTEND_TOP ~bd0103.bcs~ ~%MOD_FOLDER%/bcs/safe_chest-init-bd0103.baf~ EVAL
+END

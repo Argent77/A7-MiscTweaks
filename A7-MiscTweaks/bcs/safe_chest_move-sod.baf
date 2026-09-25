@@ -1,0 +1,19 @@
+// Script block: Move SoD's "Personal Equipment" content -> are_resref
+IF
+  Global("a7#safe_chest","GLOBAL",0)
+  !Global("bd_plot","global",0)
+  Switch("BD_PlayerChest","GLOBAL")
+THEN
+  RESPONSE #0
+    MoveContainerContents("BD0103*PlayerChest00","%are_resref%*a7-safe_chest")
+    Continue()
+  RESPONSE #1
+    MoveContainerContents("BD1000*PlayerChest00","%are_resref%*a7-safe_chest")
+    Continue()
+  RESPONSE #2
+    MoveContainerContents("BD7100*PlayerChest00","%are_resref%*a7-safe_chest")
+    Continue()
+  RESPONSE #3
+    MoveContainerContents("BD3000*PlayerChest00","%are_resref%*a7-safe_chest")
+    Continue()
+END

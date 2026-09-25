@@ -40,6 +40,8 @@ Installation order & mod compatibility
 This is primarily a tweak mod and should therefore be installed after content mods that install
 new items, spells, NPCs, or quests.
 
+The component "Add a Safe Chest to the game" supports "Baldurs Gate Graphical Overhaul" if detected.
+
 There are no technical compatibility issues known with other mods.
 
 
@@ -166,16 +168,27 @@ The ability is granted by the Great Oak of Kuldahar after the events that take p
 when the party returned from Dragon's Eye.
 
 
-*** Add a "Safe Chest" to Watcher's Keep (BG2, BGT, BG2:EE, and EET) ***
+*** Add a "Safe Chest" to the game (BG2, BGT, BG2:EE, and EET) ***
 
 Group: Convenience Tweaks/Cheats
 
-This component adds a personal storage container to the Watcher's Keep exterior map. It can be used
-to store items that should be shared between the Shadows of Amn and Throne of Bhaal campaigns.
+This component adds a personal storage container to the game. It can be used to store items that
+should be shared between the individual game campaigns.
+
+The following options are available:
+1. Single chest to Watcher's Keep only
+   This option adds a single chest to the Watcher's Keep map, which is accessible from the "Shadows
+   of Amn" and "Throne of Bhaal" campaign.
+2. Several linked chests across the game (BG2:EE and EET only)
+   This option adds several chests across the whole game, which are linked to each other. Placing
+   items in one chest will be available in any of the other chests. Chests are added to Trademeet,
+   Watcher's Keep, Saradush, and Amkethran. In an EET game additional chests are available at the
+   Friendly Arms Inn, and the "Charname's Equipment" chests from the Siege of Dragonspear campaign
+   are integrated as well.
 
 Note:
-It is not recommended to install "Make Watchers' Keep accessible between SoA and ToB" from SCS
-together with this component.
+The SCS component "Make Watchers' Keep accessible between SoA and ToB" may prevent access to the
+Watcher's Keep area from the SoA and ToB campaigns.
 
 
 *** Reactivate "Back" button in the Dual-Class menu (BG:EE, BG2:EE, EET, and IWD:EE) ***

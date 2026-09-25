@@ -83,7 +83,9 @@
 @213 = ~Voller Schadensbonus für alle Waffen des Spiels~
 @214 = ~Halber Schadensbonus für alle Waffen des Spiels~
 
-@220 = ~"Sichere Truhe" in der Wachenden Festung~
+@220 = ~"Sichere Truhe" zum Spiel hinzufügen~
+@221 = ~Einzelne Truhe in der Wachenden Festung~
+@222 = ~Mehrere verbundene Truhen über das gesamte Spiel verteilen~
 
 // Messages
 @1000 = ~DLC Merger wird benötigt, bevor in diesem Spiel Mods installiert werden können. Links und weitere Informationen werden in der Readme aufgeführt.~
@@ -91,8 +93,8 @@
 @1002 = ~Gewählte Modkomponente steht nicht zur Verfügung.~
 @1003 = ~Diese Komponente ist nicht mit dem aktuellen Zustand des Spiels kompatibel.~
 @1004 = ~Schadensbonus wurde bereits angewendet.~
-@1005 = ~Nicht unterstütztes Tileset-Format erkannt: AR3000.TIS~
-@1006 = ~Datei konnte nicht gepatcht werden: AR3000.WED~
+@1005 = ~Nicht unterstütztes Tileset-Format erkannt: %SOURCE_FILE%~
+@1006 = ~Datei konnte nicht gepatcht werden: %SOURCE_FILE%~
 
 // Groups
 @1100 = ~Angenehme Verbesserungen/Cheats~

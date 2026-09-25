@@ -1,9 +1,14 @@
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
 /////                                                  \\\\\
-///// Add a "Safe Chest" to Watcher's Keep             \\\\\
+///// Add a "Safe Chest" to the game                   \\\\\
 /////                                                  \\\\\
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
 
-INCLUDE ~%MOD_FOLDER%/lib/wk_safe_chest.tph~
+/////                                                  \\\\\
+///// Single chest to Watcher's Keep only              \\\\\
+/////                                                  \\\\\
+
+PRINT ~Patching tilesets. This may take a while...~
+INCLUDE ~%MOD_FOLDER%/lib/safe_chest_wk.tph~
