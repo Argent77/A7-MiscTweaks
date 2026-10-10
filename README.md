@@ -103,6 +103,8 @@ The following options are available:
 1. **Single chest to Watcher's Keep only:** This option adds a single chest to the Watcher's Keep map, which is accessible from the "Shadows of Amn" and "Throne of Bhaal" campaign.
 1. **Several linked chests across the game *(BG2:EE and EET only)*:** This option adds several chests across the whole game, which are linked to each other. Placing items in one chest will be available in any of the other chests. Chests are added to Trademeet, Watcher's Keep, Saradush, and Amkethran. In an EET game additional chests are available at the Friendly Arms Inn, and the "Charname's Equipment" chests from the Siege of Dragonspear campaign are integrated as well.
 
+Locations of the chest are marked with automap notes on the area map view.
+
 **Note:** The SCS component "Make Watcher's Keep accessible between SoA and ToB" may prevent access to the Watcher's Keep area from the SoA and ToB campaigns.
 
 ### Reactivate "Back" button in the Dual-Class menu *(BG:EE, BG2:EE, EET, and IWD:EE)*

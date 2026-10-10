@@ -187,6 +187,8 @@ The following options are available:
    Friendly Arms Inn, and the "Charname's Equipment" chests from the Siege of Dragonspear campaign
    are integrated as well.
 
+Locations of the chest are marked with automap notes on the area map view.
+
 Note:
 The SCS component "Make Watchers' Keep accessible between SoA and ToB" may prevent access to the
 Watcher's Keep area from the SoA and ToB campaigns.
