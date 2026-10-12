@@ -95,6 +95,7 @@
 @1004 = ~Schadensbonus wurde bereits angewendet.~
 @1005 = ~Nicht unterstütztes Tileset-Format erkannt: %SOURCE_FILE%~
 @1006 = ~Datei konnte nicht gepatcht werden: %SOURCE_FILE%~
+@1007 = ~Diese Komponente ist mit der aktuellen GUI nicht kompatibel.~
 
 // Groups
 @1100 = ~Angenehme Verbesserungen/Cheats~

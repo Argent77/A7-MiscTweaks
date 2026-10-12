@@ -95,6 +95,7 @@
 @1004 = ~Damage bonus is already applied.~
 @1005 = ~Unsupported tileset format detected: %SOURCE_FILE%~
 @1006 = ~Could not patch file: %SOURCE_FILE%~
+@1007 = ~This component is not compatible with the current GUI.~
 
 // Groups
 @1100 = ~Convenience Tweaks/Cheats~
