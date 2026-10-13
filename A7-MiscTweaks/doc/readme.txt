@@ -355,7 +355,7 @@ screen in the vanilla BG2:EE and EET GUI if you scroll the map all the way down.
 This component removes the black bar by reducing the height of the map viewport to a size that
 doesn't produce the black bar.
 
-Note: The patch will only be applied to the world map screen of the original GUI of the game.
+Note: The component is not compatible with custom GUI replacement mods.
 
 
 Credits
@@ -383,7 +383,7 @@ History
 - Added new tweak: Remove black bar on the world map screen
 - Added new tweak: Pressing Escape on the start screen quits the game
 - Added new tweak: Pressing Escape on the start screen does not quit the game
-- Changed install order of mod components (sorted by category)
+- Changed presentation order of mod components (sorted by category)
 
 1.2
 - Added new tweak: Restore original order of character portraits
