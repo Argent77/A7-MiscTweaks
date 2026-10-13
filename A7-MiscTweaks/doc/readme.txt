@@ -1,7 +1,7 @@
 Argent's Miscellaneous Tweaks
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Version:    1.2
+Version:    1.3
 Author:     Argent77
 
 Download:   https://github.com/Argent77/A7-MiscTweaks/releases
