@@ -106,6 +106,7 @@ END
  * INT_VAR factor_nominator     Nominator of a factor that is applied to the calculated damage value. (Default: 1)
  * INT_VAR factor_denominator   Denominator of a factor that is applied to the calculated damage value. (Default: 1)
  * INT_VAR factor_rounding      Whether to round fractional values. (Default: 1)
+ * INT_VAR include_auto_ammo    Whether to include ammo that is created by the launcher. (Default: 1)
  */
 DEFINE_ACTION_FUNCTION APPLY_BOW_DAMAGE_BONUS
 INT_VAR
@@ -114,6 +115,7 @@ INT_VAR
   factor_nominator = 1
   factor_denominator = 1
   factor_rounding = 1
+  include_auto_ammo = 1
 BEGIN
   OUTER_SET factor_denominator = (factor_denominator <= 0) ? 1 : factor_denominator
 
@@ -135,7 +137,15 @@ BEGIN
           GET_OFFSET_ARRAY abil_headers ITM_V10_HEADERS
           PATCH_PHP_EACH abil_headers AS _ => ofs_abil BEGIN
             READ_BYTE ofs_abil abil_type
-            PATCH_IF (abil_type == 4) BEGIN // launcher only
+
+            // launcher and (optionally) ranged ability headers only
+            SET type_match = (abil_type == 4)
+            PATCH_IF (NOT type_match && include_auto_ammo) BEGIN
+              READ_SHORT (ofs_abil + 0x32) is_arrow
+              SET type_match = (abil_type == 2 && is_arrow)  // type: ranged; is arrow
+            END
+
+            PATCH_IF (type_match) BEGIN
               READ_SHORT (ofs_abil + 0x1a) damage
               SET damage += enchantment
               WRITE_SHORT (ofs_abil + 0x1a) damage

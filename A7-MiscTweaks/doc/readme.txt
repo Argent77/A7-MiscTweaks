@@ -94,6 +94,9 @@ In BG:EE and IWD:EE enchanted bows provide a damage bonus that correlates with t
 value of the weapon. This bonus doesn't exist for bows in BG2:EE. This component adds the damage
 bonus to bows in BG2:EE.
 
+Note:
+The damage bonus is also applied to ammo that is created by the bow itself (e.g. Shortbow of Gesen).
+
 The following options are available:
 1. Full bonus to weapons usable by the player:
    This option adds a damage bonus that equals the enchantment of the bow. It will only be added to
