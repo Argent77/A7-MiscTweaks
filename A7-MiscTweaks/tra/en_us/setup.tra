@@ -87,6 +87,8 @@
 @221 = ~Single chest to Watcher's Keep only~
 @222 = ~Several linked chests across the game~
 
+@230 = ~Remove level-dependent slot limit for weapon categories and styles~
+
 // Messages
 @1000 = ~DLC Merger is required before mods can be installed on this game. Check the readme for more information and a link to download DLC Merger.~
 @1001 = ~This component is not available for your game.~

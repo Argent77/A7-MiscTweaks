@@ -87,6 +87,8 @@
 @221 = ~Einzelne Truhe in der Wachenden Festung~
 @222 = ~Mehrere verbundene Truhen über das gesamte Spiel verteilen~
 
+@230 = ~Stufenabhängige Beschränkung der Fertigkeitspunkte für Waffenkategorien entfernen~
+
 // Messages
 @1000 = ~DLC Merger wird benötigt, bevor in diesem Spiel Mods installiert werden können. Links und weitere Informationen werden in der Readme aufgeführt.~
 @1001 = ~Diese Komponente ist für dieses Spiel nicht verfügbar.~

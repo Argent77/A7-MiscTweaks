@@ -1,0 +1,27 @@
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
+///// Remove level-dependent slot limit for weapon     \\\\\
+///// categories and styles                            \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+COPY_EXISTING ~profsmax.2da~ ~override~
+  COUNT_2DA_COLS num_cols
+  PATCH_IF (num_cols > 3) BEGIN
+    SET patched = 0
+    READ_2DA_ENTRIES_NOW profsmax_table 1
+    FOR (row = 3; row < profsmax_table; ++row) BEGIN
+      FOR (col = 1; IS_AN_INT $profsmax_table(~%row%~ ~%col%~); ++col) BEGIN
+        SET_2DA_ENTRY_LATER profsmax_table_out row col 5
+        SET patched = 1
+      END
+    END
+
+    PATCH_IF (patched) BEGIN
+      SET_2DA_ENTRIES_NOW profsmax_table_out 1
+      PRETTY_PRINT_2DA
+    END
+  END
+BUT_ONLY

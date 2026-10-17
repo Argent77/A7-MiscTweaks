@@ -552,6 +552,23 @@ LABEL ~A7_MISCTWEAKS_ESC_NOT_QUIT_GAME~
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
 /////                                                  \\\\\
+///// Remove level-dependent slot limit for weapon     \\\\\
+///// categories and styles                            \\\\\
+/////                                                  \\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+
+BEGIN @230  // Remove level-dependent slot limit for weapon categories and styles
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee~ &&
+                   RESOURCE_CONTAINS ~profsmax.2da~ ~[A-Z_]+[ %TAB%]+[0-9]+[ %TAB%]+[0-9]+[ %TAB%]+[0-9]+[ %TAB%]+[0-9]+[ %TAB%]+[0-9]+~) @1001  // This component is not available for your game.
+GROUP @1100 // Convenience Tweaks/Cheats
+DESIGNATED 230
+LABEL ~A7_MISCTWEAKS_REMOVE_PROF_LEVEL_LIMIT~
+
+
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
+/////                                                  \\\\\
 ///// Disable creature tooltips                        \\\\\
 /////                                                  \\\\\
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
