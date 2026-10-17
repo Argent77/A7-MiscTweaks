@@ -286,3 +286,21 @@ BEGIN
     END
   END
 END
+
+/**
+ * Checks whether kjeron's "Ammo-less Ammunition" mod is installed and prints a warning by default.
+ *
+ * INT_VAR force_error    Whether to force installation failure if the mod is detected. (Default: 0)
+ */
+DEFINE_ACTION_FUNCTION mod_check_ammoless
+INT_VAR
+  force_error = 0
+BEGIN
+  ACTION_IF (MOD_IS_INSTALLED ~ammoless.tp2~ 0) BEGIN
+    ACTION_IF (force_error) BEGIN
+      FAIL @1009  // This component conflicts with kjeron's "Ammo-less launcher" mod.
+    END ELSE BEGIN
+      WARN @1009  // This component conflicts with kjeron's "Ammo-less launcher" mod.
+    END
+  END
+END

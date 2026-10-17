@@ -97,6 +97,7 @@
 @1006 = ~Could not patch file: %SOURCE_FILE%~
 @1007 = ~This component is not compatible with the current GUI.~
 @1008 = ~This component cannot be installed together with Dee's "Enchant the Missile Launchers."~
+@1009 = ~This component conflicts with kjeron's "Ammo-less launcher" mod.~
 
 // Groups
 @1100 = ~Convenience Tweaks/Cheats~

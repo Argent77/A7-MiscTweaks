@@ -97,6 +97,7 @@
 @1006 = ~Datei konnte nicht gepatcht werden: %SOURCE_FILE%~
 @1007 = ~Diese Komponente ist mit der aktuellen GUI nicht kompatibel.~
 @1008 = ~Diese Komponente kann nicht zusammen mit Dees "Enchant the Missile Launchers" installiert werden.~
+@1009 = ~Diese Komponente ist nicht vollständig kompatibel mit kjerons "Ammo-less launcher" Mod.~
 
 // Groups
 @1100 = ~Angenehme Verbesserungen/Cheats~

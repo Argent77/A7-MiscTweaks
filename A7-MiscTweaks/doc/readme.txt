@@ -43,7 +43,10 @@ new items, spells, NPCs, or quests.
 The component "Add a Safe Chest to the game" supports "Baldurs Gate Graphical Overhaul" (BGGO)
 if detected.
 
-There are no technical compatibility issues known with other mods.
+The component "Add damage bonus to bows" conflicts conceptionally with kjeron's mod
+"Ammo-less launcher." It is strongly recommended to install only one or the other.
+
+There are no further technical compatibility issues known with other mods.
 
 
 Components
