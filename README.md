@@ -19,6 +19,8 @@ This is primarily a tweak mod and should therefore be installed after content mo
 
 The component "Add a Safe Chest to the game" supports "Baldurs Gate Graphical Overhaul" (BGGO) if detected.
 
+The component "Add damage bonus to bows" conflicts conceptionally with kjeron's mod "Ammo-less launcher." It is strongly recommended to install only one or the other.
+
 There are no compatibility issues known with other mods.
 
 ## Components
@@ -49,6 +51,8 @@ The following options are available for all weapon categories:
 ### Add damage bonus to bows *(BG2:EE, and EET)*
 
 In BG:EE and IWD:EE enchanted bows provide a damage bonus that correlates with the enchantment value of the weapon. This bonus doesn't exist for bows in BG2:EE. This component adds the damage bonus to bows in BG2:EE.
+
+**Note:** The damage bonus is also applied to ammo that is created by the bow itself (e.g. Shortbow of Gesen).
 
 The following options are available:
 1. **Full bonus to weapons usable by the player:** This option adds a damage bonus that equals the enchantment of the bow. It will only be added to bows that are available to the player. Note that they may also be used by some enemies.
