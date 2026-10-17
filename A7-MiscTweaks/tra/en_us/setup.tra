@@ -96,6 +96,7 @@
 @1005 = ~Unsupported tileset format detected: %SOURCE_FILE%~
 @1006 = ~Could not patch file: %SOURCE_FILE%~
 @1007 = ~This component is not compatible with the current GUI.~
+@1008 = ~This component cannot be installed together with Dee's "Enchant the Missile Launchers."~
 
 // Groups
 @1100 = ~Convenience Tweaks/Cheats~

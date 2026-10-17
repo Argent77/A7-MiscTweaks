@@ -96,6 +96,7 @@
 @1005 = ~Nicht unterstütztes Tileset-Format erkannt: %SOURCE_FILE%~
 @1006 = ~Datei konnte nicht gepatcht werden: %SOURCE_FILE%~
 @1007 = ~Diese Komponente ist mit der aktuellen GUI nicht kompatibel.~
+@1008 = ~Diese Komponente kann nicht zusammen mit Dees "Enchant the Missile Launchers" installiert werden.~
 
 // Groups
 @1100 = ~Angenehme Verbesserungen/Cheats~
