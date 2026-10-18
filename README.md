@@ -45,8 +45,8 @@ Enchantment can be patched for the following weapon categories:
 - Slings
 
 The following options are available for all weapon categories:
-1. **Only for weapons usable by the player:** This option will only patch weapons that are available to the player. Note that they may also be used by some enemies.
-1. **For all weapons in the game:** This option patches all weapons, including specialized creature weapons that simulate innate attack abilities.
+1. **Only for weapons usable by the player:** This option will only patch weapons that are available to the player. Note that they may also be used by some opponents.
+1. **For all weapons in the game:** This option patches all weapons, including undroppable weapons and innate creature attacks that are implemented as launchers.
 
 ### Add damage bonus to bows *(BG2:EE, and EET)*
 
@@ -55,10 +55,10 @@ In BG:EE and IWD:EE enchanted bows provide a damage bonus that correlates with t
 **Note:** The damage bonus is also applied to ammo that is created by the bow itself (e.g. Shortbow of Gesen).
 
 The following options are available:
-1. **Full bonus to weapons usable by the player:** This option adds a damage bonus that equals the enchantment of the bow. It will only be added to bows that are available to the player. Note that they may also be used by some enemies.
-1. **Half bonus to weapons usable by the player:** This option adds a damage bonus that equals half of the enchantment of the bow. Odd values are rounded up. It will only be added to bows that are available to the player. Note that they may also be used by some enemies.
-1. **Full bonus to all weapons in the game:** Same as option 1, except that it is also applied to creature weapons that simulate innate attack abilities.
-1. **Half bonus to all weapons in the game:** Same as option 2, except that it is also applied to creature weapons that simulate innate attack abilities.
+1. **Full bonus to weapons usable by the player:** This option adds a damage bonus that equals the enchantment of the bow. It will only be added to bows that are available to the player. Note that they may also be used by some opponents.
+1. **Half bonus to weapons usable by the player:** This option adds a damage bonus that equals half of the enchantment of the bow. Odd values are rounded up. It will only be added to bows that are available to the player. Note that they may also be used by some opponents.
+1. **Full bonus to all weapons in the game:** Same as option 1, except that it is also applied to undroppable weapons and innate creature attacks that are implemented as bows.
+1. **Half bonus to all weapons in the game:** Same as option 2, except that it is also applied to undroppable weapons and innate creature attacks that are implemented as bows.
 
 ### Breakable cutscenes *(PST:EE only)*
 
