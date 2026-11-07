@@ -135,6 +135,10 @@ This component is basically the opposite version of the component above. It prev
 
 **Note:** Some GUI mods may not be affected by this tweak.
 
+### Remove level-dependent slot limit for weapon categories and styles *(BG:EE, BG2:EE, EET, and IWD:EE)*
+
+More recent EE patch versions implemented the AD&D rule that only a certain number of points can be assigned to weapon categories or styles at lower levels. By default it is limited to 2 points at level 2 or lower, 3 points at level 5 or lower, and 4 point at level 8 or lower. This component removes the restriction so that even at character creation up to 5 points can be placed into a single weapon category.
+
 ### Disable creature tooltips *(BG:EE, SoD, BG2:EE, EET, IWD:EE, and PST:EE)*
 
 This component removes tooltips that are displayed when pressing and holding the Tab key from all creatures in the game.
