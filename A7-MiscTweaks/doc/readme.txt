@@ -258,6 +258,25 @@ This component removes the restriction so that even at character creation up to 
 placed into a single weapon category.
 
 
+*** Expand list of contingency conditions (BG:EE, SoD, BG2:EE, EET, IWD:EE) ***
+
+Group: Convenience Tweaks/Cheats
+
+This component unlocks several more conditions the player can choose from for the spells "Contingency"
+and "Chain Contingency." The following new conditions are available:
+- Attacked: When a creature attacks the spellcaster.
+- Within 4-feet range: When a creature comes within 4-feet range of the spellcaster.
+- Within 10-feet range: When a creature comes within 10-feet range of the spellcaster.
+- Taken damage: When the spellcaster takes any damage.
+- Killed anyone: When the spellcaster killed a creature.
+- Daytime: Triggered during daytime.
+- Dies: When the spellcaster dies.
+- Anyone died: When a creature in visual range of the spellcaster died.
+
+Note: For technical reasons the list will also contain a condition that may potentially crash
+      the game. The UI should block further progression if that condition is selected.
+
+
 *** Disable creature tooltips (BG:EE, SoD, BG2:EE, EET, IWD:EE, and PST:EE) ***
 
 Group: Visual Tweaks

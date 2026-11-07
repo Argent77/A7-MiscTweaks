@@ -1,0 +1,311 @@
+// Expands the list of available conditions for contingency spells
+// TODO: make UI patching compatible with popular UI mods
+
+// Expanding tables
+// contingency conditions
+ACTION_DEFINE_ASSOCIATIVE_ARRAY contcond_array BEGIN
+  // condition id, tra label, tra desc, symbolic name
+  8, 2500, 2501, ~ATTACKED~ => 1    // AttackedBy([ANYONE])
+  9, 2502, 2503, ~RANGE4~ => 1      // PersonalSpaceDistance([ANYONE],4)
+  10, 2504, 2505, ~RANGE10~ => 1    // PersonalSpaceDistance([ANYONE],10)
+  11, 2506, 2507, ~DELAY~ => 1      // Delay(0) -> crashes the game
+  12, 2508, 2509, ~TOOKDAMAGE~ => 1 // TookDamage()
+  13, 2510, 2511, ~KILLED~ => 1     // Killed([ANYONE])
+  14, 2512, 2513, ~TIMEOFDAY~ => 1  // TimeOfDay(0)
+  15, 2514, 2515, ~RANGEX~ => 1     // PersonalSpaceDistance([ANYONE],0)
+  16, 2514, 2515, ~STATEX~ => 1     // StateCheck([ANYONE],0)
+  17, 2516, 2517, ~DIE~ => 1        // Die()
+  18, 2518, 2519, ~DIED~ => 1       // Died([ANYONE])
+END
+
+ACTION_PHP_EACH contcond_array AS data => _ BEGIN
+  OUTER_SET index = $data(~0~)
+  OUTER_SET tra_name = $data(~1~)
+  OUTER_SET tra_name = RESOLVE_STR_REF((AT "tra_name"))
+  OUTER_SET tra_desc = $data(~2~)
+  OUTER_SET tra_desc = RESOLVE_STR_REF((AT "tra_desc"))
+  OUTER_SPRINT label $data(~3~)
+  APPEND ~contcond.2da~ ~%index% %tra_name% %tra_desc% %label%~ UNLESS ~^%index%[ %TAB%]+[0-9]+~
+END
+
+COPY_EXISTING ~contcond.2da~ ~override~
+  PRETTY_PRINT_2DA
+BUT_ONLY
+
+/*
+// contingency targets
+OUTER_SET tra_name = RESOLVE_STR_REF(@2550)
+OUTER_SET tra_desc = RESOLVE_STR_REF(@2551)
+APPEND ~conttarg.2da~ ~4 %tra_name% %tra_desc% NEAREST~ UNLESS ~^4[ %TAB%]+[0-9]+~
+COPY_EXISTING ~conttarg.2da~ ~override~
+  PRETTY_PRINT_2DA
+BUT_ONLY
+*/
+
+// Patching UI to prevent the player from selecting problematic conditions
+
+DEFINE_PATCH_FUNCTION get_menu_block
+STR_VAR
+  menu_name = ~~  // name of the menu
+RET
+  menu_offset // start offset of the returned menu block (-1 if not found)
+  menu_length // length of the menu block (0 if not found)
+  menu_block  // the whole menu block as string (empty string if not found)
+BEGIN
+  SET menu_offset = "-1"
+  SET menu_length = 0
+  SPRINT menu_block ~~
+
+  PATCH_IF (NOT ~%menu_name%~ STR_EQ ~~) BEGIN
+    SET menu_ofs1 = INDEX_BUFFER(~menu[ %TAB%%WNL%]*{[ %TAB%%WNL%]*name[ %TAB%]+['"]%menu_name%['"]~)
+    PATCH_IF (menu_ofs1 >= 0) BEGIN
+      SET ofs = INDEX_BUFFER(~\bmenu\b\|`~ menu_ofs1 + 1)
+      PATCH_IF (ofs < 0) BEGIN SET ofs = BUFFER_LENGTH END
+      PATCH_IF (ofs > menu_ofs1) BEGIN
+        SET menu_ofs2 = RINDEX_BUFFER(~}~ ofs)
+        PATCH_IF (menu_ofs2 > menu_ofs1) BEGIN
+          SET menu_ofs2 += 1
+          SET menu_offset = menu_ofs1
+          SET menu_length = menu_ofs2 - menu_ofs1
+          READ_ASCII menu_ofs1 menu_block (menu_length)
+        END
+      END
+    END
+  END
+END
+
+DEFINE_PATCH_FUNCTION set_menu_block
+INT_VAR
+  menu_offset = "-1"  // start offset of the menu block to replace or remove
+  menu_length = 0     // length of the original menu block
+STR_VAR
+  menu_block = ~~     // the new menu block; leave empty to remove old menu block only
+RET
+  success             // whether the operation was successful
+BEGIN
+  SET success = 0
+  PATCH_IF (menu_offset >= 0 && menu_length > 0 && menu_offset + menu_length <= BUFFER_LENGTH) BEGIN
+    DELETE_BYTES menu_offset menu_length
+    SET new_length = STRING_LENGTH ~%menu_block%~
+    PATCH_IF (new_length > 0) BEGIN
+      INSERT_BYTES menu_offset new_length
+      WRITE_ASCIIE menu_offset ~%menu_block%~ (new_length)
+    END
+    SET success = 1
+  END
+END
+
+// Patches vanilla BGEE/BG2EE UI
+DEFINE_PATCH_FUNCTION patch_ui_bg_vanilla
+RET success
+BEGIN
+  LPF get_menu_block
+    STR_VAR menu_name = ~MAGE~
+    RET menu_offset menu_length menu_block
+  END
+  SET success = menu_offset >= 0
+
+  PATCH_IF (success) BEGIN
+    INNER_PATCH_SAVE patched_block ~%menu_block%~ BEGIN
+      SPRINT search ~\(onopen[ %TAB%%WNL%]*"[^"]+\)"~
+      COUNT_REGEXP_INSTANCES ~%search%~ count
+      PATCH_IF (count > 0) BEGIN
+        REPLACE_TEXTUALLY ~%search%~
+                          ~\1a7contingencyValid = 1%WNL%%TAB%%TAB%"~
+      END
+      SET success = success && count > 0
+
+      SPRINT search ~\(contingencyDescription[ %TAB%]*=[ %TAB%]*contingencyConditions\[currentContingencyCondition\]\.desc\)~
+      COUNT_REGEXP_INSTANCES ~%search%~ count
+      PATCH_IF (success && count > 0) BEGIN
+        REPLACE_TEXTUALLY ~%search%~
+                          "\1%WNL%%TAB%%TAB%%TAB%a7contingencyValid = (currentContingencyCondition ~= 11)"
+      END
+      SET success = success && count > 0
+
+      SPRINT search ~^\([ %TAB%]*text[ %TAB%]*lua[ %TAB%]*"contingencyDoneButtonText()"\)~
+      COUNT_REGEXP_INSTANCES ~%search%~ count
+      PATCH_IF (success && count > 0) BEGIN
+        REPLACE_TEXTUALLY ~%search%~
+                          ~\1%WNL%%TAB%%TAB%clickable lua "a7contingencyValid"~
+      END
+      SET success = success && count > 0
+    END
+
+    PATCH_IF (success) BEGIN
+      LPF set_menu_block
+        INT_VAR menu_offset menu_length
+        STR_VAR menu_block = EVAL ~%patched_block%~
+        RET success
+      END
+    END
+  END
+END
+
+// Patches vanilla IWDEE UI
+DEFINE_PATCH_FUNCTION patch_ui_iwd_vanilla
+RET success
+BEGIN
+  LPF get_menu_block
+    STR_VAR menu_name = ~CONTINGENCY~
+    RET menu_offset menu_length menu_block
+  END
+  SET success = menu_offset >= 0
+
+  PATCH_IF (success) BEGIN
+    INNER_PATCH_SAVE patched_block ~%menu_block%~ BEGIN
+      SPRINT search ~\(onopen[ %TAB%%WNL%]*"[^"]+\)"~
+      COUNT_REGEXP_INSTANCES ~%search%~ count
+      PATCH_IF (count > 0) BEGIN
+        REPLACE_TEXTUALLY ~%search%~
+                          ~\1%TAB%a7contingencyValid = 1%WNL%%TAB%"~
+      END
+      SET success = success && count > 0
+
+      SPRINT search ~\(contingencyDescription[ %TAB%]*=[ %TAB%]*contingencyConditions\[currentContingencyCondition\]\.desc\)~
+      COUNT_REGEXP_INSTANCES ~%search%~ count
+      PATCH_IF (success && count > 0) BEGIN
+        REPLACE_TEXTUALLY ~%search%~
+                          "\1%WNL%%TAB%%TAB%%TAB%a7contingencyValid = (currentContingencyCondition ~= 11)"
+      END
+      SET success = success && count > 0
+
+      SPRINT search ~\(clickable[ %TAB%]*lua[ %TAB%]*".*contingencyComplete()\)\(.*"\)~
+      COUNT_REGEXP_INSTANCES ~%search%~ count
+      PATCH_IF (success && count > 0) BEGIN
+        REPLACE_TEXTUALLY ~%search%~
+                          ~\1 and a7contingencyValid\2~
+      END
+      SET success = success && count > 0
+    END
+
+    PATCH_IF (success) BEGIN
+      LPF set_menu_block
+        INT_VAR menu_offset menu_length
+        STR_VAR menu_block = EVAL ~%patched_block%~
+        RET success
+      END
+    END
+  END
+END
+
+// Patches all LeUI variants except LeUI-IWDEE
+DEFINE_PATCH_FUNCTION patch_ui_leui
+RET success
+BEGIN
+  LPF get_menu_block
+    STR_VAR menu_name = ~MAGE_CHOOSE_CONTINGENCY~
+    RET menu_offset menu_length menu_block
+  END
+  SET success = menu_offset >= 0
+
+  PATCH_IF (success) BEGIN
+    INNER_PATCH_SAVE patched_block ~%menu_block%~ BEGIN
+      SPRINT search ~\(onOpen[ %TAB%%WNL%]*"[^"]+\)"~
+      COUNT_REGEXP_INSTANCES ~%search%~ count
+      PATCH_IF (count > 0) BEGIN
+        REPLACE_TEXTUALLY ~%search%~
+                          ~\1%TAB%a7contingencyValid = 1%WNL%%TAB%"~
+      END
+      SET success = success && count > 0
+
+      SPRINT search ~\(contingencyDescription[ %TAB%]*=[ %TAB%]*contingencyConditions\[currentContingencyCondition\]\.desc\)~
+      COUNT_REGEXP_INSTANCES ~%search%~ count
+      PATCH_IF (success && count > 0) BEGIN
+        REPLACE_TEXTUALLY ~%search%~
+                          "\1%WNL%%TAB%%TAB%%TAB%a7contingencyValid = (currentContingencyCondition ~= 11)"
+      END
+      SET success = success && count > 0
+
+      SPRINT search ~\(clickable[ %TAB%]*lua[ %TAB%]*".*contingencyComplete()\)\(.*"\)~
+      COUNT_REGEXP_INSTANCES ~%search%~ count
+      PATCH_IF (success && count > 0) BEGIN
+        REPLACE_TEXTUALLY ~%search%~
+                          ~\1 and a7contingencyValid\2~
+      END
+      SET success = success && count > 0
+    END
+
+    PATCH_IF (success) BEGIN
+      LPF set_menu_block
+        INT_VAR menu_offset menu_length
+        STR_VAR menu_block = EVAL ~%patched_block%~
+        RET success
+      END
+    END
+  END
+END
+
+// Patches Dragonspear UI++
+DEFINE_PATCH_FUNCTION patch_ui_dragonspear
+RET success
+BEGIN
+  LPF get_menu_block
+    STR_VAR menu_name = ~MAGE~
+    RET menu_offset menu_length menu_block
+  END
+  SET success = menu_offset >= 0
+
+  PATCH_IF (success) BEGIN
+    INNER_PATCH_SAVE patched_block ~%menu_block%~ BEGIN
+      SPRINT search ~\(onopen[ %TAB%%WNL%]*"[^"]+\)"~
+      COUNT_REGEXP_INSTANCES ~%search%~ count
+      PATCH_IF (count > 0) BEGIN
+        REPLACE_TEXTUALLY ~%search%~
+                          ~\1a7contingencyValid = 1%WNL%%TAB%%TAB%"~
+      END
+      SET success = success && count > 0
+
+      SPRINT search ~\(table[ %TAB%]*"contingencyConditions"[^}]+\)}~
+      COUNT_REGEXP_INSTANCES ~%search%~ count
+      PATCH_IF (success && count > 0) BEGIN
+        REPLACE_EVALUATE ~%search%~ BEGIN
+          PATCH_IF (INDEX(~action[ %TAB%%WNL%]*"~ ~%MATCH0%~) > 0) BEGIN
+            // patching existing action block
+            INNER_PATCH_SAVE MATCH0 ~%MATCH0%~ BEGIN
+              REPLACE_TEXTUALLY ~\(action[ %TAB%%WNL%]*"\)~
+                                "\1%WNL%%TAB%%TAB%a7contingencyValid = (currentContingencyCondition ~= 11)"
+            END
+          END ELSE BEGIN
+            // adding new action block
+            SPRINT tilde "~"
+            SPRINT MATCH0 ~%MATCH1%%TAB%action%WNL%%TAB%%TAB%"%WNL%%TAB%%TAB%%TAB%a7contingencyValid = (currentContingencyCondition %tilde%= 11)%WNL%%TAB%%TAB%"%WNL%%TAB%}~
+          END
+        END ~%MATCH0%~
+      END
+      SET success = success && count > 0
+
+      SPRINT search ~\(text[ %TAB%]*lua[ %TAB%]*"contingencyDoneButtonText()"\)~
+      COUNT_REGEXP_INSTANCES ~%search%~ count
+      PATCH_IF (success && count > 0) BEGIN
+        REPLACE_TEXTUALLY ~%search%~
+                          ~\1%WNL%%TAB%%TAB%clickable lua "a7contingencyValid"~
+      END
+      SET success = success && count > 0
+    END
+
+    PATCH_IF (success) BEGIN
+      LPF set_menu_block
+        INT_VAR menu_offset menu_length
+        STR_VAR menu_block = EVAL ~%patched_block%~
+        RET success
+      END
+    END
+  END
+END
+
+COPY_EXISTING ~ui.menu~ ~override~
+  PATCH_IF (INSTALLED_LEUI || INSTALLED_CBGUI) BEGIN
+    LPF patch_ui_leui RET success END
+  END ELSE PATCH_IF (INSTALLED_DRAGONSPEAR_UI) BEGIN
+    LPF patch_ui_dragonspear RET success END
+  END ELSE PATCH_IF (is_iwdee) BEGIN
+    LPF patch_ui_iwd_vanilla RET success END
+  END ELSE BEGIN
+    LPF patch_ui_bg_vanilla RET success END
+  END
+
+  PATCH_IF (NOT success) BEGIN
+    PATCH_WARN ~WARNING: Could not patch UI.MENU~
+  END
+BUT_ONLY

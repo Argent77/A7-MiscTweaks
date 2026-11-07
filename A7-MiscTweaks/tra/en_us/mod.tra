@@ -47,3 +47,27 @@ With this ability you can instantly return to the place where the journey began 
 
 // Map note
 @2400 = ~Safe Chest~
+
+// Lines for expanded contingency conditions
+@2500 = ~Attacked~
+@2501 = ~When a creature attacks the spellcaster.~
+@2502 = ~Within 4-feet range~
+@2503 = ~When a creature comes within 4-feet range of the spellcaster.~
+@2504 = ~Within 10-feet range~
+@2505 = ~When a creature comes within 10-feet range of the spellcaster.~
+@2506 = ~***CRASH***~
+@2507 = ~DO NOT USE! This condition may crash the game.~
+@2508 = ~Taken damage~
+@2509 = ~When the spellcaster takes any damage.~
+@2510 = ~Killed anyone~
+@2511 = ~When the spellcaster killed a creature.~
+@2512 = ~Daytime~
+@2513 = ~Triggered during daytime.~
+@2514 = ~(Unusable)~
+@2515 = ~This condition is never triggered.~
+@2516 = ~Dies~
+@2517 = ~When the spellcaster dies.~
+@2518 = ~Anyone died~
+@2519 = ~When a creature in visual range of the spellcaster died.~
+// @2550 = ~Nearest target~
+// @2551 = ~The spell targets the nearest creature.~

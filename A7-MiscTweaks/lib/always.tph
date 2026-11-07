@@ -18,6 +18,28 @@ OUTER_FOR (i = 1; i < 11; ++i) BEGIN
   OUTER_SET $bg2_chapter(~%i%~) = chapter
 END
 
+// LeUI variants (except LeUI-IWDEE)
+OUTER_SET INSTALLED_LEUI = (MOD_IS_INSTALLED ~leui.tp2~ 0) ||
+                           (MOD_IS_INSTALLED ~leui-sod.tp2~ 0) ||
+                           (MOD_IS_INSTALLED ~leui-bg1ee.tp2~ 0)
+// LeUI-IWDEE
+OUTER_SET INSTALLED_LEUI_IWDEE = (MOD_IS_INSTALLED ~leui-iwdee.tp2~ 0)
+// Pecca's Dragonspear UI++
+OUTER_SET INSTALLED_DRAGONSPEAR_UI = (MOD_IS_INSTALLED ~dragonspear_ui++.tp2~ 1)
+// Pecca's Infinity UI
+OUTER_SET INSTALLED_INFINITY_UI = (MOD_IS_INSTALLED ~infinity_ui.tp2~ 0)
+// Classic BG UI (non-WeiDU mod)
+OUTER_SET INSTALLED_CBGUI = (GAME_IS ~bgee~ &&
+                             RESOURCE_CONTAINS ~ui.menu~ ~\bGUIWPKPC\b~)
+// Tipun's User Interface
+OUTER_SET INSTALLED_TIPUN_UI = (MOD_IS_INSTALLED ~tipun_gui.tp2~ 10)
+
+// IWDEE-UI-BGEE
+OUTER_SET INSTALLED_IWDEE_UI_BGEE = (MOD_IS_INSTALLED ~iwdee-ui-bgee.tp2~ 0)
+
+// Custom EET GUIs
+OUTER_SET INSTALLED_EET_GUI_SOD = (GAME_IS ~eet~ && MOD_IS_INSTALLED ~EET_gui.tp2~ 0)
+
 
 // Checks whether the current game matches the specified game type
 // Supported game types: bgee, bg2ee, iwdee, pstee, eet, sod
