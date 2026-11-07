@@ -47,3 +47,27 @@ Mit dieser Fähigkeit kann die Gruppe sofort zu ihrem Ursprungsort zurückzukehr
 
 // Map note
 @2400 = ~Sichere Truhe~
+
+// Lines for expanded contingency conditions
+@2500 = ~Angriff~
+@2501 = ~Wenn ein Wesen den Zaubernden angreift.~
+@2502 = ~1,2 Meter Reichweite~
+@2503 = ~Wenn sich ein Wesen innerhalb 1,2 Meter Reichweite des Zaubernden befindet.~
+@2504 = ~3 Meter Reichweite~
+@2505 = ~Wenn sich ein Wesen innerhalb 3 Meter Reichweite des Zaubernden befindet.~
+@2506 = ~***ABSTURZ***~
+@2507 = ~NICHT BENUTZEN! Diese Bedingung kann das Spiel abstürzen lassen.~
+@2508 = ~Schaden~
+@2509 = ~Wenn der Zaubernde Schaden nimmt.~
+@2510 = ~Wesen getötet~
+@2511 = ~Wenn der Zaubernde ein Wesen getötet hat.~
+@2512 = ~Tagsüber~
+@2513 = ~Wird tagsüber ausgelöst.~
+@2514 = ~(Unbrauchbar)~
+@2515 = ~Diese Bedingung wird nie ausgelöst.~
+@2516 = ~Stirbt~
+@2517 = ~Wenn der Zaubernde stirbt.~
+@2518 = ~Wesen stirbt~
+@2519 = ~Wenn ein Wesen im Sichtradius des Zaubernden stirbt.~
+// @2550 = ~Nächstes Ziel~
+// @2551 = ~Der Zauber wird auf das nächste Ziel angewendet.~
